@@ -1,6 +1,7 @@
 import React from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import PropTypes from 'prop-types';
+import './third-party/tableRow.css';
 
 const CTable = (props) => {
     const { columns, content, onRowClick, keyProp } = props;
@@ -12,12 +13,17 @@ const CTable = (props) => {
     };
 
     return (
-        <TableContainer>
+        <TableContainer component={Paper}>
             <Table>
                 <TableHead>
                     <TableRow>
                         {columns.map((headCell) => (
-                            <TableCell key={headCell.label} align={headCell.align} padding={headCell.disablePadding ? 'none' : 'normal'}>
+                            <TableCell
+                                className="Cell"
+                                key={headCell.label}
+                                align={headCell.align}
+                                padding={headCell.disablePadding ? 'none' : 'normal'}
+                            >
                                 {headCell.label}
                             </TableCell>
                         ))}
@@ -31,10 +37,16 @@ const CTable = (props) => {
                                     if (contentEntry.hasOwnProperty(column.field)) {
                                         const value = contentEntry[column.field];
                                         return (
-                                            <TableCell key={column.label}>{column.render ? column.render(contentEntry) : value}</TableCell>
+                                            <TableCell className="Cell" key={column.label}>
+                                                {column.render ? column.render(contentEntry) : value}
+                                            </TableCell>
                                         );
                                     }
-                                    return <TableCell key={column.label}>{column.render && column.render(contentEntry)}</TableCell>;
+                                    return (
+                                        <TableCell className="Cell" key={column.label}>
+                                            {column.render && column.render(contentEntry)}
+                                        </TableCell>
+                                    );
                                 })}
                             </TableRow>
                         );
