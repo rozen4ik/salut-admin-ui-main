@@ -21,7 +21,7 @@ const CTable = (props) => {
                             <TableCell
                                 className="Cell"
                                 key={headCell.label}
-                                align={headCell.align}
+                                align={'center'}
                                 padding={headCell.disablePadding ? 'none' : 'normal'}
                             >
                                 {headCell.label}

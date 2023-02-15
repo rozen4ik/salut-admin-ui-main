@@ -1,0 +1,13 @@
+#Schet {
+    counter-reset: rowNumb;
+}
+
+#Schet tr > td:first-child {
+    counter-increment: rowNumb;
+}
+
+#Schet tr td:first-child:before {
+    content: counter(rowNumb);
+    min-width: 1em;
+    margin-right: 0.5em;
+}

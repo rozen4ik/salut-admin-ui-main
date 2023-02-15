@@ -6,9 +6,14 @@ import { Checkbox, TextField } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers';
 import getDaysInMonth from 'date-fns/getDaysInMonth';
 import controller from '../../api/controller';
+import './third-party/style.css';
 
 const GroupClients = () => {
     const c = [
+        {
+            field: 'number_people',
+            label: '№'
+        },
         {
             field: 'people_initials',
             label: 'ФИО'
@@ -137,7 +142,7 @@ const GroupClients = () => {
     }, [selectedDate, daysInMonth, visits]);
 
     return (
-        <MainCard title={`Группа ${id}`}>
+        <MainCard id="Schet" title={`Группа ${id}`}>
             <DatePicker
                 views={['year', 'month']}
                 label="Месяц, год"
@@ -147,6 +152,7 @@ const GroupClients = () => {
                 inputFormat={'MM/yyyy'}
                 openTo={'month'}
             />
+            <hr></hr>
             <CTable columns={columns} content={clients} keyProp={'id_prs'} />
         </MainCard>
     );
