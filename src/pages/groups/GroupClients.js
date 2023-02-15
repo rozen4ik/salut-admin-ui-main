@@ -153,7 +153,7 @@ const GroupClients = () => {
                 openTo={'month'}
             />
             <hr></hr>
-            <CTable columns={columns} content={clients} keyProp={'id_prs'} />
+            <CTable sx={{ minWidth: 650 }} size="small" columns={columns} content={clients} keyProp={'id_prs'} />
         </MainCard>
     );
 };
