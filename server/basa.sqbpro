@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/MRozenberg/WebStormProjects/salut-admin-ui-main/server/basa.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="1"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="1195"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,5:mainquote"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="quote" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="40"/><column index="2" value="300"/><column index="3" value="113"/><column index="4" value="129"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1">INSERT INTO quote (quote, author) VALUES 
+('There are only two kinds of languages: the ones people complain about and the ones nobody uses.', 'Bjarne Stroustrup'), 
+('Any fool can write code that a computer can understand. Good programmers write code that humans can understand.', 'Martin Fowler'), 
+('First, solve the problem. Then, write the code.', 'John Johnson'), 
+('Java is to JavaScript what car is to Carpet.', 'Chris Heilmann'), 
+('Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.', 'John Woods'), 
+('I''m not a great programmer; I''m just a good programmer with great habits.', 'Kent Beck'), 
+('Truth can only be found in one place: the code.', 'Robert C. Martin'), 
+('If you have to spend effort looking at a fragment of code and figuring out what it''s doing, then you should extract it into a function and name the function after the &quot;what&quot;.', 'Martin Fowler'), 
+('The real problem is that programmers have spent far too much time worrying about efficiency in the wrong places and at the wrong times; premature optimization is the root of all evil (or at least most of it) in programming.', 'Donald Knuth'), 
+('SQL, Lisp, and Haskell are the only programming languages that I’ve seen where one spends more time thinking than typing.', 'Philip Greenspun'), 
+('Deleted code is debugged code.', 'Jeff Sickel'), 
+('There are two ways of constructing a software design: One way is to make it so simple that there are obviously no deficiencies and the other way is to make it so complicated that there are no obvious deficiencies.', 'C.A.R. Hoare'), 
+('Simplicity is prerequisite for reliability.', 'Edsger W. Dijkstra'), 
+('There are only two hard things in Computer Science: cache invalidation and naming things.', 'Phil Karlton'), 
+('Measuring programming progress by lines of code is like measuring aircraft building progress by weight.', 'Bill Gates'), 
+('Controlling complexity is the essence of computer programming.', 'Brian Kernighan'),
+('The only way to learn a new programming language is by writing programs in it.', 'Dennis Ritchie');</sql><current_tab id="0"/></tab_sql></sqlb_project>

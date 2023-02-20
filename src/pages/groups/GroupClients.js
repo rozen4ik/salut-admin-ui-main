@@ -7,6 +7,7 @@ import { DatePicker } from '@mui/x-date-pickers';
 import getDaysInMonth from 'date-fns/getDaysInMonth';
 import controller from '../../api/controller';
 import './third-party/style.css';
+import expressController from '../../api/ExpressController';
 
 const GroupClients = () => {
     const c = [
@@ -21,7 +22,7 @@ const GroupClients = () => {
         {
             field: 'mosReg',
             label: 'МосРег',
-            render: () => <Checkbox disabled />
+            render: () => <Checkbox id="checkMosReg" checked={false} />
         },
         {
             field: 'payment',
@@ -46,10 +47,14 @@ const GroupClients = () => {
 
     const { id } = useParams();
     const [clients, setClients] = useState([]);
+    let [checkMos, setCheckMos] = useState({});
+    let [idAcc, setIdAcc] = useState();
     const [selectedDate, setSelectedDate] = useState(defaultDate);
     const [daysInMonth, setDaysInMonth] = useState(0);
     const [columns, setColumns] = useState([...c]);
     const [visits, setVisits] = useState([]);
+
+    function findMosReg(status) {}
 
     const findActiveIdentifier = (identifiers) => {
         const lastActiveIdentifier = identifiers
@@ -97,6 +102,14 @@ const GroupClients = () => {
 
     const loadData = async () => {
         const response = await controller.getGroupCustomers(id, selectedDate);
+        const mosRef = await expressController.getMosReg();
+        checkMos = mosRef.data;
+        for (const r of response.tgclients) {
+            console.log(r);
+            const pMosReg = `{"id_acc":"${r.id_acc}","mosreg":"0"}`;
+            console.log(pMosReg);
+            // await expressController.postMosReg(pMosReg);
+        }
         setClients(response.tgclients);
         const visits = await controller.getVisits(userInfo?.employee.id_emp, selectedDate);
         setVisits(visits);
