@@ -11,19 +11,19 @@ import expressController from '../../api/ExpressController';
 
 const GroupClients = () => {
     const c = [
-        {
-            field: 'number_people',
-            label: '№'
-        },
+        // {
+        //     field: 'number_people',
+        //     label: '№'
+        // },
         {
             field: 'people_initials',
             label: 'ФИО'
         },
-        {
-            field: 'mosReg',
-            label: 'МосРег',
-            render: () => <Checkbox id="checkMosReg" checked={false} />
-        },
+        // {
+        //     field: 'mosReg',
+        //     label: 'МосРег',
+        //     render: () => <Checkbox id="`${clients.id_acc}`" />
+        // },
         {
             field: 'payment',
             label: 'Оплата',
@@ -108,7 +108,7 @@ const GroupClients = () => {
             console.log(r);
             const pMosReg = `{"id_acc":"${r.id_acc}","mosreg":"0"}`;
             console.log(pMosReg);
-            // await expressController.postMosReg(pMosReg);
+            await expressController.postMosReg(pMosReg);
         }
         setClients(response.tgclients);
         const visits = await controller.getVisits(userInfo?.employee.id_emp, selectedDate);
@@ -144,6 +144,15 @@ const GroupClients = () => {
         setColumns([]);
         setTimeout(() => {
             setColumns([
+                {
+                    field: 'number_people',
+                    label: '№'
+                },
+                {
+                    field: 'mosReg',
+                    label: 'МосРег',
+                    render: () => <Checkbox id="`${clients.id_acc}`" />
+                },
                 ...c,
                 ...Array.from({ length: daysInMonth }, (_, i) => ({
                     label: i + 1,
