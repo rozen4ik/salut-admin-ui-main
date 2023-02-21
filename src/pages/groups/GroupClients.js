@@ -11,19 +11,6 @@ import expressController from '../../api/ExpressController';
 
 const GroupClients = () => {
     const c = [
-        // {
-        //     field: 'number_people',
-        //     label: '№'
-        // },
-        {
-            field: 'people_initials',
-            label: 'ФИО'
-        },
-        // {
-        //     field: 'mosReg',
-        //     label: 'МосРег',
-        //     render: () => <Checkbox id="`${clients.id_acc}`" />
-        // },
         {
             field: 'payment',
             label: 'Оплата',
@@ -47,14 +34,12 @@ const GroupClients = () => {
 
     const { id } = useParams();
     const [clients, setClients] = useState([]);
-    let [checkMos, setCheckMos] = useState({});
-    let [idAcc, setIdAcc] = useState();
+    let [checkMos, setCheckMos] = useState([]);
     const [selectedDate, setSelectedDate] = useState(defaultDate);
     const [daysInMonth, setDaysInMonth] = useState(0);
     const [columns, setColumns] = useState([...c]);
     const [visits, setVisits] = useState([]);
-
-    function findMosReg(status) {}
+    let [isChecked, setIsChecked] = useState(false);
 
     const findActiveIdentifier = (identifiers) => {
         const lastActiveIdentifier = identifiers
@@ -102,14 +87,6 @@ const GroupClients = () => {
 
     const loadData = async () => {
         const response = await controller.getGroupCustomers(id, selectedDate);
-        const mosRef = await expressController.getMosReg();
-        checkMos = mosRef.data;
-        for (const r of response.tgclients) {
-            console.log(r);
-            const pMosReg = `{"id_acc":"${r.id_acc}","mosreg":"0"}`;
-            console.log(pMosReg);
-            await expressController.postMosReg(pMosReg);
-        }
         setClients(response.tgclients);
         const visits = await controller.getVisits(userInfo?.employee.id_emp, selectedDate);
         setVisits(visits);
@@ -140,7 +117,68 @@ const GroupClients = () => {
         return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} checked={checked} disabled={checked} />;
     };
 
+    // let mosreg = '';
+
+    const loadGetMosReg = async () => {
+        checkMos = await expressController.getMosReg();
+    };
+
+    let count = -1;
+    const mosregCheckBox = () => {
+        let id_acc = 0;
+        let mKey = 0;
+        let mValue = 0;
+        let db = [];
+        count++;
+        if (clients.length > 0) {
+            db = checkMos.data[count];
+            // console.log(`${db.id_acc}:${db.mosreg}`);
+            // console.log(isChecked);
+            // console.log(clients[count].id_acc);
+            id_acc = clients[count].id_acc;
+            for (const key in db) {
+                if (key === 'id_acc') {
+                    mKey = db[key];
+                    // if (id_acc === key[db]) {
+                    //     console.log(`${id_acc}:${db[key]}`);
+                    //     if key
+                    // }
+                } else if (key === 'mosreg') {
+                    mValue = db[key];
+                }
+            }
+            console.log(mKey, mValue);
+            if (id_acc == mKey) {
+                console.log(`${id_acc} === ${mKey}`);
+                if (mValue == 1) {
+                    console.log(`${mValue} === 1`);
+                    isChecked = true;
+                } else if (mValue == 0) {
+                    console.log(`${mValue} === 0`);
+                    isChecked = false;
+                }
+            }
+        }
+        return <Checkbox onChange={() => checkHandler(id_acc)} defaultChecked={isChecked} id={id_acc} />;
+    };
+
+    const loadPostMosReg = async (id_acc, check) => {
+        let pMosReg = '';
+        if (check === true) {
+            pMosReg = `{"id_acc":"${id_acc}","mosreg":"1"}`;
+        } else {
+            pMosReg = `{"id_acc":"${id_acc}","mosreg":"0"}`;
+        }
+        await expressController.postMosReg(pMosReg);
+    };
+
+    const checkHandler = (id_acc) => {
+        isChecked = isChecked !== true;
+        loadPostMosReg(id_acc, isChecked);
+    };
+
     useEffect(() => {
+        loadGetMosReg();
         setColumns([]);
         setTimeout(() => {
             setColumns([
@@ -149,9 +187,13 @@ const GroupClients = () => {
                     label: '№'
                 },
                 {
-                    field: 'mosReg',
+                    field: 'people_initials',
+                    label: 'ФИО'
+                },
+                {
+                    field: 'id_acc',
                     label: 'МосРег',
-                    render: () => <Checkbox id="`${clients.id_acc}`" />
+                    render: () => mosregCheckBox()
                 },
                 ...c,
                 ...Array.from({ length: daysInMonth }, (_, i) => ({

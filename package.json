@@ -7,6 +7,7 @@
     "scripts": {
         "start": "react-scripts start",
         "start-express": "node server/app.js",
+        "start-all": "concurrently \"react-scripts start\" \"node server/app.js\"",
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-s+cripts eject"
@@ -49,6 +50,7 @@
         "axios": "^1.2.1",
         "better-sqlite3": "^8.1.0",
         "bluebird": "^3.7.2",
+        "concurrently": "^7.6.0",
         "cors": "^2.8.5",
         "date-fns": "^2.29.3",
         "express": "^4.18.2",
