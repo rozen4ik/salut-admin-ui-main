@@ -132,17 +132,11 @@ const GroupClients = () => {
         count++;
         if (clients.length > 0) {
             db = checkMos.data[count];
-            // console.log(`${db.id_acc}:${db.mosreg}`);
-            // console.log(isChecked);
-            // console.log(clients[count].id_acc);
+            console.log(db);
             id_acc = clients[count].id_acc;
             for (const key in db) {
                 if (key === 'id_acc') {
                     mKey = db[key];
-                    // if (id_acc === key[db]) {
-                    //     console.log(`${id_acc}:${db[key]}`);
-                    //     if key
-                    // }
                 } else if (key === 'mosreg') {
                     mValue = db[key];
                 }
@@ -159,7 +153,7 @@ const GroupClients = () => {
                 }
             }
         }
-        return <Checkbox onChange={() => checkHandler(id_acc)} defaultChecked={isChecked} id={id_acc} />;
+        return <Checkbox onChange={() => checkHandler(id_acc)} defaultChecked={isChecked} id={toString(id_acc)} />;
     };
 
     const loadPostMosReg = async (id_acc, check) => {
