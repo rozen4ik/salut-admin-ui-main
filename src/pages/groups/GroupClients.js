@@ -123,33 +123,32 @@ const GroupClients = () => {
         checkMos = await expressController.getMosReg();
     };
 
+    function getKeyByValue(object, value) {
+        return Object.values(object).find((key) => object[key] === value);
+    }
+
     let count = -1;
     const mosregCheckBox = () => {
         let id_acc = 0;
-        let mKey = 0;
-        let mValue = 0;
         let db = [];
+        let key;
         count++;
         if (clients.length > 0) {
-            db = checkMos.data[count];
-            console.log(db);
+            db = checkMos.data;
+            // console.log(db);
             id_acc = clients[count].id_acc;
-            for (const key in db) {
-                if (key === 'id_acc') {
-                    mKey = db[key];
-                } else if (key === 'mosreg') {
-                    mValue = db[key];
-                }
-            }
-            console.log(mKey, mValue);
-            if (id_acc == mKey) {
-                console.log(`${id_acc} === ${mKey}`);
-                if (mValue == 1) {
-                    console.log(`${mValue} === 1`);
-                    isChecked = true;
-                } else if (mValue == 0) {
-                    console.log(`${mValue} === 0`);
-                    isChecked = false;
+            exit_loop: for (const d of db) {
+                console.log(d.id_acc);
+                if (id_acc == d.id_acc) {
+                    console.log(`${id_acc} == ${d.id_acc} и ${d.mosreg}`);
+                    if (d.mosreg == 1) {
+                        console.log(d.mosreg);
+                        isChecked = true;
+                    } else if (d.mosreg == 0) {
+                        console.log(d.mosreg);
+                        isChecked = false;
+                    }
+                    break exit_loop;
                 }
             }
         }
