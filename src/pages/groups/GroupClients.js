@@ -135,24 +135,20 @@ const GroupClients = () => {
         count++;
         if (clients.length > 0) {
             db = checkMos.data;
-            // console.log(db);
             id_acc = clients[count].id_acc;
-            exit_loop: for (const d of db) {
-                console.log(d.id_acc);
+            for (const d of db) {
                 if (id_acc == d.id_acc) {
-                    console.log(`${id_acc} == ${d.id_acc} и ${d.mosreg}`);
                     if (d.mosreg == 1) {
-                        console.log(d.mosreg);
                         isChecked = true;
                     } else if (d.mosreg == 0) {
-                        console.log(d.mosreg);
                         isChecked = false;
                     }
-                    break exit_loop;
+                    return <Checkbox onChange={() => checkHandler(id_acc)} defaultChecked={isChecked} id={toString(id_acc)} />;
                 }
             }
+            isChecked = false;
+            return <Checkbox onChange={() => checkHandler(id_acc)} defaultChecked={isChecked} id={toString(id_acc)} />;
         }
-        return <Checkbox onChange={() => checkHandler(id_acc)} defaultChecked={isChecked} id={toString(id_acc)} />;
     };
 
     const loadPostMosReg = async (id_acc, check) => {
@@ -166,7 +162,19 @@ const GroupClients = () => {
     };
 
     const checkHandler = (id_acc) => {
-        isChecked = isChecked !== true;
+        let db = checkMos.data;
+        let search = false;
+        for (const d in db) {
+            if (d.id_acc == id_acc) {
+                search = true;
+            }
+        }
+        console.log(search);
+        if (search == false) {
+            isChecked = true;
+        } else {
+            isChecked = isChecked !== true;
+        }
         loadPostMosReg(id_acc, isChecked);
     };
 
