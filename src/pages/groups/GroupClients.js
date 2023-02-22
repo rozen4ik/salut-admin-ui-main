@@ -131,23 +131,27 @@ const GroupClients = () => {
     const mosregCheckBox = () => {
         let id_acc = 0;
         let db = [];
-        let key;
         count++;
         if (clients.length > 0) {
             db = checkMos.data;
-            id_acc = clients[count].id_acc;
-            for (const d of db) {
-                if (id_acc == d.id_acc) {
-                    if (d.mosreg == 1) {
-                        isChecked = true;
-                    } else if (d.mosreg == 0) {
-                        isChecked = false;
+            try {
+                id_acc = clients[count].id_acc;
+                for (const d of db) {
+                    if (id_acc == d.id_acc) {
+                        if (d.mosreg == 1) {
+                            isChecked = true;
+                        } else if (d.mosreg == 0) {
+                            isChecked = false;
+                        }
+                        return <Checkbox onChange={() => checkHandler(id_acc)} defaultChecked={isChecked} id={toString(id_acc)} />;
                     }
-                    return <Checkbox onChange={() => checkHandler(id_acc)} defaultChecked={isChecked} id={toString(id_acc)} />;
                 }
+                isChecked = false;
+                return <Checkbox onChange={() => checkHandler(id_acc)} defaultChecked={isChecked} id={toString(id_acc)} />;
+            } catch (e) {
+                console.log(e);
+                // location.reload();
             }
-            isChecked = false;
-            return <Checkbox onChange={() => checkHandler(id_acc)} defaultChecked={isChecked} id={toString(id_acc)} />;
         }
     };
 
@@ -164,16 +168,18 @@ const GroupClients = () => {
     const checkHandler = (id_acc) => {
         let db = checkMos.data;
         let search = false;
-        for (const d in db) {
+        for (const d of db) {
             if (d.id_acc == id_acc) {
                 search = true;
+                if (d.mosreg == 0) {
+                    isChecked = true;
+                } else if (d.mosreg == 1) {
+                    isChecked = false;
+                }
             }
         }
-        console.log(search);
         if (search == false) {
             isChecked = true;
-        } else {
-            isChecked = isChecked !== true;
         }
         loadPostMosReg(id_acc, isChecked);
     };
