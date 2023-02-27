@@ -12,6 +12,11 @@ import expressController from '../../api/ExpressController';
 const GroupClients = () => {
     const c = [
         {
+            field: 'date_start',
+            label: 'Дата оплаты',
+            render: (data) => new Date(findPackage(data.packages).date_start).toLocaleString()
+        },
+        {
             field: 'payment',
             label: 'Оплата',
             render: (data) => findPackage(data.packages).price
@@ -117,15 +122,9 @@ const GroupClients = () => {
         return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} checked={checked} disabled={checked} />;
     };
 
-    // let mosreg = '';
-
     const loadGetMosReg = async () => {
         checkMos = await expressController.getMosReg();
     };
-
-    function getKeyByValue(object, value) {
-        return Object.values(object).find((key) => object[key] === value);
-    }
 
     let count = -1;
     const mosregCheckBox = () => {
