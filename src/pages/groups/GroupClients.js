@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import MainCard from '../../components/MainCard';
-import CTable from '../../components/CTable';
 import { Checkbox, TextField } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers';
 import getDaysInMonth from 'date-fns/getDaysInMonth';
 import controller from '../../api/controller';
 import './third-party/style.css';
 import expressController from '../../api/ExpressController';
+import GroupClientTable from '../../components/GroupClientTable';
 
 const GroupClients = () => {
     const c = [
         {
             field: 'date_start',
             label: 'Дата оплаты',
-            render: (data) => new Date(findPackage(data.packages).date_start).toLocaleString()
+            render: (data) => new Date(findPackage(data.packages).date_change).toLocaleString()
         },
         {
             field: 'payment',
@@ -132,6 +132,7 @@ const GroupClients = () => {
         let db = [];
         count++;
         if (clients.length > 0) {
+            console.log(clients[count]);
             db = checkMos.data;
             try {
                 id_acc = clients[count].id_acc;
@@ -223,7 +224,7 @@ const GroupClients = () => {
                 openTo={'month'}
             />
             <hr></hr>
-            <CTable sx={{ minWidth: 650 }} size="small" columns={columns} content={clients} keyProp={'id_prs'} />
+            <GroupClientTable columns={columns} content={clients} keyProp={'id_prs'} />
         </MainCard>
     );
 };
