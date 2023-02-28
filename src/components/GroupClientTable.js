@@ -13,23 +13,16 @@ const GroupClientTable = (props) => {
     };
 
     const customColumnStyle = {
-        wordWrap: 'break-word',
-        width: '70%'
+        fontSize: '8pt'
     };
 
     return (
         <TableContainer component={Paper}>
-            <Table size="small">
+            <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                 <TableHead>
-                    <TableRow>
+                    <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                         {columns.map((headCell) => (
-                            <TableCell
-                                style={customColumnStyle}
-                                className="Cell"
-                                key={headCell.label}
-                                align={'center'}
-                                padding={headCell.disablePadding ? 'none' : 'normal'}
-                            >
+                            <TableCell style={customColumnStyle} className="Cell" key={headCell.label} align={'center'} padding="checkbox">
                                 <div className="vertical">{headCell.label}</div>
                             </TableCell>
                         ))}
@@ -38,19 +31,23 @@ const GroupClientTable = (props) => {
                 <TableBody>
                     {content.map((contentEntry) => {
                         return (
-                            <TableRow key={contentEntry[keyProp] || contentEntry.id} onClick={() => handleRowClick(contentEntry)}>
+                            <TableRow
+                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                key={contentEntry[keyProp] || contentEntry.id}
+                                onClick={() => handleRowClick(contentEntry)}
+                            >
                                 {columns.map((column) => {
                                     if (contentEntry.hasOwnProperty(column.field)) {
                                         const value = contentEntry[column.field];
                                         return (
-                                            <TableCell style={customColumnStyle} className="Cell" key={column.label}>
-                                                <div className="vertical">{column.render ? column.render(contentEntry) : value}</div>
+                                            <TableCell padding="checkbox" style={customColumnStyle} className="Cell" key={column.label}>
+                                                {column.render ? column.render(contentEntry) : value}
                                             </TableCell>
                                         );
                                     }
                                     return (
-                                        <TableCell style={customColumnStyle} className="Cell" key={column.label}>
-                                            <div className="vertical">{column.render && column.render(contentEntry)}</div>
+                                        <TableCell padding="checkbox" style={customColumnStyle} className="Cell" key={column.label}>
+                                            {column.render && column.render(contentEntry)}
                                         </TableCell>
                                     );
                                 })}

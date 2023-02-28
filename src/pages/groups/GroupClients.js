@@ -119,7 +119,7 @@ const GroupClients = () => {
                 checked = true;
             }
         }
-        return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} checked={checked} disabled={checked} />;
+        return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} checked={checked} disabled={checked} size="small" />;
     };
 
     const loadGetMosReg = async () => {
@@ -143,11 +143,13 @@ const GroupClients = () => {
                         } else if (d.mosreg == 0) {
                             isChecked = false;
                         }
-                        return <Checkbox onChange={() => checkHandler(id_acc)} defaultChecked={isChecked} id={toString(id_acc)} />;
+                        return (
+                            <Checkbox onChange={() => checkHandler(id_acc)} defaultChecked={isChecked} id={toString(id_acc)} size="small" />
+                        );
                     }
                 }
                 isChecked = false;
-                return <Checkbox onChange={() => checkHandler(id_acc)} defaultChecked={isChecked} id={toString(id_acc)} />;
+                return <Checkbox onChange={() => checkHandler(id_acc)} defaultChecked={isChecked} id={toString(id_acc)} size="small" />;
             } catch (e) {
                 console.log(e);
                 // location.reload();
