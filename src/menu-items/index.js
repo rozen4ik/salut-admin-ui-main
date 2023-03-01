@@ -14,15 +14,15 @@ const initItems = {
                     url: '/',
                     icon: LayoutFilled,
                     breadcrumbs: false
+                },
+                {
+                    title: 'Добавить клиента',
+                    id: 'addClient',
+                    type: 'item',
+                    url: '/add-client',
+                    icon: LayoutFilled,
+                    breadcrumbs: false
                 }
-                // {
-                //     title: 'Добавить клиента',
-                //     id: 'addClient',
-                //     type: 'item',
-                //     url: '/add-client',
-                //     icon: LayoutFilled,
-                //     breadcrumbs: false
-                // }
             ]
         }
     ]
