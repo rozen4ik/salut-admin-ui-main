@@ -2,8 +2,7 @@ import axios from 'axios';
 import { format } from 'date-fns';
 
 const controller = axios.create({
-    baseURL: 'http://92.63.100.34:3001',
-    // baseURL: 'http://localhost:3001',
+    baseURl: 'http://81.200.31.254:33366',
     timeout: 300000,
     headers: {
         'Content-Type': 'application/json'
@@ -17,52 +16,57 @@ const get = async (url, data) => await controller.get(url, data);
 
 class Controller {
     async getGroupTypes() {
-        return get('/group-types').then((response) => response.data);
+        return get('/json-iapi/iapi-instr?act=tgtypes').then((response) => response.data);
     }
 
     async getGroupsByType(typeId) {
-        return get(`/groups?typeId=${typeId}`).then((response) => response.data);
+        return get(`/json-iapi/iapi-instr?act=tginfo&id_tgroup=${typeId}`).then((response) => response.data);
     }
 
     async getGroupsByInstrId(instrId) {
-        return get(`/groups?instrId=${instrId}`).then((response) => response.data);
+        return get(`json-iapi/iapi-instr?act=tglist&id_instr=${instrId}`).then((response) => response.data);
     }
 
     async getGroupCustomers(groupId, date) {
         const formattedDate = format(date, 'dd.MM.yyyy');
-        return get(`/groups/${groupId}/customers?date=${formattedDate}`).then((response) => response.data);
+        return get(`/json-iapi/iapi-instr?act=tgclients&id_tgroup=${groupId}&date_on=${formattedDate}`).then((response) => response.data);
     }
 
     async getEmployees() {
-        return get('/employees').then((response) => response.data);
+        return get('/json-iapi/iapi-employee?act=getlist').then((response) => response.data);
     }
 
     async createVisit(clientId, operatorId, identifier, packageId, date) {
+        console.log(`${clientId} ${operatorId} ${identifier} ${packageId} ${date}`);
         const formattedDate = formatDate(date);
-        return post(
-            `/visits?clientId=${clientId}&operatorId=${operatorId}&date=${formattedDate}&packageId=${packageId}&identifier=${identifier}`
+        return get(
+            `/json-iapi/iapi-instr?act=tgclientsp&identifier=${identifier}&operator=${operatorId}&time_motion=${formattedDate}&device_id=1022&id_sp=${packageId}`
         ).then((response) => response.data);
     }
 
     async getVisits(operatorId, date) {
         const formattedDate = formatDate(date);
-        return get(`/visits?operatorId=${operatorId}&date=${formattedDate}`).then((response) => response.data);
+        return get(`/json-iapi/iapi-instr?act=clientcode&operator=${operatorId}&time_motion=${formattedDate}&device_id=1022`).then(
+            (response) => response.data
+        );
     }
 
     async login(identifier) {
-        return post(`/employees/login?identifier=${identifier}`).then((response) => response.data);
+        return get(`/json-iapi/iapi-operator?act=login&identifier=${identifier}`).then((response) => response.data);
     }
 
     async getRentSalesReport(dateFrom, dateTo) {
         dateFrom = formatDate(dateFrom);
         dateTo = formatDate(dateTo);
-        return get(`/reports/rent-sales?dateFrom=${dateFrom}&dateTo=${dateTo}`).then((response) => response.data);
+        return get(`/json-iapi/report-slt-sales-arenda?DATE_FROM=${dateFrom}&DATE_TO=${dateTo}`).then((response) => response.data);
     }
 
     async getInstrSalesReport(dateFrom, dateTo, groupBy) {
         dateFrom = formatDate(dateFrom);
         dateTo = formatDate(dateTo);
-        return get(`/reports/instr-sales?dateFrom=${dateFrom}&dateTo=${dateTo}&groupBy=${groupBy}`).then((response) => response.data);
+        return get(`/json-iapi/report-slt-sales-instructors?DATE_FROM=${dateFrom}&DATE_TO=${dateTo}&GROUP_BY=${groupBy}`).then(
+            (response) => response.data
+        );
     }
 }
 
