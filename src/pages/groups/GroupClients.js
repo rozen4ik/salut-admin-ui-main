@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import MainCard from '../../components/MainCard';
-import { Checkbox, TextField } from '@mui/material';
+import { Box, Checkbox, TextField } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers';
 import getDaysInMonth from 'date-fns/getDaysInMonth';
 import controller from '../../api/controller';
 import './third-party/style.css';
 import expressController from '../../api/ExpressController';
 import GroupClientTable from '../../components/GroupClientTable';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import dayjs from 'dayjs';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 const GroupClients = () => {
     const c = [
@@ -24,12 +27,12 @@ const GroupClients = () => {
         {
             field: 'certificateUntil',
             label: 'Справка до',
-            render: () => 'Не указано'
+            render: () => certificate()
         },
         {
             field: 'contractUntil',
             label: 'Договор до',
-            render: () => 'Не указано'
+            render: () => contract()
         }
     ];
 
@@ -101,6 +104,46 @@ const GroupClients = () => {
         loadData();
         setDaysInMonth(getDaysInMonth(selectedDate));
     }, [selectedDate]);
+
+    const [certificateValue, setCertificateValue] = React.useState(dayjs('2022-04-07'));
+
+    const certificate = () => {
+        return (
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DatePicker
+                    label="Custom input"
+                    value={certificateValue}
+                    onChange={setCertificateValue}
+                    renderInput={({ inputRef, inputProps, InputProps }) => (
+                        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                            <input ref={inputRef} {...inputProps} />
+                            {InputProps?.endAdornment}
+                        </Box>
+                    )}
+                />
+            </LocalizationProvider>
+        );
+    };
+
+    const [contractValue, setContractValue] = React.useState(dayjs('2022-04-07'));
+
+    const contract = () => {
+        return (
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DatePicker
+                    label="Custom input"
+                    value={contractValue}
+                    onChange={setContractValue}
+                    renderInput={({ inputRef, inputProps, InputProps }) => (
+                        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                            <input ref={inputRef} {...inputProps} />
+                            {InputProps?.endAdornment}
+                        </Box>
+                    )}
+                />
+            </LocalizationProvider>
+        );
+    };
 
     const checkbox = (recordData, dayOfMonth) => {
         let checked = false;
