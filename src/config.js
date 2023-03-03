@@ -1,7 +1,7 @@
 // ==============================|| THEME CONFIG  ||============================== //
 
 const config = {
-    defaultPath: '/dashboard/default',
+    defaultPath: '/login',
     fontFamily: `'Public Sans', sans-serif`,
     i18n: 'ru',
     miniDrawer: false,

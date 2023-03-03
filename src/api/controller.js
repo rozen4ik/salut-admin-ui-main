@@ -24,6 +24,7 @@ class Controller {
     }
 
     async getGroupsByInstrId(instrId) {
+        console.log(instrId);
         return get(`json-iapi/iapi-instr?act=tglist&id_instr=${instrId}`).then((response) => response.data);
     }
 
