@@ -20,9 +20,7 @@ class ExpressController {
         return get('/Client').then((response) => response.data);
     }
     async postClient(dictMosReg) {
-        return post('/Client', `${dictMosReg}`)
-            .then((response) => response.data)
-            .catch(console.log('ошибка'));
+        return post('/Client', `${dictMosReg}`).then((response) => response.data);
     }
 }
 

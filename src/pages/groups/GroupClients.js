@@ -104,14 +104,14 @@ const GroupClients = () => {
         setDaysInMonth(getDaysInMonth(selectedDate));
     }, [selectedDate]);
 
-    const certificateHandle = (id_acc, mosreg, certificateDate, contractDate) => {
+    const certificateHandle = (fio, id_acc, mosreg, certificateDate, contractDate) => {
         setCertificateValue(certificateDate);
         certificateValue = certificateDate;
         console.log(`${id_acc}: ${certificateValue}`);
         if (mosreg == 1) {
-            loadPostClient(id_acc, true, certificateDate, contractDate);
+            loadPostClient(fio, id_acc, true, certificateDate, contractDate);
         } else if (mosreg == 0) {
-            loadPostClient(id_acc, false, certificateDate, contractDate);
+            loadPostClient(fio, id_acc, false, certificateDate, contractDate);
         }
     };
 
@@ -119,6 +119,7 @@ const GroupClients = () => {
 
     let countCer = -1;
     const certificate = () => {
+        let fio;
         let id_acc = 0;
         let mosreg = 0;
         let certificateDate;
@@ -129,6 +130,7 @@ const GroupClients = () => {
             db = checkMos.data;
             try {
                 console.log(clients[countCer].id_acc);
+                fio = clients[countCer].people_initials;
                 id_acc = clients[countCer].id_acc;
                 for (const d of db) {
                     if (id_acc == d.id_acc) {
@@ -144,7 +146,7 @@ const GroupClients = () => {
                                     label="Custom input"
                                     value={certificateValue}
                                     onChange={(newValue) => {
-                                        certificateHandle(id_acc, mosreg, newValue, contractDate);
+                                        certificateHandle(fio, id_acc, mosreg, newValue, contractDate);
                                         location.reload();
                                     }}
                                     renderInput={({ inputRef, inputProps, InputProps }) => (
@@ -164,7 +166,7 @@ const GroupClients = () => {
                             label="Custom input"
                             value={null}
                             onChange={(newValue) => {
-                                contractHandle(id_acc, mosreg, newValue, contractDate);
+                                contractHandle(fio, id_acc, mosreg, newValue, contractDate);
                                 location.reload();
                             }}
                             renderInput={({ inputRef, inputProps, InputProps }) => (
@@ -183,7 +185,7 @@ const GroupClients = () => {
     };
 
     let [contractValue, setContractValue] = React.useState(new Date());
-    const contractHandle = (id_acc, mosreg, certificateDate, contractDate) => {
+    const contractHandle = (fio, id_acc, mosreg, certificateDate, contractDate) => {
         setContractValue(contractDate);
         contractValue = contractDate;
         console.log(`${id_acc}: ${contractValue}`);
@@ -201,14 +203,15 @@ const GroupClients = () => {
         //     console.log('Есть юзер');
         // }
         if (mosreg == 1) {
-            loadPostClient(id_acc, true, certificateDate, contractDate);
+            loadPostClient(fio, id_acc, true, certificateDate, contractDate);
         } else if (mosreg == 0) {
-            loadPostClient(id_acc, false, certificateDate, contractDate);
+            loadPostClient(fio, id_acc, false, certificateDate, contractDate);
         }
     };
 
     let countContr = -1;
     const contract = () => {
+        let fio;
         let id_acc = 0;
         let mosreg = 0;
         let certificateDate;
@@ -219,6 +222,7 @@ const GroupClients = () => {
             db = checkMos.data;
             try {
                 console.log(clients[countContr].id_acc);
+                fio = clients[countContr].people_initials;
                 id_acc = clients[countContr].id_acc;
                 for (const d of db) {
                     if (id_acc == d.id_acc) {
@@ -234,7 +238,7 @@ const GroupClients = () => {
                                     label="Custom input"
                                     value={contractValue}
                                     onChange={(newValue) => {
-                                        contractHandle(id_acc, mosreg, certificateDate, newValue);
+                                        contractHandle(fio, id_acc, mosreg, certificateDate, newValue);
                                         location.reload();
                                     }}
                                     renderInput={({ inputRef, inputProps, InputProps }) => (
@@ -254,7 +258,7 @@ const GroupClients = () => {
                             label="Custom input"
                             value={null}
                             onChange={(newValue) => {
-                                contractHandle(id_acc, mosreg, certificateDate, newValue);
+                                contractHandle(fio, id_acc, mosreg, certificateDate, newValue);
                                 location.reload();
                             }}
                             renderInput={({ inputRef, inputProps, InputProps }) => (
@@ -298,6 +302,7 @@ const GroupClients = () => {
 
     let count = -1;
     const mosregCheckBox = () => {
+        let fio;
         let id_acc = 0;
         let certificateDate;
         let contractDate;
@@ -307,6 +312,7 @@ const GroupClients = () => {
             // console.log(clients[count]);
             db = checkMos.data;
             try {
+                fio = clients[count].people_initials;
                 id_acc = clients[count].id_acc;
                 for (const d of db) {
                     if (id_acc == d.id_acc) {
@@ -320,7 +326,7 @@ const GroupClients = () => {
                         return (
                             <Checkbox
                                 onChange={() => {
-                                    checkHandler(id_acc, certificateDate, contractDate);
+                                    checkHandler(fio, id_acc, certificateDate, contractDate);
                                     location.reload();
                                 }}
                                 defaultChecked={isChecked}
@@ -334,7 +340,7 @@ const GroupClients = () => {
                 return (
                     <Checkbox
                         onChange={() => {
-                            checkHandler(id_acc, certificateDate, contractDate);
+                            checkHandler(fio, id_acc, certificateDate, contractDate);
                             location.reload();
                         }}
                         defaultChecked={isChecked}
@@ -349,17 +355,17 @@ const GroupClients = () => {
         }
     };
 
-    const loadPostClient = async (id_acc, check, certificateDate, contractDate) => {
+    const loadPostClient = async (fio, id_acc, check, certificateDate, contractDate) => {
         let pMosReg = '';
         if (check === true) {
-            pMosReg = `{"id_acc":"${id_acc}","mosreg":"1","certificateDate":"${certificateDate}","contractDate":"${contractDate}"}`;
+            pMosReg = `{"fio":"${fio}","id_acc":"${id_acc}","mosreg":"1","certificateDate":"${certificateDate}","contractDate":"${contractDate}"}`;
         } else {
-            pMosReg = `{"id_acc":"${id_acc}","mosreg":"0","certificateDate":"${certificateDate}","contractDate":"${contractDate}"}`;
+            pMosReg = `{"fio":"${fio}","id_acc":"${id_acc}","mosreg":"0","certificateDate":"${certificateDate}","contractDate":"${contractDate}"}`;
         }
         await expressController.postClient(pMosReg);
     };
 
-    const checkHandler = (id_acc, certificateDate, contractDate) => {
+    const checkHandler = (fio, id_acc, certificateDate, contractDate) => {
         let db = checkMos.data;
         let search = false;
         for (const d of db) {
@@ -375,7 +381,7 @@ const GroupClients = () => {
         if (search == false) {
             isChecked = true;
         }
-        loadPostClient(id_acc, isChecked, certificateDate, contractDate);
+        loadPostClient(fio, id_acc, isChecked, certificateDate, contractDate);
     };
 
     useEffect(() => {

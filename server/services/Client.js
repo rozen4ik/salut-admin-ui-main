@@ -21,6 +21,10 @@ function validateCreate(client) {
         messages.push('No object is provided');
     }
 
+    if (!client.fio) {
+        messages.push('fio is empty');
+    }
+
     if (!client.id_acc) {
         messages.push('id_acc is empty');
     }
@@ -47,15 +51,15 @@ function validateCreate(client) {
 
 function create(clientObj) {
     validateCreate(clientObj);
-    const { id_acc, mosreg, certificateDate, contractDate } = clientObj;
+    const { fio, id_acc, mosreg, certificateDate, contractDate } = clientObj;
     const result = db.run(
-        'INSERT or REPLACE INTO Client (id_acc, mosreg, certificateDate, contractDate) VALUES (@id_acc, @mosreg, @certificateDate, @contractDate)',
-        { id_acc, mosreg, certificateDate, contractDate }
+        'INSERT or REPLACE INTO Client (fio, id_acc, mosreg, certificateDate, contractDate) VALUES (@fio, @id_acc, @mosreg, @certificateDate, @contractDate)',
+        { fio, id_acc, mosreg, certificateDate, contractDate }
     );
 
-    let message = 'Error in creating mosreg';
+    let message = 'Error in creating client';
     if (result.changes) {
-        message = 'Mosreg created successfully';
+        message = 'Client created successfully';
     }
 
     return { message };
