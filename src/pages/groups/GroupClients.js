@@ -9,8 +9,7 @@ import './third-party/style.css';
 import expressController from '../../api/ExpressController';
 import GroupClientTable from '../../components/GroupClientTable';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import dayjs from 'dayjs';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
 const GroupClients = () => {
     const c = [
@@ -105,44 +104,172 @@ const GroupClients = () => {
         setDaysInMonth(getDaysInMonth(selectedDate));
     }, [selectedDate]);
 
-    const [certificateValue, setCertificateValue] = React.useState(dayjs('2022-04-07'));
-
-    const certificate = () => {
-        return (
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DatePicker
-                    label="Custom input"
-                    value={certificateValue}
-                    onChange={setCertificateValue}
-                    renderInput={({ inputRef, inputProps, InputProps }) => (
-                        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                            <input ref={inputRef} {...inputProps} />
-                            {InputProps?.endAdornment}
-                        </Box>
-                    )}
-                />
-            </LocalizationProvider>
-        );
+    const certificateHandle = (id_acc, mosreg, certificateDate, contractDate) => {
+        setCertificateValue(certificateDate);
+        certificateValue = certificateDate;
+        console.log(`${id_acc}: ${certificateValue}`);
+        if (mosreg == 1) {
+            loadPostClient(id_acc, true, certificateDate, contractDate);
+        } else if (mosreg == 0) {
+            loadPostClient(id_acc, false, certificateDate, contractDate);
+        }
     };
 
-    const [contractValue, setContractValue] = React.useState(dayjs('2022-04-07'));
+    let [certificateValue, setCertificateValue] = React.useState(new Date());
 
+    let countCer = -1;
+    const certificate = () => {
+        let id_acc = 0;
+        let mosreg = 0;
+        let certificateDate;
+        let contractDate;
+        let db = [];
+        countCer++;
+        if (clients.length > 0) {
+            db = checkMos.data;
+            try {
+                console.log(clients[countCer].id_acc);
+                id_acc = clients[countCer].id_acc;
+                for (const d of db) {
+                    if (id_acc == d.id_acc) {
+                        if (d.certificateDate != null) {
+                            certificateValue = d.certificateDate;
+                        }
+                        mosreg = d.mosreg;
+                        certificateDate = certificateValue;
+                        contractDate = d.contractDate;
+                        return (
+                            <LocalizationProvider dateAdapter={AdapterDateFns}>
+                                <DatePicker
+                                    label="Custom input"
+                                    value={certificateValue}
+                                    onChange={(newValue) => {
+                                        certificateHandle(id_acc, mosreg, newValue, contractDate);
+                                        location.reload();
+                                    }}
+                                    renderInput={({ inputRef, inputProps, InputProps }) => (
+                                        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                                            <input ref={inputRef} {...inputProps} />
+                                            {InputProps?.endAdornment}
+                                        </Box>
+                                    )}
+                                />
+                            </LocalizationProvider>
+                        );
+                    }
+                }
+                return (
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        <DatePicker
+                            label="Custom input"
+                            value={null}
+                            onChange={(newValue) => {
+                                contractHandle(id_acc, mosreg, newValue, contractDate);
+                                location.reload();
+                            }}
+                            renderInput={({ inputRef, inputProps, InputProps }) => (
+                                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                                    <input ref={inputRef} {...inputProps} />
+                                    {InputProps?.endAdornment}
+                                </Box>
+                            )}
+                        />
+                    </LocalizationProvider>
+                );
+            } catch (e) {
+                console.log(e);
+            }
+        }
+    };
+
+    let [contractValue, setContractValue] = React.useState(new Date());
+    const contractHandle = (id_acc, mosreg, certificateDate, contractDate) => {
+        setContractValue(contractDate);
+        contractValue = contractDate;
+        console.log(`${id_acc}: ${contractValue}`);
+        // let db = checkMos.data;
+        // let checkUser = 0;
+        // for (const d of db) {
+        //     if (d.id_acc == id_acc) {
+        //         checkUser = 1;
+        //     }
+        // }
+        //
+        // if (checkUser == 0) {
+        //     console.log('Нет юзура в базе');
+        // } else {
+        //     console.log('Есть юзер');
+        // }
+        if (mosreg == 1) {
+            loadPostClient(id_acc, true, certificateDate, contractDate);
+        } else if (mosreg == 0) {
+            loadPostClient(id_acc, false, certificateDate, contractDate);
+        }
+    };
+
+    let countContr = -1;
     const contract = () => {
-        return (
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DatePicker
-                    label="Custom input"
-                    value={contractValue}
-                    onChange={setContractValue}
-                    renderInput={({ inputRef, inputProps, InputProps }) => (
-                        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                            <input ref={inputRef} {...inputProps} />
-                            {InputProps?.endAdornment}
-                        </Box>
-                    )}
-                />
-            </LocalizationProvider>
-        );
+        let id_acc = 0;
+        let mosreg = 0;
+        let certificateDate;
+        let contractDate;
+        let db = [];
+        countContr++;
+        if (clients.length > 0) {
+            db = checkMos.data;
+            try {
+                console.log(clients[countContr].id_acc);
+                id_acc = clients[countContr].id_acc;
+                for (const d of db) {
+                    if (id_acc == d.id_acc) {
+                        if (d.contractDate != null) {
+                            contractValue = d.contractDate;
+                        }
+                        mosreg = d.mosreg;
+                        certificateDate = d.certificateDate;
+                        contractDate = contractValue;
+                        return (
+                            <LocalizationProvider dateAdapter={AdapterDateFns}>
+                                <DatePicker
+                                    label="Custom input"
+                                    value={contractValue}
+                                    onChange={(newValue) => {
+                                        contractHandle(id_acc, mosreg, certificateDate, newValue);
+                                        location.reload();
+                                    }}
+                                    renderInput={({ inputRef, inputProps, InputProps }) => (
+                                        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                                            <input ref={inputRef} {...inputProps} />
+                                            {InputProps?.endAdornment}
+                                        </Box>
+                                    )}
+                                />
+                            </LocalizationProvider>
+                        );
+                    }
+                }
+                return (
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        <DatePicker
+                            label="Custom input"
+                            value={null}
+                            onChange={(newValue) => {
+                                contractHandle(id_acc, mosreg, certificateDate, newValue);
+                                location.reload();
+                            }}
+                            renderInput={({ inputRef, inputProps, InputProps }) => (
+                                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                                    <input ref={inputRef} {...inputProps} />
+                                    {InputProps?.endAdornment}
+                                </Box>
+                            )}
+                        />
+                    </LocalizationProvider>
+                );
+            } catch (e) {
+                console.log(e);
+            }
+        }
     };
 
     const checkbox = (recordData, dayOfMonth) => {
@@ -165,34 +292,56 @@ const GroupClients = () => {
         return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} checked={checked} disabled={checked} size="small" />;
     };
 
-    const loadGetMosReg = async () => {
-        checkMos = await expressController.getMosReg();
+    const loadGetClient = async () => {
+        checkMos = await expressController.getClient();
     };
 
     let count = -1;
     const mosregCheckBox = () => {
         let id_acc = 0;
+        let certificateDate;
+        let contractDate;
         let db = [];
         count++;
         if (clients.length > 0) {
-            console.log(clients[count]);
+            // console.log(clients[count]);
             db = checkMos.data;
             try {
                 id_acc = clients[count].id_acc;
                 for (const d of db) {
                     if (id_acc == d.id_acc) {
+                        certificateDate = d.certificateDate;
+                        contractDate = d.contractDate;
                         if (d.mosreg == 1) {
                             isChecked = true;
                         } else if (d.mosreg == 0) {
                             isChecked = false;
                         }
                         return (
-                            <Checkbox onChange={() => checkHandler(id_acc)} defaultChecked={isChecked} id={toString(id_acc)} size="small" />
+                            <Checkbox
+                                onChange={() => {
+                                    checkHandler(id_acc, certificateDate, contractDate);
+                                    location.reload();
+                                }}
+                                defaultChecked={isChecked}
+                                id={toString(id_acc)}
+                                size="small"
+                            />
                         );
                     }
                 }
                 isChecked = false;
-                return <Checkbox onChange={() => checkHandler(id_acc)} defaultChecked={isChecked} id={toString(id_acc)} size="small" />;
+                return (
+                    <Checkbox
+                        onChange={() => {
+                            checkHandler(id_acc, certificateDate, contractDate);
+                            location.reload();
+                        }}
+                        defaultChecked={isChecked}
+                        id={toString(id_acc)}
+                        size="small"
+                    />
+                );
             } catch (e) {
                 console.log(e);
                 // location.reload();
@@ -200,17 +349,17 @@ const GroupClients = () => {
         }
     };
 
-    const loadPostMosReg = async (id_acc, check) => {
+    const loadPostClient = async (id_acc, check, certificateDate, contractDate) => {
         let pMosReg = '';
         if (check === true) {
-            pMosReg = `{"id_acc":"${id_acc}","mosreg":"1"}`;
+            pMosReg = `{"id_acc":"${id_acc}","mosreg":"1","certificateDate":"${certificateDate}","contractDate":"${contractDate}"}`;
         } else {
-            pMosReg = `{"id_acc":"${id_acc}","mosreg":"0"}`;
+            pMosReg = `{"id_acc":"${id_acc}","mosreg":"0","certificateDate":"${certificateDate}","contractDate":"${contractDate}"}`;
         }
-        await expressController.postMosReg(pMosReg);
+        await expressController.postClient(pMosReg);
     };
 
-    const checkHandler = (id_acc) => {
+    const checkHandler = (id_acc, certificateDate, contractDate) => {
         let db = checkMos.data;
         let search = false;
         for (const d of db) {
@@ -226,11 +375,11 @@ const GroupClients = () => {
         if (search == false) {
             isChecked = true;
         }
-        loadPostMosReg(id_acc, isChecked);
+        loadPostClient(id_acc, isChecked, certificateDate, contractDate);
     };
 
     useEffect(() => {
-        loadGetMosReg();
+        loadGetClient();
         setColumns([]);
         setTimeout(() => {
             setColumns([

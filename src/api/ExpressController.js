@@ -16,11 +16,11 @@ const post = async (url, data) => await controller.post(url, data);
 const get = async (url) => await controller.get(url);
 
 class ExpressController {
-    async getMosReg() {
-        return get('/mosreg').then((response) => response.data);
+    async getClient() {
+        return get('/Client').then((response) => response.data);
     }
-    async postMosReg(dictMosReg) {
-        return post('/mosreg', `${dictMosReg}`)
+    async postClient(dictMosReg) {
+        return post('/Client', `${dictMosReg}`)
             .then((response) => response.data)
             .catch(console.log('ошибка'));
     }

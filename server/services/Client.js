@@ -3,7 +3,7 @@ const config = require('../config');
 
 function getMultiple(page = 1) {
     const offset = (page - 1) * config.listPerPage;
-    const data = db.query(`SELECT * FROM MOSREG LIMIT ?,?`, [offset, config.listPerPage]);
+    const data = db.query(`SELECT * FROM Client LIMIT ?,?`, [offset, config.listPerPage]);
     const meta = { page };
 
     return {
@@ -12,21 +12,29 @@ function getMultiple(page = 1) {
     };
 }
 
-function validateCreate(mosreg) {
+function validateCreate(client) {
     let messages = [];
 
-    console.log(mosreg);
+    console.log(client);
 
-    if (!mosreg) {
+    if (!client) {
         messages.push('No object is provided');
     }
 
-    if (!mosreg.id_acc) {
+    if (!client.id_acc) {
         messages.push('id_acc is empty');
     }
 
-    if (!mosreg.mosreg) {
+    if (!client.mosreg) {
         messages.push('Mosreg is empty');
+    }
+
+    if (!client.certificateDate) {
+        messages.push('CertificateDate is empty');
+    }
+
+    if (!client.contractDate) {
+        messages.push('ContractDate is empty');
     }
 
     if (messages.length) {
@@ -37,10 +45,13 @@ function validateCreate(mosreg) {
     }
 }
 
-function create(mosregObj) {
-    validateCreate(mosregObj);
-    const { id_acc, mosreg } = mosregObj;
-    const result = db.run('INSERT or REPLACE INTO mosreg (id_acc, mosreg) VALUES (@id_acc, @mosreg)', { id_acc, mosreg });
+function create(clientObj) {
+    validateCreate(clientObj);
+    const { id_acc, mosreg, certificateDate, contractDate } = clientObj;
+    const result = db.run(
+        'INSERT or REPLACE INTO Client (id_acc, mosreg, certificateDate, contractDate) VALUES (@id_acc, @mosreg, @certificateDate, @contractDate)',
+        { id_acc, mosreg, certificateDate, contractDate }
+    );
 
     let message = 'Error in creating mosreg';
     if (result.changes) {
