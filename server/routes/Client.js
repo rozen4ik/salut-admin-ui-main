@@ -12,6 +12,17 @@ router.get('/', function (req, res, next) {
     }
 });
 
+/*GET client/id_acc. */
+router.get('/:id_acc/', function (req, res, next) {
+    const id_acc = req.params.id_acc;
+    try {
+        res.json(client.getClientByIdAcc(id_acc));
+    } catch (err) {
+        console.error(`Нет клиента с таким ${id_acc}`, err.message);
+        next(err);
+    }
+});
+
 // POST client listing
 router.post('/', function (req, res, next) {
     try {

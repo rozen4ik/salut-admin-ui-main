@@ -12,6 +12,10 @@ function getMultiple(page = 1) {
     };
 }
 
+function getClientByIdAcc(id_acc) {
+    return db.query(`SELECT * FROM Client WHERE id_acc = ?`, id_acc);
+}
+
 function validateCreate(client) {
     let messages = [];
 
@@ -68,5 +72,6 @@ function create(clientObj) {
 module.exports = {
     getMultiple,
     validateCreate,
-    create
+    create,
+    getClientByIdAcc
 };

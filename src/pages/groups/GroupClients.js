@@ -107,7 +107,6 @@ const GroupClients = () => {
     const certificateHandle = (fio, id_acc, mosreg, certificateDate, contractDate) => {
         setCertificateValue(certificateDate);
         certificateValue = certificateDate;
-        console.log(`${id_acc}: ${certificateValue}`);
         if (mosreg == 1) {
             loadPostClient(fio, id_acc, true, certificateDate, contractDate);
         } else if (mosreg == 0) {
@@ -129,7 +128,6 @@ const GroupClients = () => {
         if (clients.length > 0) {
             db = checkMos.data;
             try {
-                console.log(clients[countCer].id_acc);
                 fio = clients[countCer].people_initials;
                 id_acc = clients[countCer].id_acc;
                 for (const d of db) {
@@ -188,20 +186,6 @@ const GroupClients = () => {
     const contractHandle = (fio, id_acc, mosreg, certificateDate, contractDate) => {
         setContractValue(contractDate);
         contractValue = contractDate;
-        console.log(`${id_acc}: ${contractValue}`);
-        // let db = checkMos.data;
-        // let checkUser = 0;
-        // for (const d of db) {
-        //     if (d.id_acc == id_acc) {
-        //         checkUser = 1;
-        //     }
-        // }
-        //
-        // if (checkUser == 0) {
-        //     console.log('Нет юзура в базе');
-        // } else {
-        //     console.log('Есть юзер');
-        // }
         if (mosreg == 1) {
             loadPostClient(fio, id_acc, true, certificateDate, contractDate);
         } else if (mosreg == 0) {
@@ -221,7 +205,6 @@ const GroupClients = () => {
         if (clients.length > 0) {
             db = checkMos.data;
             try {
-                console.log(clients[countContr].id_acc);
                 fio = clients[countContr].people_initials;
                 id_acc = clients[countContr].id_acc;
                 for (const d of db) {
@@ -309,7 +292,6 @@ const GroupClients = () => {
         let db = [];
         count++;
         if (clients.length > 0) {
-            // console.log(clients[count]);
             db = checkMos.data;
             try {
                 fio = clients[count].people_initials;
