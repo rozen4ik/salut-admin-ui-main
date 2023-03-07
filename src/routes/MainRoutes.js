@@ -6,6 +6,7 @@ import GroupClients from '../pages/groups/GroupClients';
 import InstrReport from '../pages/reports/InstrReport';
 import RentReport from '../pages/reports/RentReport';
 import AddClient from '../pages/groups/AddClient';
+import ClientDetail from '../pages/groups/ClientDetail';
 
 const DashboardDefault = Loadable(lazy(() => import('pages/dashboard')));
 const SamplePage = Loadable(lazy(() => import('pages/extra-pages/SamplePage')));
@@ -45,6 +46,10 @@ const MainRoutes = {
         {
             path: '/reports/sales-rent',
             element: <RentReport />
+        },
+        {
+            path: '/client-detail/:id_acc',
+            element: <ClientDetail />
         },
         {
             path: 'dashboard',

@@ -13,12 +13,17 @@ const controller = axios.create({
 });
 
 const post = async (url, data) => await controller.post(url, data);
-const get = async (url) => await controller.get(url);
+const get = async (url, data) => await controller.get(url, data);
 
 class ExpressController {
-    async getClient() {
+    async getClients() {
         return get('/Client').then((response) => response.data);
     }
+
+    async getDetailClient(id_acc) {
+        return get(`/Client/${id_acc}`).then((response) => response.data);
+    }
+
     async postClient(dictMosReg) {
         return post('/Client', `${dictMosReg}`).then((response) => response.data);
     }

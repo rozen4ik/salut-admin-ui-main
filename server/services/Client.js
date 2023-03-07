@@ -37,6 +37,14 @@ function validateCreate(client) {
         messages.push('Mosreg is empty');
     }
 
+    if (!client.datePayment) {
+        messages.push('Date payment is empty');
+    }
+
+    if (!client.payment) {
+        messages.push('Payment is empty');
+    }
+
     if (!client.certificateDate) {
         messages.push('CertificateDate is empty');
     }
@@ -55,10 +63,10 @@ function validateCreate(client) {
 
 function create(clientObj) {
     validateCreate(clientObj);
-    const { fio, id_acc, mosreg, certificateDate, contractDate } = clientObj;
+    const { fio, id_acc, mosreg, datePayment, payment, certificateDate, contractDate } = clientObj;
     const result = db.run(
-        'INSERT or REPLACE INTO Client (fio, id_acc, mosreg, certificateDate, contractDate) VALUES (@fio, @id_acc, @mosreg, @certificateDate, @contractDate)',
-        { fio, id_acc, mosreg, certificateDate, contractDate }
+        'INSERT or REPLACE INTO Client (fio, id_acc, mosreg, datePayment, payment, certificateDate, contractDate) VALUES (@fio, @id_acc, @mosreg, @datePayment, @payment, @certificateDate, @contractDate)',
+        { fio, id_acc, mosreg, datePayment, payment, certificateDate, contractDate }
     );
 
     let message = 'Error in creating client';
