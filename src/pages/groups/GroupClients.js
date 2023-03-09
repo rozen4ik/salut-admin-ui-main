@@ -14,7 +14,7 @@ const GroupClients = () => {
         {
             field: 'date_start',
             label: 'Дата оплаты',
-            render: (data) => new Date(findPackage(data.packages).date_change).toLocaleString()
+            render: (data) => new Date(findPackage(data.packages).date_change).toLocaleDateString()
         },
         {
             field: 'payment',
@@ -103,18 +103,6 @@ const GroupClients = () => {
         setDaysInMonth(getDaysInMonth(selectedDate));
     }, [selectedDate]);
 
-    const certificateHandle = (fio, id_acc, mosreg, datePayment, payment, certificateDate, contractDate) => {
-        setCertificateValue(certificateDate);
-        certificateValue = certificateDate;
-        if (mosreg == 1) {
-            loadPostClient(fio, id_acc, true, datePayment, payment, certificateDate, contractDate);
-        } else if (mosreg == 0) {
-            loadPostClient(fio, id_acc, false, datePayment, payment, certificateDate, contractDate);
-        }
-    };
-
-    let [certificateValue, setCertificateValue] = React.useState(new Date());
-
     let countCer = -1;
     const certificate = () => {
         let id_acc = 0;
@@ -131,7 +119,7 @@ const GroupClients = () => {
                         if (certificateDate == 'undefined') {
                             return <p>Не указано</p>;
                         } else {
-                            return <p>{new Date(certificateDate).toLocaleString()}</p>;
+                            return <p>{new Date(certificateDate).toLocaleDateString()}</p>;
                         }
                     }
                 }
@@ -175,7 +163,7 @@ const GroupClients = () => {
             try {
                 fio = clients[countContr].people_initials;
                 id_acc = clients[countContr].id_acc;
-                datePayment = new Date(clients[countContr].packages[0].date_start).toLocaleString();
+                datePayment = new Date(clients[countContr].packages[0].date_start).toLocaleDateString();
                 payment = clients[countContr].packages[0].price;
                 for (const d of db) {
                     if (id_acc == d.id_acc) {
@@ -277,7 +265,7 @@ const GroupClients = () => {
             try {
                 fio = clients[count].people_initials;
                 id_acc = clients[count].id_acc;
-                datePayment = new Date(clients[count].packages[0].date_start).toLocaleString();
+                datePayment = new Date(clients[count].packages[0].date_start).toLocaleDateString();
                 payment = clients[count].packages[0].price;
                 for (const d of db) {
                     if (id_acc == d.id_acc) {
