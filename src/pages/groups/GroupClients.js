@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import MainCard from '../../components/MainCard';
-import { Box, Checkbox, TextField } from '@mui/material';
+import { Checkbox, TextField } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers';
 import getDaysInMonth from 'date-fns/getDaysInMonth';
 import controller from '../../api/controller';
 import './third-party/style.css';
 import expressController from '../../api/ExpressController';
 import GroupClientTable from '../../components/GroupClientTable';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
 const GroupClients = () => {
     const c = [
@@ -47,6 +45,7 @@ const GroupClients = () => {
     const [columns, setColumns] = useState([...c]);
     const [visits, setVisits] = useState([]);
     let [isChecked] = useState(false);
+    let [contractValue] = useState(false);
 
     const findActiveIdentifier = (identifiers) => {
         const lastActiveIdentifier = identifiers
@@ -118,94 +117,57 @@ const GroupClients = () => {
 
     let countCer = -1;
     const certificate = () => {
-        let fio;
         let id_acc = 0;
-        let mosreg = 0;
-        let datePayment;
-        let payment;
         let certificateDate;
-        let contractDate;
         let db = [];
         countCer++;
         if (clients.length > 0) {
             db = checkMos.data;
             try {
-                fio = clients[countCer].people_initials;
                 id_acc = clients[countCer].id_acc;
-                datePayment = new Date(clients[countCer].packages[0].date_start).toLocaleString();
-                payment = clients[countCer].packages[0].price;
                 for (const d of db) {
                     if (id_acc == d.id_acc) {
-                        if (d.certificateDate != null) {
-                            certificateValue = d.certificateDate;
+                        certificateDate = d.certificateDate;
+                        if (certificateDate == 'undefined') {
+                            return <p>Не указано</p>;
+                        } else {
+                            return <p>{new Date(certificateDate).toLocaleString()}</p>;
                         }
-                        mosreg = d.mosreg;
-                        certificateDate = certificateValue;
-                        contractDate = d.contractDate;
-                        return (
-                            <LocalizationProvider dateAdapter={AdapterDateFns}>
-                                <DatePicker
-                                    label="Custom input"
-                                    value={certificateValue}
-                                    onChange={(newValue) => {
-                                        certificateHandle(fio, id_acc, mosreg, datePayment, payment, newValue, contractDate);
-                                        location.reload();
-                                    }}
-                                    renderInput={({ inputRef, inputProps, InputProps }) => (
-                                        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                            <input ref={inputRef} {...inputProps} />
-                                            {InputProps?.endAdornment}
-                                        </Box>
-                                    )}
-                                />
-                            </LocalizationProvider>
-                        );
                     }
                 }
-                return (
-                    <LocalizationProvider dateAdapter={AdapterDateFns}>
-                        <DatePicker
-                            label="Custom input"
-                            value={null}
-                            onChange={(newValue) => {
-                                contractHandle(fio, id_acc, mosreg, datePayment, payment, newValue, contractDate);
-                                location.reload();
-                            }}
-                            renderInput={({ inputRef, inputProps, InputProps }) => (
-                                <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                    <input ref={inputRef} {...inputProps} />
-                                    {InputProps?.endAdornment}
-                                </Box>
-                            )}
-                        />
-                    </LocalizationProvider>
-                );
+                return <p>Не указано</p>;
             } catch (e) {
                 console.log(e);
             }
         }
     };
 
-    let [contractValue, setContractValue] = React.useState(new Date());
-    const contractHandle = (fio, id_acc, mosreg, datePayment, payment, certificateDate, contractDate) => {
-        setContractValue(contractDate);
-        contractValue = contractDate;
-        if (mosreg == 1) {
-            loadPostClient(fio, id_acc, true, datePayment, payment, certificateDate, contractDate);
-        } else if (mosreg == 0) {
-            loadPostClient(fio, id_acc, false, datePayment, payment, certificateDate, contractDate);
+    const contractHandle = (fio, id_acc, datePayment, payment, certificateDate) => {
+        let db = checkMos.data;
+        let search = false;
+        for (const d of db) {
+            if (d.id_acc == id_acc) {
+                search = true;
+                if (d.contractDate == 0) {
+                    contractValue = true;
+                } else if (d.contractDate == 1) {
+                    contractValue = false;
+                }
+            }
         }
+        if (search == false) {
+            contractValue = true;
+        }
+        loadPostClient(fio, id_acc, checkMos, datePayment, payment, certificateDate, contractValue);
     };
 
     let countContr = -1;
     const contract = () => {
         let fio;
         let id_acc = 0;
-        let mosreg = 0;
         let datePayment;
         let payment;
         let certificateDate;
-        let contractDate;
         let db = [];
         countContr++;
         if (clients.length > 0) {
@@ -217,52 +179,40 @@ const GroupClients = () => {
                 payment = clients[countContr].packages[0].price;
                 for (const d of db) {
                     if (id_acc == d.id_acc) {
-                        if (d.contractDate != null) {
-                            contractValue = d.contractDate;
-                        }
-                        mosreg = d.mosreg;
                         certificateDate = d.certificateDate;
-                        contractDate = contractValue;
+                        if (d.contractDate == 1) {
+                            contractValue = true;
+                        } else if (d.contractDate == 0) {
+                            contractValue = false;
+                        }
                         return (
-                            <LocalizationProvider dateAdapter={AdapterDateFns}>
-                                <DatePicker
-                                    label="Custom input"
-                                    value={contractValue}
-                                    onChange={(newValue) => {
-                                        contractHandle(fio, id_acc, mosreg, datePayment, payment, certificateDate, newValue);
-                                        location.reload();
-                                    }}
-                                    renderInput={({ inputRef, inputProps, InputProps }) => (
-                                        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                            <input ref={inputRef} {...inputProps} />
-                                            {InputProps?.endAdornment}
-                                        </Box>
-                                    )}
-                                />
-                            </LocalizationProvider>
+                            <Checkbox
+                                onChange={() => {
+                                    contractHandle(fio, id_acc, datePayment, payment, certificateDate);
+                                    location.reload();
+                                }}
+                                defaultChecked={contractValue}
+                                id={toString(id_acc)}
+                                size="small"
+                            />
                         );
                     }
                 }
+                contractValue = false;
                 return (
-                    <LocalizationProvider dateAdapter={AdapterDateFns}>
-                        <DatePicker
-                            label="Custom input"
-                            value={null}
-                            onChange={(newValue) => {
-                                contractHandle(fio, id_acc, mosreg, datePayment, payment, certificateDate, newValue);
-                                location.reload();
-                            }}
-                            renderInput={({ inputRef, inputProps, InputProps }) => (
-                                <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                    <input ref={inputRef} {...inputProps} />
-                                    {InputProps?.endAdornment}
-                                </Box>
-                            )}
-                        />
-                    </LocalizationProvider>
+                    <Checkbox
+                        onChange={() => {
+                            contractHandle(fio, id_acc, datePayment, payment, certificateDate);
+                            location.reload();
+                        }}
+                        defaultChecked={contractValue}
+                        id={toString(id_acc)}
+                        size="small"
+                    />
                 );
             } catch (e) {
                 console.log(e);
+                // location.reload();
             }
         }
     };
@@ -372,11 +322,19 @@ const GroupClients = () => {
 
     const loadPostClient = async (fio, id_acc, check, datePayment, payment, certificateDate, contractDate) => {
         let pMosReg = '';
-        if (check === true) {
-            pMosReg = `{"fio":"${fio}","id_acc":"${id_acc}","mosreg":"1","datePayment":"${datePayment}","payment":"${payment}","certificateDate":"${certificateDate}","contractDate":"${contractDate}"}`;
+        let mosreg;
+        let cont;
+        if (check == true) {
+            mosreg = 1;
         } else {
-            pMosReg = `{"fio":"${fio}","id_acc":"${id_acc}","mosreg":"0","datePayment":"${datePayment}","payment":"${payment}","certificateDate":"${certificateDate}","contractDate":"${contractDate}"}`;
+            mosreg = 0;
         }
+        if (contractDate == true) {
+            cont = 1;
+        } else {
+            cont = 0;
+        }
+        pMosReg = `{"fio":"${fio}","id_acc":"${id_acc}","mosreg":"${mosreg}","datePayment":"${datePayment}","payment":"${payment}","certificateDate":"${certificateDate}","contractDate":"${cont}"}`;
         await expressController.postClient(pMosReg);
     };
 
