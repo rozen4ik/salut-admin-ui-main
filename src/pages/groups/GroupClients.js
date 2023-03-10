@@ -225,17 +225,54 @@ const GroupClients = () => {
         return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} checked={checked} disabled={checked} size="small" />;
     };
 
+    const linkFioChacnge = (fio, id_acc, mosreg, datePayment, payment, certificateDate, contractDate) => {
+        console.log(fio, id_acc);
+        loadPostClient(fio, id_acc, mosreg, datePayment, payment, certificateDate, contractDate);
+    };
+
     let countFio = -1;
     const linkFio = () => {
         let fio;
         let id_acc;
+        let mosreg;
+        let datePayment;
+        let payment;
+        let certificateDate;
+        let contractDate;
+        let db = [];
         countFio++;
         if (clients.length > 0) {
             try {
+                db = checkMos.data;
                 fio = clients[countFio].people_initials;
                 id_acc = clients[countFio].id_acc;
+                datePayment = new Date(clients[countFio].packages[0].date_start).toLocaleDateString();
+                payment = clients[countFio].packages[0].price;
+                for (const d of db) {
+                    if (id_acc == d.id_acc) {
+                        mosreg = d.mosreg;
+                        certificateDate = d.certificateDate;
+                        contractDate = d.contractDate;
+                        return (
+                            <a
+                                onClick={() => linkFioChacnge(fio, id_acc, mosreg, datePayment, payment, certificateDate, contractDate)}
+                                href={`http://localhost:3000/#/client-detail/${id_acc}`}
+                                style={{ 'text-decoration': 'none', color: 'black' }}
+                            >
+                                {fio}
+                            </a>
+                        );
+                    }
+                }
+                mosreg = 0;
+                certificateDate = undefined;
+                contractDate = 0;
                 return (
-                    <a href={`http://localhost:3000/#/client-detail/${id_acc}`} style={{ 'text-decoration': 'none', color: 'black' }}>
+                    <a
+                        onClick={() => linkFioChacnge(fio, id_acc, mosreg, datePayment, payment, certificateDate, contractDate)}
+                        href={`http://localhost:3000/#/client-detail/${id_acc}`}
+                        style={{ 'text-decoration': 'none', color: 'black' }}
+                    >
                         {fio}
                     </a>
                 );
@@ -260,7 +297,6 @@ const GroupClients = () => {
         let db = [];
         count++;
         if (clients.length > 0) {
-            console.log(clients[count]);
             db = checkMos.data;
             try {
                 fio = clients[count].people_initials;

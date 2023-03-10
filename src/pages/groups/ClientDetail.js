@@ -56,6 +56,12 @@ const ClientDetail = () => {
         let pMosReg = '';
         let checkMos;
         let checkContract;
+        if (check == 1 || check == 0) {
+            checkMos = check;
+        }
+        if (contractDate == 1 || contractDate == 0) {
+            checkContract = contractDate;
+        }
         if (check == true) {
             checkMos = 1;
         } else {
