@@ -130,7 +130,7 @@ const GroupClients = () => {
         }
     };
 
-    const contractHandle = (fio, id_acc, datePayment, payment, certificateDate) => {
+    const contractHandle = (fio, id_acc, mosreg, datePayment, payment, certificateDate) => {
         let db = checkMos.data;
         let search = false;
         for (const d of db) {
@@ -146,13 +146,14 @@ const GroupClients = () => {
         if (search == false) {
             contractValue = true;
         }
-        loadPostClient(fio, id_acc, checkMos, datePayment, payment, certificateDate, contractValue);
+        loadPostClient(fio, id_acc, mosreg, datePayment, payment, certificateDate, contractValue);
     };
 
     let countContr = -1;
     const contract = () => {
         let fio;
         let id_acc = 0;
+        let mosreg;
         let datePayment;
         let payment;
         let certificateDate;
@@ -167,6 +168,7 @@ const GroupClients = () => {
                 payment = clients[countContr].packages[0].price;
                 for (const d of db) {
                     if (id_acc == d.id_acc) {
+                        mosreg = d.mosreg;
                         certificateDate = d.certificateDate;
                         if (d.contractDate == 1) {
                             contractValue = true;
@@ -176,7 +178,7 @@ const GroupClients = () => {
                         return (
                             <Checkbox
                                 onChange={() => {
-                                    contractHandle(fio, id_acc, datePayment, payment, certificateDate);
+                                    contractHandle(fio, id_acc, mosreg, datePayment, payment, certificateDate);
                                     location.reload();
                                 }}
                                 defaultChecked={contractValue}
@@ -187,10 +189,11 @@ const GroupClients = () => {
                     }
                 }
                 contractValue = false;
+                mosreg = 0;
                 return (
                     <Checkbox
                         onChange={() => {
-                            contractHandle(fio, id_acc, datePayment, payment, certificateDate);
+                            contractHandle(fio, id_acc, mosreg, datePayment, payment, certificateDate);
                             location.reload();
                         }}
                         defaultChecked={contractValue}
