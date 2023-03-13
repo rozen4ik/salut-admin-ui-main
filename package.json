@@ -46,6 +46,7 @@
         "@mui/material": "^5.10.6",
         "@mui/styles": "^5.10.6",
         "@mui/x-date-pickers": "^5.0.9",
+        "@react-pdf/renderer": "^3.1.7",
         "@reduxjs/toolkit": "^1.8.5",
         "axios": "^1.2.1",
         "better-sqlite3": "^8.1.0",
