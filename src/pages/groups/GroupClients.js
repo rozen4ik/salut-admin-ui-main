@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import MainCard from '../../components/MainCard';
-import { Checkbox, TextField } from '@mui/material';
+import { Button, Checkbox, Grid, TextField } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers';
 import getDaysInMonth from 'date-fns/getDaysInMonth';
 import controller from '../../api/controller';
@@ -235,6 +235,7 @@ const GroupClients = () => {
 
     let countFio = -1;
     const linkFio = () => {
+        let identifier;
         let fio;
         let id_acc;
         let mosreg;
@@ -246,6 +247,7 @@ const GroupClients = () => {
         countFio++;
         if (clients.length > 0) {
             try {
+                identifier = clients[countFio].identifiers[clients[countFio].identifiers.length - 1].identifier;
                 db = checkMos.data;
                 fio = clients[countFio].people_initials;
                 id_acc = clients[countFio].id_acc;
@@ -259,7 +261,7 @@ const GroupClients = () => {
                         return (
                             <a
                                 onClick={() => linkFioChacnge(fio, id_acc, mosreg, datePayment, payment, certificateDate, contractDate)}
-                                href={`http://localhost:3000/#/client-detail/${id_acc}`}
+                                href={`http://localhost:3000/#/client-detail/${id_acc}?identifier=${identifier}`}
                                 style={{ 'text-decoration': 'none', color: 'black' }}
                             >
                                 {fio}
@@ -273,7 +275,7 @@ const GroupClients = () => {
                 return (
                     <a
                         onClick={() => linkFioChacnge(fio, id_acc, mosreg, datePayment, payment, certificateDate, contractDate)}
-                        href={`http://localhost:3000/#/client-detail/${id_acc}`}
+                        href={`http://localhost:3000/#/client-detail/${id_acc}?identifier=${identifier}`}
                         style={{ 'text-decoration': 'none', color: 'black' }}
                     >
                         {fio}
@@ -415,17 +417,27 @@ const GroupClients = () => {
 
     return (
         <MainCard id="Schet" title={`Группа ${id}`}>
-            <DatePicker
-                views={['year', 'month']}
-                label="Месяц, год"
-                value={selectedDate}
-                onChange={setSelectedDate}
-                renderInput={(params) => <TextField {...params} helperText={null} />}
-                inputFormat={'MM/yyyy'}
-                openTo={'month'}
-            />
-            <hr></hr>
-            <GroupClientTable columns={columns} content={clients} keyProp={'id_prs'} />
+            <Grid container spacing={1}>
+                <Grid item xs={11}>
+                    <DatePicker
+                        views={['year', 'month']}
+                        label="Месяц, год"
+                        value={selectedDate}
+                        onChange={setSelectedDate}
+                        renderInput={(params) => <TextField {...params} helperText={null} />}
+                        inputFormat={'MM/yyyy'}
+                        openTo={'month'}
+                    />
+                </Grid>
+                <Grid item xs={1}>
+                    <Button variant="contained" size="large">
+                        Абонементы
+                    </Button>
+                </Grid>
+                <Grid item xs={12}>
+                    <GroupClientTable columns={columns} content={clients} keyProp={'id_prs'} />
+                </Grid>
+            </Grid>
         </MainCard>
     );
 };

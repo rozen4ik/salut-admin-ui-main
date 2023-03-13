@@ -7,10 +7,13 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import './third-party/style.css';
+import { useSearchParams } from 'react-router-dom';
 
 const ClientDetail = () => {
+    const [searchParams, setSearchParams] = useSearchParams();
     const params = useParams();
     const id_acc = params.id_acc;
+    const identifier = searchParams.get('identifier');
     const [client, setClient] = useState([]);
     let [isChecked] = useState(false);
     let [contractValue] = useState(false);
@@ -105,6 +108,10 @@ const ClientDetail = () => {
                 <Grid container spacing={1}>
                     <Grid item xs={12}>
                         <h4>Основная информация:</h4>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <h4>Идентификатор:</h4>
+                        <p>{identifier}</p>
                     </Grid>
                     <Grid item xs={12}>
                         <h4>ФИО:</h4>
