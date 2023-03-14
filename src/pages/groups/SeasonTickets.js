@@ -33,9 +33,12 @@ const SeasonTickets = () => {
     const id_gr = searchParams.get('id');
     const selectedDate = new Date(searchParams.get('selectedDate'));
     const [clients, setClients] = useState([]);
+    const [group, setGroup] = useState([]);
     const loadData = async () => {
-        const response = await controller.getGroupCustomers(id_gr, selectedDate);
+        let response = await controller.getGroupCustomers(id_gr, selectedDate);
         setClients(response.tgclients);
+        response = await controller.getGroupsByType(id_gr);
+        setGroup(response.tgroup);
     };
 
     useEffect(() => {
@@ -43,9 +46,15 @@ const SeasonTickets = () => {
     }, []);
 
     let p;
+    let da;
+    let de;
+
+    console.log(group);
 
     for (const d of clients) {
-        console.log(d);
+        p = d.people_initials;
+        da = new Date(d.packages[d.packages.length - 1].date_start).toLocaleDateString();
+        de = new Date(d.packages[d.packages.length - 1].date_end).toLocaleDateString();
     }
 
     return (
@@ -54,12 +63,21 @@ const SeasonTickets = () => {
                 <Document>
                     <Page size="A6" style={styles.page}>
                         <View style={styles.section}>
-                            <Text style={styles.Text}>Салют</Text>
-                            <Text style={styles.Text}>{p}</Text>
-                        </View>
-                        <View style={styles.section}>
-                            <Text style={styles.Text}>Платёжный № 123456</Text>
-                            <Text style={styles.Text}>89997776655</Text>
+                            <p>
+                                <Text style={styles.Text}>{'ФК Салют                                        Платёжный № 123456'}</Text>
+                                <Text style={styles.Text}>{p}</Text>
+                                <Text style={styles.Text}>Дата рождения:</Text>
+                                <Text style={styles.Text}>
+                                    Период действия: {da} - {de}
+                                </Text>
+                                <Text style={styles.Text}>Стоимость:______________руб.</Text>
+                                <Text style={styles.Text}>Тренер: {group.tg_instr_initials}</Text>
+                                <Text style={styles.Text}>Группа: {group.tg_name}</Text>
+                                <Text style={styles.Text}>Время посещения:_________________________</Text>
+                                <Text style={styles.Text}>Мед. справка действует до:</Text>
+                                <Text style={styles.Text}>Таблица....</Text>
+                                <Text style={styles.Text}>Правила оплаты</Text>
+                            </p>
                         </View>
                     </Page>
                 </Document>
