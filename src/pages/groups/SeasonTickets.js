@@ -1,7 +1,8 @@
-import { Page, Text, View, Document, StyleSheet, Font, PDFDownloadLink, PDFViewer } from '@react-pdf/renderer';
+import { Page, Text, View, Document, StyleSheet, Font, PDFViewer } from '@react-pdf/renderer';
 import { useSearchParams } from 'react-router-dom';
 import MainCard from '../../components/MainCard';
-import { Grid } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import controller from '../../api/controller';
 
 Font.register({
     family: 'Roboto',
@@ -15,7 +16,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#E4E4E4'
     },
     Text: {
-        fontFamily: 'Roboto'
+        fontFamily: 'Roboto',
+        fontSize: 10
     },
     section: {
         fontFamily: 'Roboto',
@@ -29,28 +31,43 @@ const styles = StyleSheet.create({
 const SeasonTickets = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const id_gr = searchParams.get('id');
-    const clients = searchParams.get('clients');
+    const selectedDate = new Date(searchParams.get('selectedDate'));
+    const [clients, setClients] = useState([]);
+    const loadData = async () => {
+        const response = await controller.getGroupCustomers(id_gr, selectedDate);
+        setClients(response.tgclients);
+    };
+
+    useEffect(() => {
+        loadData();
+    }, []);
+
+    let p;
+
+    for (const d of clients) {
+        console.log(d);
+    }
 
     return (
         <MainCard title={`Абонементы на группу ${id_gr}`}>
-            <Grid container spacing={1}>
-                <Grid item xs={12}>
-                    <PDFViewer width={'100%'} height={1080}>
-                        <Document>
-                            <Page size="A4" style={styles.page}>
-                                <View style={styles.section}>
-                                    <Text style={styles.Text}>{clients}</Text>
-                                </View>
-                                <View style={styles.section}>
-                                    <Text style={styles.Text}>Секция 2</Text>
-                                </View>
-                            </Page>
-                        </Document>
-                    </PDFViewer>
-                </Grid>
-            </Grid>
+            <PDFViewer width={'100%'} height={1080}>
+                <Document>
+                    <Page size="A6" style={styles.page}>
+                        <View style={styles.section}>
+                            <Text style={styles.Text}>Салют</Text>
+                            <Text style={styles.Text}>{p}</Text>
+                        </View>
+                        <View style={styles.section}>
+                            <Text style={styles.Text}>Платёжный № 123456</Text>
+                            <Text style={styles.Text}>89997776655</Text>
+                        </View>
+                    </Page>
+                </Document>
+            </PDFViewer>
         </MainCard>
     );
 };
+
+SeasonTickets.proTypes = {};
 
 export default SeasonTickets;

@@ -63,7 +63,7 @@ const GroupClients = () => {
         if (packages.length === 0) {
             pkg = packages[0];
         } else if (packages.length > 0) {
-            const activePackage = packages.find((p) => p.id_sp_state === '80');
+            const activePackage = packages[packages.length - 1];
             if (activePackage) {
                 pkg = activePackage;
             } else {
@@ -247,6 +247,7 @@ const GroupClients = () => {
         countFio++;
         if (clients.length > 0) {
             try {
+                console.log(clients[countFio]);
                 identifier = clients[countFio].identifiers[clients[countFio].identifiers.length - 1].identifier;
                 db = checkMos.data;
                 fio = clients[countFio].people_initials;
@@ -430,7 +431,12 @@ const GroupClients = () => {
                     />
                 </Grid>
                 <Grid item xs={1}>
-                    <Button href={`/#/season-tickets?clients=${clients}&id=${id}`} target={'_blank'} variant="contained" size="large">
+                    <Button
+                        href={`/#/season-tickets?selectedDate=${selectedDate}&id=${id}`}
+                        target={'_blank'}
+                        variant="contained"
+                        size="large"
+                    >
                         Абонементы
                     </Button>
                 </Grid>
