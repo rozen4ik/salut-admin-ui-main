@@ -8,8 +8,6 @@ import controller from '../../api/controller';
 import './third-party/style.css';
 import expressController from '../../api/ExpressController';
 import GroupClientTable from '../../components/GroupClientTable';
-import SeasonTickets from './SeasonTickets';
-import { PDFDownloadLink } from '@react-pdf/renderer';
 
 const GroupClients = () => {
     const c = [
@@ -432,9 +430,9 @@ const GroupClients = () => {
                     />
                 </Grid>
                 <Grid item xs={1}>
-                    <PDFDownloadLink document={<SeasonTickets />} fileName="абонементы.pdf">
-                        {({ blob, url, loading, error }) => (loading ? 'Загрузка документа...' : 'Абонементы')}
-                    </PDFDownloadLink>
+                    <Button href={`/#/season-tickets?clients=${clients}&id=${id}`} target={'_blank'} variant="contained" size="large">
+                        Абонементы
+                    </Button>
                 </Grid>
                 <Grid item xs={12}>
                     <GroupClientTable columns={columns} content={clients} keyProp={'id_prs'} />

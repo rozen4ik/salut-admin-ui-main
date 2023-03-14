@@ -53,10 +53,6 @@ const MainRoutes = {
             element: <ClientDetail />
         },
         {
-            path: '/season-tickets',
-            element: <SeasonTickets />
-        },
-        {
             path: 'dashboard',
             children: [
                 {
