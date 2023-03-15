@@ -15,6 +15,10 @@ const post = async (url, data) => await controller.post(url, data);
 const get = async (url, data) => await controller.get(url, data);
 
 class Controller {
+    async getIdentInfo(identifier) {
+        return get(`/json-iapi/iapi-client?act=getidentinfo&identifier=${identifier}`).then((response) => response.data);
+    }
+
     async getGroupTypes() {
         return get('/json-iapi/iapi-instr?act=tgtypes').then((response) => response.data);
     }
