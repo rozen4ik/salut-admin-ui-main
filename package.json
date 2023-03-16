@@ -39,6 +39,7 @@
         "@ant-design/colors": "^6.0.0",
         "@ant-design/icons": "^4.7.0",
         "@date-io/date-fns": "^2.16.0",
+        "@david.kucsai/react-pdf-table": "^0.4.1",
         "@emotion/cache": "^11.10.3",
         "@emotion/react": "^11.10.4",
         "@emotion/styled": "^11.10.4",
