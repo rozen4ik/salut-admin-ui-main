@@ -35,7 +35,9 @@ const styles = StyleSheet.create({
         fontFamily: 'Roboto',
         margin: 10,
         padding: 10,
-        flexGrow: 1
+        flexGrow: 1,
+        height: 419.53,
+        width: 297.64
     }
 });
 
