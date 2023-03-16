@@ -29,11 +29,6 @@ const styles = StyleSheet.create({
     }
 });
 
-const getInfo = (ident) => {
-    const response = controller.getIdentInfo(ident);
-    return respone;
-};
-
 // Create Document Component
 const SeasonTickets = () => {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -42,6 +37,8 @@ const SeasonTickets = () => {
     const [clients, setClients] = useState([]);
     const [localClietns, setLocalClients] = useState([]);
     const [group, setGroup] = useState([]);
+    const [clientPhone, setClientPhone] = useState([]);
+    const [clientDate, setClientDate] = useState([]);
     const loadData = async () => {
         let response = await controller.getGroupCustomers(id_gr, selectedDate);
         setClients(response.tgclients);
@@ -49,6 +46,26 @@ const SeasonTickets = () => {
         setGroup(response.tgroup);
         response = await ExpressController.getClients();
         setLocalClients(response.data);
+    };
+
+    const getIdentInfo = async (ident) => {
+        const response = await controller.getIdentInfo(ident);
+        let phone = response.raw_html.toString().indexOf('Телефон');
+        let clDate = response.raw_html.toString().indexOf('Дата рождения');
+        if (phone != -1) {
+            phone = `8${response.raw_html.toString().slice(phone + 11, phone + 21)}`;
+            if (phone[1] == '-') {
+                phone = '-';
+            }
+        }
+        setClientPhone(phone);
+        if (clDate != -1) {
+            clDate = response.raw_html.toString().slice(clDate + 17, clDate + 27);
+            if (clDate[0] == '-') {
+                clDate = '-';
+            }
+        }
+        setClientDate(clDate);
     };
 
     useEffect(() => {
@@ -59,7 +76,7 @@ const SeasonTickets = () => {
     let date_start;
     let date_end;
     let identifier;
-    let infoIdent;
+    let certificate;
 
     for (const d of clients) {
         for (const cl of localClietns) {
@@ -68,26 +85,17 @@ const SeasonTickets = () => {
                 date_start = new Date(d.packages[d.packages.length - 1].date_start).toLocaleDateString();
                 date_end = new Date(d.packages[d.packages.length - 1].date_end).toLocaleDateString();
                 identifier = d.identifiers[d.identifiers.length - 1].identifier;
-                // infoIdent = axios({
-                //     method: 'get',
-                //     url: `http://81.200.31.254:33366/json-iapi/iapi-client?act=getidentinfo&identifier=${identifier}`,
-                //     withCredentials: false,
-                //     crossdomain: false,
-                //     timeout: 300000,
-                //     headers: {
-                //         'Content-Type': 'application/json'
-                //     },
-                //     // crossDomain: true,
-                //     responseType: 'json'
-                // }).then((response) => response.data);
-                infoIdent = getInfo(identifier);
+                certificate = new Date(cl.certificateDate).toLocaleDateString();
+                if (certificate == 'Invalid Date') {
+                    certificate = 'Не указано';
+                }
             }
         }
     }
 
-    infoIdent.then((response) => {
-        console.log(response);
-    });
+    useEffect(() => {
+        getIdentInfo(identifier);
+    }, [identifier]);
 
     return (
         <MainCard title={`Абонементы на группу ${id_gr}`}>
@@ -99,8 +107,8 @@ const SeasonTickets = () => {
                                 <Text
                                     style={styles.Text}
                                 >{`ФК Салют                                        Платёжный № ${identifier}`}</Text>
-                                <Text style={styles.Text}>{fio}</Text>
-                                <Text style={styles.Text}>Дата рождения:</Text>
+                                <Text style={styles.Text}>{`${fio}                                   ${clientPhone}`}</Text>
+                                <Text style={styles.Text}>Дата рождения: {clientDate}</Text>
                                 <Text style={styles.Text}>
                                     Период действия: {date_start} - {date_end}
                                 </Text>
@@ -108,9 +116,12 @@ const SeasonTickets = () => {
                                 <Text style={styles.Text}>Тренер: {group.tg_instr_initials}</Text>
                                 <Text style={styles.Text}>Группа: {group.tg_name}</Text>
                                 <Text style={styles.Text}>Время посещения:_________________________</Text>
-                                <Text style={styles.Text}>Мед. справка действует до:</Text>
+                                <Text style={styles.Text}>Мед. справка действует до: {certificate}</Text>
                                 <Text style={styles.Text}>Таблица....</Text>
-                                <Text style={styles.Text}>Правила оплаты</Text>
+                                <Text style={styles.Text}>
+                                    Оплачивая данный абонемент, вы подтверждаете, что ознакомились с правилами АУ ФСК «Салют» и полностью
+                                    согласны с ними.
+                                </Text>
                             </p>
                         </View>
                     </Page>
