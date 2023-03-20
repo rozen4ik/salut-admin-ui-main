@@ -142,323 +142,665 @@ const SeasonTickets = () => {
     // useEffect(() => {
     //     getIdentInfo(identifier);
     // }, [identifier]);
+    let indexOne = -2;
+    let indexTwo = -1;
+    let indexThree = myPdf.length + 1;
+    let indexFour = myPdf.length;
+    let stop = 0;
 
     const result = myPdf.map((value, index, array) => {
-        let indexTwo = index + 1;
-        let indexThree = index + 2;
-        let indexFour = index + 3;
-        return (
-            <Page key={myPdf[index].identifier} size="A4" style={styles.page}>
-                <View>
-                    <View style={styles.section}>
-                        <Image style={styles.image} src={'logo.png'} />
-                        <Text
-                            style={styles.Text}
-                        >{`${myPdf[index].fio}                               Платёжный № ${myPdf[index].identifier}`}</Text>
-                        {/*<Text style={styles.Text}>{`Телефон: ${clientPhone}`}</Text>*/}
-                        {/*<Text style={styles.Text}>Дата рождения: {clientDate}</Text>*/}
-                        <Text style={styles.Text}>
-                            Период действия: {myPdf[index].date_start} - {myPdf[index].date_end}
-                        </Text>
-                        <Text style={styles.Text}>Стоимость:______________руб.</Text>
-                        <Text style={styles.Text}>Тренер: {myPdf[index].tg_instr_initials}</Text>
-                        <Text style={styles.Text}>Группа: {myPdf[index].tg_name}</Text>
-                        <Text style={styles.Text}>Время посещения:_________________________</Text>
-                        <Text style={styles.Text}>Мед. справка действует до: {myPdf[index].certificate}</Text>
-                        <Table>
-                            <TableHeader fontSize={12} textAlign={'center'}>
-                                <TableCell style={{ height: 20 }}>Отметка о посещении</TableCell>
-                            </TableHeader>
-                            <TableBody>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                            </TableBody>
-                        </Table>
-                        <Table>
-                            <TableHeader>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                            </TableHeader>
-                            <TableBody>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                            </TableBody>
-                        </Table>
-                        <Table>
-                            <TableHeader>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                            </TableHeader>
-                            <TableBody>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                            </TableBody>
-                        </Table>
-                        <Table>
-                            <TableHeader>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                            </TableHeader>
-                            <TableBody>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                            </TableBody>
-                        </Table>
-                        <Text style={styles.TextProd}>
-                            Оплачивая данный абонемент, вы подтверждаете, что ознакомились с правилами АУ ФСК «Салют» и полностью согласны с
-                            ними.
-                        </Text>
-                    </View>
-                    <View style={styles.section}>
-                        <Image style={styles.image} src={'logo.png'} />
-                        <Text
-                            style={styles.Text}
-                        >{`${myPdf[index].fio}                               Платёжный № ${myPdf[index].identifier}`}</Text>
-                        {/*<Text style={styles.Text}>{`Телефон: ${clientPhone}`}</Text>*/}
-                        {/*<Text style={styles.Text}>Дата рождения: {clientDate}</Text>*/}
-                        <Text style={styles.Text}>
-                            Период действия: {myPdf[index].date_start} - {myPdf[index].date_end}
-                        </Text>
-                        <Text style={styles.Text}>Стоимость:______________руб.</Text>
-                        <Text style={styles.Text}>Тренер: {myPdf[index].tg_instr_initials}</Text>
-                        <Text style={styles.Text}>Группа: {myPdf[index].tg_name}</Text>
-                        <Text style={styles.Text}>Время посещения:_________________________</Text>
-                        <Text style={styles.Text}>Мед. справка действует до: {myPdf[index].certificate}</Text>
-                        <Table>
-                            <TableHeader fontSize={12} textAlign={'center'}>
-                                <TableCell style={{ height: 20 }}>Отметка о посещении</TableCell>
-                            </TableHeader>
-                            <TableBody>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                            </TableBody>
-                        </Table>
-                        <Table>
-                            <TableHeader>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                            </TableHeader>
-                            <TableBody>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                            </TableBody>
-                        </Table>
-                        <Table>
-                            <TableHeader>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                            </TableHeader>
-                            <TableBody>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                            </TableBody>
-                        </Table>
-                        <Table>
-                            <TableHeader>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                            </TableHeader>
-                            <TableBody>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                            </TableBody>
-                        </Table>
-                        <Text style={styles.TextProd}>
-                            Оплачивая данный абонемент, вы подтверждаете, что ознакомились с правилами АУ ФСК «Салют» и полностью согласны с
-                            ними.
-                        </Text>
-                    </View>
-                </View>
-                <View>
-                    <View style={styles.section}>
-                        <Image style={styles.image} src={'logo.png'} />
-                        <Text
-                            style={styles.Text}
-                        >{`${myPdf[index].fio}                               Платёжный № ${myPdf[index].identifier}`}</Text>
-                        {/*<Text style={styles.Text}>{`Телефон: ${clientPhone}`}</Text>*/}
-                        {/*<Text style={styles.Text}>Дата рождения: {clientDate}</Text>*/}
-                        <Text style={styles.Text}>
-                            Период действия: {myPdf[index].date_start} - {myPdf[index].date_end}
-                        </Text>
-                        <Text style={styles.Text}>Стоимость:______________руб.</Text>
-                        <Text style={styles.Text}>Тренер: {myPdf[index].tg_instr_initials}</Text>
-                        <Text style={styles.Text}>Группа: {myPdf[index].tg_name}</Text>
-                        <Text style={styles.Text}>Время посещения:_________________________</Text>
-                        <Text style={styles.Text}>Мед. справка действует до: {myPdf[index].certificate}</Text>
-                        <Table>
-                            <TableHeader fontSize={12} textAlign={'center'}>
-                                <TableCell style={{ height: 20 }}>Отметка о посещении</TableCell>
-                            </TableHeader>
-                            <TableBody>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                            </TableBody>
-                        </Table>
-                        <Table>
-                            <TableHeader>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                            </TableHeader>
-                            <TableBody>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                            </TableBody>
-                        </Table>
-                        <Table>
-                            <TableHeader>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                            </TableHeader>
-                            <TableBody>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                            </TableBody>
-                        </Table>
-                        <Table>
-                            <TableHeader>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                            </TableHeader>
-                            <TableBody>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                            </TableBody>
-                        </Table>
-                        <Text style={styles.TextProd}>
-                            Оплачивая данный абонемент, вы подтверждаете, что ознакомились с правилами АУ ФСК «Салют» и полностью согласны с
-                            ними.
-                        </Text>
-                    </View>
-                    <View style={styles.section}>
-                        <Image style={styles.image} src={'logo.png'} />
-                        <Text
-                            style={styles.Text}
-                        >{`${myPdf[index].fio}                               Платёжный № ${myPdf[index].identifier}`}</Text>
-                        {/*<Text style={styles.Text}>{`Телефон: ${clientPhone}`}</Text>*/}
-                        {/*<Text style={styles.Text}>Дата рождения: {clientDate}</Text>*/}
-                        <Text style={styles.Text}>
-                            Период действия: {myPdf[index].date_start} - {myPdf[index].date_end}
-                        </Text>
-                        <Text style={styles.Text}>Стоимость:______________руб.</Text>
-                        <Text style={styles.Text}>Тренер: {myPdf[index].tg_instr_initials}</Text>
-                        <Text style={styles.Text}>Группа: {myPdf[index].tg_name}</Text>
-                        <Text style={styles.Text}>Время посещения:_________________________</Text>
-                        <Text style={styles.Text}>Мед. справка действует до: {myPdf[index].certificate}</Text>
-                        <Table>
-                            <TableHeader fontSize={12} textAlign={'center'}>
-                                <TableCell style={{ height: 20 }}>Отметка о посещении</TableCell>
-                            </TableHeader>
-                            <TableBody>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                            </TableBody>
-                        </Table>
-                        <Table>
-                            <TableHeader>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                            </TableHeader>
-                            <TableBody>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                            </TableBody>
-                        </Table>
-                        <Table>
-                            <TableHeader>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                            </TableHeader>
-                            <TableBody>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                            </TableBody>
-                        </Table>
-                        <Table>
-                            <TableHeader>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                            </TableHeader>
-                            <TableBody>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                                <TableCell style={{ height: 20 }}></TableCell>
-                            </TableBody>
-                        </Table>
-                        <Text style={styles.TextProd}>
-                            Оплачивая данный абонемент, вы подтверждаете, что ознакомились с правилами АУ ФСК «Салют» и полностью согласны с
-                            ними.
-                        </Text>
-                    </View>
-                </View>
-            </Page>
-        );
+        indexOne += 2;
+        indexTwo += 2;
+        indexThree -= 2;
+        indexFour -= 2;
+        if (
+            indexOne <= myPdf.length - 1 &&
+            indexTwo <= myPdf.length - 1 &&
+            indexThree <= myPdf.length - 1 &&
+            indexFour <= myPdf.length - 1
+        ) {
+            if (indexTwo == indexFour) {
+                stop = 1;
+                console.log(indexOne, indexTwo, indexThree, indexFour, 'середина');
+                return (
+                    <Page key={myPdf[index].identifier} size="A4" style={styles.page}>
+                        <View>
+                            <View style={styles.section}>
+                                <Image style={styles.image} src={'logo.png'} />
+                                <Text
+                                    style={styles.Text}
+                                >{`${myPdf[indexOne].fio}                               Платёжный № ${myPdf[indexOne].identifier}`}</Text>
+                                {/*<Text style={styles.Text}>{`Телефон: ${clientPhone}`}</Text>*/}
+                                {/*<Text style={styles.Text}>Дата рождения: {clientDate}</Text>*/}
+                                <Text style={styles.Text}>
+                                    Период действия: {myPdf[indexOne].date_start} - {myPdf[indexOne].date_end}
+                                </Text>
+                                <Text style={styles.Text}>Стоимость:______________руб.</Text>
+                                <Text style={styles.Text}>Тренер: {myPdf[indexOne].tg_instr_initials}</Text>
+                                <Text style={styles.Text}>Группа: {myPdf[indexOne].tg_name}</Text>
+                                <Text style={styles.Text}>Время посещения:_________________________</Text>
+                                <Text style={styles.Text}>Мед. справка действует до: {myPdf[indexOne].certificate}</Text>
+                                <Table>
+                                    <TableHeader fontSize={12} textAlign={'center'}>
+                                        <TableCell style={{ height: 20 }}>Отметка о посещении</TableCell>
+                                    </TableHeader>
+                                    <TableBody>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                    </TableBody>
+                                </Table>
+                                <Table>
+                                    <TableHeader>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                    </TableHeader>
+                                    <TableBody>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                    </TableBody>
+                                </Table>
+                                <Table>
+                                    <TableHeader>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                    </TableHeader>
+                                    <TableBody>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                    </TableBody>
+                                </Table>
+                                <Table>
+                                    <TableHeader>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                    </TableHeader>
+                                    <TableBody>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                    </TableBody>
+                                </Table>
+                                <Text style={styles.TextProd}>
+                                    Оплачивая данный абонемент, вы подтверждаете, что ознакомились с правилами АУ ФСК «Салют» и полностью
+                                    согласны с ними.
+                                </Text>
+                            </View>
+                            <View style={styles.section}>
+                                <Image style={styles.image} src={'logo.png'} />
+                                <Text
+                                    style={styles.Text}
+                                >{`${myPdf[indexTwo].fio}                               Платёжный № ${myPdf[indexTwo].identifier}`}</Text>
+                                {/*<Text style={styles.Text}>{`Телефон: ${clientPhone}`}</Text>*/}
+                                {/*<Text style={styles.Text}>Дата рождения: {clientDate}</Text>*/}
+                                <Text style={styles.Text}>
+                                    Период действия: {myPdf[indexTwo].date_start} - {myPdf[indexTwo].date_end}
+                                </Text>
+                                <Text style={styles.Text}>Стоимость:______________руб.</Text>
+                                <Text style={styles.Text}>Тренер: {myPdf[indexTwo].tg_instr_initials}</Text>
+                                <Text style={styles.Text}>Группа: {myPdf[indexTwo].tg_name}</Text>
+                                <Text style={styles.Text}>Время посещения:_________________________</Text>
+                                <Text style={styles.Text}>Мед. справка действует до: {myPdf[indexTwo].certificate}</Text>
+                                <Table>
+                                    <TableHeader fontSize={12} textAlign={'center'}>
+                                        <TableCell style={{ height: 20 }}>Отметка о посещении</TableCell>
+                                    </TableHeader>
+                                    <TableBody>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                    </TableBody>
+                                </Table>
+                                <Table>
+                                    <TableHeader>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                    </TableHeader>
+                                    <TableBody>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                    </TableBody>
+                                </Table>
+                                <Table>
+                                    <TableHeader>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                    </TableHeader>
+                                    <TableBody>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                    </TableBody>
+                                </Table>
+                                <Table>
+                                    <TableHeader>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                    </TableHeader>
+                                    <TableBody>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                    </TableBody>
+                                </Table>
+                                <Text style={styles.TextProd}>
+                                    Оплачивая данный абонемент, вы подтверждаете, что ознакомились с правилами АУ ФСК «Салют» и полностью
+                                    согласны с ними.
+                                </Text>
+                            </View>
+                        </View>
+                        <View>
+                            <View style={styles.section}>
+                                <Image style={styles.image} src={'logo.png'} />
+                                <Text
+                                    style={styles.Text}
+                                >{`${myPdf[indexThree].fio}                               Платёжный № ${myPdf[indexThree].identifier}`}</Text>
+                                {/*<Text style={styles.Text}>{`Телефон: ${clientPhone}`}</Text>*/}
+                                {/*<Text style={styles.Text}>Дата рождения: {clientDate}</Text>*/}
+                                <Text style={styles.Text}>
+                                    Период действия: {myPdf[indexThree].date_start} - {myPdf[indexThree].date_end}
+                                </Text>
+                                <Text style={styles.Text}>Стоимость:______________руб.</Text>
+                                <Text style={styles.Text}>Тренер: {myPdf[indexThree].tg_instr_initials}</Text>
+                                <Text style={styles.Text}>Группа: {myPdf[indexThree].tg_name}</Text>
+                                <Text style={styles.Text}>Время посещения:_________________________</Text>
+                                <Text style={styles.Text}>Мед. справка действует до: {myPdf[indexThree].certificate}</Text>
+                                <Table>
+                                    <TableHeader fontSize={12} textAlign={'center'}>
+                                        <TableCell style={{ height: 20 }}>Отметка о посещении</TableCell>
+                                    </TableHeader>
+                                    <TableBody>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                    </TableBody>
+                                </Table>
+                                <Table>
+                                    <TableHeader>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                    </TableHeader>
+                                    <TableBody>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                    </TableBody>
+                                </Table>
+                                <Table>
+                                    <TableHeader>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                    </TableHeader>
+                                    <TableBody>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                    </TableBody>
+                                </Table>
+                                <Table>
+                                    <TableHeader>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                    </TableHeader>
+                                    <TableBody>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                    </TableBody>
+                                </Table>
+                                <Text style={styles.TextProd}>
+                                    Оплачивая данный абонемент, вы подтверждаете, что ознакомились с правилами АУ ФСК «Салют» и полностью
+                                    согласны с ними.
+                                </Text>
+                            </View>
+                        </View>
+                    </Page>
+                );
+            } else if (indexOne == indexThree) {
+                stop = 1;
+                console.log(indexOne, indexTwo, indexThree, indexFour, 'середина');
+                return (
+                    <Page key={myPdf[index].identifier} size="A4" style={styles.page}>
+                        <View>
+                            <View style={styles.section}>
+                                <Image style={styles.image} src={'logo.png'} />
+                                <Text
+                                    style={styles.Text}
+                                >{`${myPdf[indexOne].fio}                               Платёжный № ${myPdf[indexOne].identifier}`}</Text>
+                                {/*<Text style={styles.Text}>{`Телефон: ${clientPhone}`}</Text>*/}
+                                {/*<Text style={styles.Text}>Дата рождения: {clientDate}</Text>*/}
+                                <Text style={styles.Text}>
+                                    Период действия: {myPdf[indexOne].date_start} - {myPdf[indexOne].date_end}
+                                </Text>
+                                <Text style={styles.Text}>Стоимость:______________руб.</Text>
+                                <Text style={styles.Text}>Тренер: {myPdf[indexOne].tg_instr_initials}</Text>
+                                <Text style={styles.Text}>Группа: {myPdf[indexOne].tg_name}</Text>
+                                <Text style={styles.Text}>Время посещения:_________________________</Text>
+                                <Text style={styles.Text}>Мед. справка действует до: {myPdf[indexOne].certificate}</Text>
+                                <Table>
+                                    <TableHeader fontSize={12} textAlign={'center'}>
+                                        <TableCell style={{ height: 20 }}>Отметка о посещении</TableCell>
+                                    </TableHeader>
+                                    <TableBody>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                    </TableBody>
+                                </Table>
+                                <Table>
+                                    <TableHeader>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                    </TableHeader>
+                                    <TableBody>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                    </TableBody>
+                                </Table>
+                                <Table>
+                                    <TableHeader>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                    </TableHeader>
+                                    <TableBody>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                    </TableBody>
+                                </Table>
+                                <Table>
+                                    <TableHeader>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                    </TableHeader>
+                                    <TableBody>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                        <TableCell style={{ height: 20 }}></TableCell>
+                                    </TableBody>
+                                </Table>
+                                <Text style={styles.TextProd}>
+                                    Оплачивая данный абонемент, вы подтверждаете, что ознакомились с правилами АУ ФСК «Салют» и полностью
+                                    согласны с ними.
+                                </Text>
+                            </View>
+                        </View>
+                    </Page>
+                );
+            } else {
+                console.log(indexOne, indexTwo, indexThree, indexFour);
+                if (stop != 1) {
+                    return (
+                        <Page key={myPdf[index].identifier} size="A4" style={styles.page}>
+                            <View>
+                                <View style={styles.section}>
+                                    <Image style={styles.image} src={'logo.png'} />
+                                    <Text
+                                        style={styles.Text}
+                                    >{`${myPdf[indexOne].fio}                               Платёжный № ${myPdf[indexOne].identifier}`}</Text>
+                                    {/*<Text style={styles.Text}>{`Телефон: ${clientPhone}`}</Text>*/}
+                                    {/*<Text style={styles.Text}>Дата рождения: {clientDate}</Text>*/}
+                                    <Text style={styles.Text}>
+                                        Период действия: {myPdf[indexOne].date_start} - {myPdf[indexOne].date_end}
+                                    </Text>
+                                    <Text style={styles.Text}>Стоимость:______________руб.</Text>
+                                    <Text style={styles.Text}>Тренер: {myPdf[indexOne].tg_instr_initials}</Text>
+                                    <Text style={styles.Text}>Группа: {myPdf[indexOne].tg_name}</Text>
+                                    <Text style={styles.Text}>Время посещения:_________________________</Text>
+                                    <Text style={styles.Text}>Мед. справка действует до: {myPdf[indexOne].certificate}</Text>
+                                    <Table>
+                                        <TableHeader fontSize={12} textAlign={'center'}>
+                                            <TableCell style={{ height: 20 }}>Отметка о посещении</TableCell>
+                                        </TableHeader>
+                                        <TableBody>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                        </TableBody>
+                                    </Table>
+                                    <Table>
+                                        <TableHeader>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                        </TableHeader>
+                                        <TableBody>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                        </TableBody>
+                                    </Table>
+                                    <Table>
+                                        <TableHeader>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                        </TableHeader>
+                                        <TableBody>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                        </TableBody>
+                                    </Table>
+                                    <Table>
+                                        <TableHeader>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                        </TableHeader>
+                                        <TableBody>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                        </TableBody>
+                                    </Table>
+                                    <Text style={styles.TextProd}>
+                                        Оплачивая данный абонемент, вы подтверждаете, что ознакомились с правилами АУ ФСК «Салют» и
+                                        полностью согласны с ними.
+                                    </Text>
+                                </View>
+                                <View style={styles.section}>
+                                    <Image style={styles.image} src={'logo.png'} />
+                                    <Text
+                                        style={styles.Text}
+                                    >{`${myPdf[indexTwo].fio}                               Платёжный № ${myPdf[indexTwo].identifier}`}</Text>
+                                    {/*<Text style={styles.Text}>{`Телефон: ${clientPhone}`}</Text>*/}
+                                    {/*<Text style={styles.Text}>Дата рождения: {clientDate}</Text>*/}
+                                    <Text style={styles.Text}>
+                                        Период действия: {myPdf[indexTwo].date_start} - {myPdf[indexTwo].date_end}
+                                    </Text>
+                                    <Text style={styles.Text}>Стоимость:______________руб.</Text>
+                                    <Text style={styles.Text}>Тренер: {myPdf[indexTwo].tg_instr_initials}</Text>
+                                    <Text style={styles.Text}>Группа: {myPdf[indexTwo].tg_name}</Text>
+                                    <Text style={styles.Text}>Время посещения:_________________________</Text>
+                                    <Text style={styles.Text}>Мед. справка действует до: {myPdf[indexTwo].certificate}</Text>
+                                    <Table>
+                                        <TableHeader fontSize={12} textAlign={'center'}>
+                                            <TableCell style={{ height: 20 }}>Отметка о посещении</TableCell>
+                                        </TableHeader>
+                                        <TableBody>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                        </TableBody>
+                                    </Table>
+                                    <Table>
+                                        <TableHeader>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                        </TableHeader>
+                                        <TableBody>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                        </TableBody>
+                                    </Table>
+                                    <Table>
+                                        <TableHeader>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                        </TableHeader>
+                                        <TableBody>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                        </TableBody>
+                                    </Table>
+                                    <Table>
+                                        <TableHeader>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                        </TableHeader>
+                                        <TableBody>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                        </TableBody>
+                                    </Table>
+                                    <Text style={styles.TextProd}>
+                                        Оплачивая данный абонемент, вы подтверждаете, что ознакомились с правилами АУ ФСК «Салют» и
+                                        полностью согласны с ними.
+                                    </Text>
+                                </View>
+                            </View>
+                            <View>
+                                <View style={styles.section}>
+                                    <Image style={styles.image} src={'logo.png'} />
+                                    <Text
+                                        style={styles.Text}
+                                    >{`${myPdf[indexThree].fio}                               Платёжный № ${myPdf[indexThree].identifier}`}</Text>
+                                    {/*<Text style={styles.Text}>{`Телефон: ${clientPhone}`}</Text>*/}
+                                    {/*<Text style={styles.Text}>Дата рождения: {clientDate}</Text>*/}
+                                    <Text style={styles.Text}>
+                                        Период действия: {myPdf[indexThree].date_start} - {myPdf[indexThree].date_end}
+                                    </Text>
+                                    <Text style={styles.Text}>Стоимость:______________руб.</Text>
+                                    <Text style={styles.Text}>Тренер: {myPdf[indexThree].tg_instr_initials}</Text>
+                                    <Text style={styles.Text}>Группа: {myPdf[indexThree].tg_name}</Text>
+                                    <Text style={styles.Text}>Время посещения:_________________________</Text>
+                                    <Text style={styles.Text}>Мед. справка действует до: {myPdf[indexThree].certificate}</Text>
+                                    <Table>
+                                        <TableHeader fontSize={12} textAlign={'center'}>
+                                            <TableCell style={{ height: 20 }}>Отметка о посещении</TableCell>
+                                        </TableHeader>
+                                        <TableBody>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                        </TableBody>
+                                    </Table>
+                                    <Table>
+                                        <TableHeader>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                        </TableHeader>
+                                        <TableBody>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                        </TableBody>
+                                    </Table>
+                                    <Table>
+                                        <TableHeader>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                        </TableHeader>
+                                        <TableBody>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                        </TableBody>
+                                    </Table>
+                                    <Table>
+                                        <TableHeader>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                        </TableHeader>
+                                        <TableBody>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                        </TableBody>
+                                    </Table>
+                                    <Text style={styles.TextProd}>
+                                        Оплачивая данный абонемент, вы подтверждаете, что ознакомились с правилами АУ ФСК «Салют» и
+                                        полностью согласны с ними.
+                                    </Text>
+                                </View>
+                                <View style={styles.section}>
+                                    <Image style={styles.image} src={'logo.png'} />
+                                    <Text
+                                        style={styles.Text}
+                                    >{`${myPdf[indexFour].fio}                               Платёжный № ${myPdf[indexFour].identifier}`}</Text>
+                                    {/*<Text style={styles.Text}>{`Телефон: ${clientPhone}`}</Text>*/}
+                                    {/*<Text style={styles.Text}>Дата рождения: {clientDate}</Text>*/}
+                                    <Text style={styles.Text}>
+                                        Период действия: {myPdf[indexFour].date_start} - {myPdf[indexFour].date_end}
+                                    </Text>
+                                    <Text style={styles.Text}>Стоимость:______________руб.</Text>
+                                    <Text style={styles.Text}>Тренер: {myPdf[indexFour].tg_instr_initials}</Text>
+                                    <Text style={styles.Text}>Группа: {myPdf[indexFour].tg_name}</Text>
+                                    <Text style={styles.Text}>Время посещения:_________________________</Text>
+                                    <Text style={styles.Text}>Мед. справка действует до: {myPdf[indexFour].certificate}</Text>
+                                    <Table>
+                                        <TableHeader fontSize={12} textAlign={'center'}>
+                                            <TableCell style={{ height: 20 }}>Отметка о посещении</TableCell>
+                                        </TableHeader>
+                                        <TableBody>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                        </TableBody>
+                                    </Table>
+                                    <Table>
+                                        <TableHeader>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                        </TableHeader>
+                                        <TableBody>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                        </TableBody>
+                                    </Table>
+                                    <Table>
+                                        <TableHeader>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                        </TableHeader>
+                                        <TableBody>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                        </TableBody>
+                                    </Table>
+                                    <Table>
+                                        <TableHeader>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                        </TableHeader>
+                                        <TableBody>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                            <TableCell style={{ height: 20 }}></TableCell>
+                                        </TableBody>
+                                    </Table>
+                                    <Text style={styles.TextProd}>
+                                        Оплачивая данный абонемент, вы подтверждаете, что ознакомились с правилами АУ ФСК «Салют» и
+                                        полностью согласны с ними.
+                                    </Text>
+                                </View>
+                            </View>
+                        </Page>
+                    );
+                }
+            }
+        }
     });
 
     return (
