@@ -84,6 +84,7 @@ const SeasonTickets = () => {
         loadData();
     }, []);
 
+    let c = 0;
     let fio;
     let date_start;
     let date_end;
@@ -92,12 +93,13 @@ const SeasonTickets = () => {
     const myPdf = [];
 
     for (const d of clients) {
+        fio = d.people_initials;
+        date_start = new Date(d.packages[d.packages.length - 1].date_start).toLocaleDateString();
+        date_end = new Date(d.packages[d.packages.length - 1].date_end).toLocaleDateString();
+        identifier = d.identifiers[d.identifiers.length - 1].identifier;
         for (const cl of localClietns) {
             if (cl.id_acc == d.id_acc) {
-                fio = d.people_initials;
-                date_start = new Date(d.packages[d.packages.length - 1].date_start).toLocaleDateString();
-                date_end = new Date(d.packages[d.packages.length - 1].date_end).toLocaleDateString();
-                identifier = d.identifiers[d.identifiers.length - 1].identifier;
+                c = 1;
                 certificate = new Date(cl.certificateDate).toLocaleDateString();
                 if (certificate == 'Invalid Date') {
                     certificate = 'Не указано';
@@ -115,6 +117,21 @@ const SeasonTickets = () => {
                 });
             }
         }
+        if (c == 0) {
+            certificate = 'Не указано';
+            myPdf.push({
+                fio: fio,
+                date_start: date_start,
+                date_end: date_end,
+                identifier: identifier,
+                certificate: certificate,
+                // { clientPhone: phone },
+                // { clientDate: clDate },
+                tg_instr_initials: group.tg_instr_initials,
+                tg_name: group.tg_name
+            });
+        }
+        c = 0;
     }
 
     console.log(myPdf);
@@ -128,7 +145,7 @@ const SeasonTickets = () => {
             <Page key={p.identifier} size="A6" style={styles.page}>
                 <View style={styles.section}>
                     <Image style={styles.image} src={'logo.png'} />
-                    <Text style={styles.Text}>{`${p.fio}                                   Платёжный № ${p.identifier}`}</Text>
+                    <Text style={styles.Text}>{`${p.fio}                               Платёжный № ${p.identifier}`}</Text>
                     {/*<Text style={styles.Text}>{`Телефон: ${clientPhone}`}</Text>*/}
                     {/*<Text style={styles.Text}>Дата рождения: {clientDate}</Text>*/}
                     <Text style={styles.Text}>
