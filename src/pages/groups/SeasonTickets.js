@@ -50,8 +50,8 @@ const SeasonTickets = () => {
     const [clients, setClients] = useState([]);
     const [localClietns, setLocalClients] = useState([]);
     const [group, setGroup] = useState([]);
-    const [clientPhone, setClientPhone] = useState([]);
-    const [clientDate, setClientDate] = useState([]);
+    // let clientPhone;
+    // let clientDate;
     const loadData = async () => {
         let response = await controller.getGroupCustomers(id_gr, selectedDate);
         setClients(response.tgclients);
@@ -61,27 +61,28 @@ const SeasonTickets = () => {
         setLocalClients(response.data);
     };
 
-    const getIdentInfo = async (ident) => {
-        const response = await controller.getIdentInfo(ident);
-        let phone = response.raw_html.toString().indexOf('Телефон');
-        let clDate = response.raw_html.toString().indexOf('Дата рождения');
-
-        if (phone != -1) {
-            phone = `8${response.raw_html.toString().slice(phone + 11, phone + 21)}`;
-            if (phone[1] == '-') {
-                phone = '-';
-            }
-        }
-        setClientPhone(phone);
-
-        if (clDate != -1) {
-            clDate = response.raw_html.toString().slice(clDate + 17, clDate + 27);
-            if (clDate[0] == '-') {
-                clDate = '-';
-            }
-        }
-        setClientDate(clDate);
-    };
+    // const getIdentInfo = async (ident) => {
+    //     const response = await controller.getIdentInfo(ident);
+    //     let phone = response.raw_html.toString().indexOf('Телефон');
+    //     let clDate = response.raw_html.toString().indexOf('Дата рождения');
+    //
+    //     if (phone != -1) {
+    //         phone = `8${response.raw_html.toString().slice(phone + 11, phone + 21)}`;
+    //         if (phone[1] == '-') {
+    //             phone = '-';
+    //         }
+    //     }
+    //     clientPhone = phone;
+    //
+    //     if (clDate != -1) {
+    //         clDate = response.raw_html.toString().slice(clDate + 17, clDate + 27);
+    //         if (clDate[0] == '-') {
+    //             clDate = '-';
+    //         }
+    //     }
+    //     clientDate = clDate;
+    //     console.log('123', clientPhone, clientDate);
+    // };
 
     useEffect(() => {
         loadData();
@@ -100,6 +101,7 @@ const SeasonTickets = () => {
         date_start = new Date(d.packages[d.packages.length - 1].date_start).toLocaleDateString();
         date_end = new Date(d.packages[d.packages.length - 1].date_end).toLocaleDateString();
         identifier = d.identifiers[d.identifiers.length - 1].identifier;
+
         for (const cl of localClietns) {
             if (cl.id_acc == d.id_acc) {
                 c = 1;
@@ -107,19 +109,21 @@ const SeasonTickets = () => {
                 if (certificate == 'Invalid Date') {
                     certificate = 'Не указано';
                 }
+
                 myPdf.push({
                     fio: fio,
                     date_start: date_start,
                     date_end: date_end,
                     identifier: identifier,
                     certificate: certificate,
-                    // { clientPhone: phone },
-                    // { clientDate: clDate },
+                    // clientPhone: clientPhone,
+                    // clientDate: clientDate,
                     tg_instr_initials: group.tg_instr_initials,
                     tg_name: group.tg_name
                 });
             }
         }
+
         if (c == 0) {
             certificate = 'Не указано';
             myPdf.push({
@@ -128,8 +132,8 @@ const SeasonTickets = () => {
                 date_end: date_end,
                 identifier: identifier,
                 certificate: certificate,
-                // { clientPhone: phone },
-                // { clientDate: clDate },
+                // clientPhone: clientPhone,
+                // clientDate: clientDate,
                 tg_instr_initials: group.tg_instr_initials,
                 tg_name: group.tg_name
             });
@@ -137,19 +141,11 @@ const SeasonTickets = () => {
         c = 0;
     }
 
-    console.log(myPdf);
-
-    // useEffect(() => {
-    //     getIdentInfo(identifier);
-    // }, [identifier]);
     let indexOne = -2;
     let indexTwo = -1;
-    // let indexThree = myPdf.length - 3;
-    // let indexFour = myPdf.length - 2;
-    let stop = 0;
-
     let indexThree = myPdf.length + 1;
     let indexFour = myPdf.length;
+    let stop = 0;
 
     const result = myPdf.map((value, index, array) => {
         console.log(myPdf.length);
