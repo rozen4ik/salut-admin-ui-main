@@ -92,6 +92,8 @@ const SeasonTickets = () => {
     let fio;
     let date_start;
     let date_end;
+    let identifiers;
+    let identifierList = [];
     let identifier;
     let certificate;
     const myPdf = [];
@@ -100,7 +102,13 @@ const SeasonTickets = () => {
         fio = d.people_initials;
         date_start = new Date(d.packages[d.packages.length - 1].date_start).toLocaleDateString();
         date_end = new Date(d.packages[d.packages.length - 1].date_end).toLocaleDateString();
-        identifier = d.identifiers[d.identifiers.length - 1].identifier;
+        identifiers = d.identifiers;
+        for (const i of identifiers) {
+            if (i.rule == 'Клиент САЛЮТ') {
+                identifierList.push(i);
+            }
+        }
+        identifier = identifierList[identifierList.length - 1].identifier;
         for (const cl of localClietns) {
             if (cl.id_acc == d.id_acc) {
                 c = 1;

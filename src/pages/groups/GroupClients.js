@@ -235,6 +235,8 @@ const GroupClients = () => {
 
     let countFio = -1;
     const linkFio = () => {
+        let identifiers;
+        let identifierList = [];
         let identifier;
         let fio;
         let id_acc;
@@ -247,8 +249,13 @@ const GroupClients = () => {
         countFio++;
         if (clients.length > 0) {
             try {
-                console.log(clients[countFio]);
-                identifier = clients[countFio].identifiers[clients[countFio].identifiers.length - 1].identifier;
+                identifiers = clients[countFio].identifiers;
+                for (const c of identifiers) {
+                    if (c.rule == 'Клиент САЛЮТ') {
+                        identifierList.push(c);
+                    }
+                }
+                identifier = identifierList[identifierList.length - 1].identifier;
                 db = checkMos.data;
                 fio = clients[countFio].people_initials;
                 id_acc = clients[countFio].id_acc;
