@@ -10,6 +10,12 @@ Font.register({
     family: 'Roboto',
     src: 'https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.10/fonts/Roboto/roboto-regular-webfont.ttf'
 });
+
+Font.register({
+    family: 'Roboto-Bold',
+    src: 'https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.10/fonts/Roboto/roboto-bold-webfont.ttf'
+});
+
 // Create styles
 const styles = StyleSheet.create({
     page: {
@@ -19,7 +25,14 @@ const styles = StyleSheet.create({
     Text: {
         fontFamily: 'Roboto',
         fontSize: 10,
-        margin: 2
+        margin: 2,
+        lineHeight: 2
+    },
+    TextFio: {
+        fontFamily: 'Roboto-Bold',
+        fontSize: 12,
+        margin: 2,
+        lineHeight: 2
     },
     TextProd: {
         fontFamily: 'Roboto',
@@ -99,6 +112,7 @@ const SeasonTickets = () => {
     const myPdf = [];
 
     for (const d of clients) {
+        console.log(d);
         fio = d.people_initials;
         date_start = new Date(d.packages[d.packages.length - 1].date_start).toLocaleDateString();
         date_end = new Date(d.packages[d.packages.length - 1].date_end).toLocaleDateString();
@@ -175,8 +189,8 @@ const SeasonTickets = () => {
                             <View style={styles.section}>
                                 <Image style={styles.image} src={'logo.png'} />
                                 <Text
-                                    style={styles.Text}
-                                >{`${myPdf[indexOne].fio}                               Платёжный № ${myPdf[indexOne].identifier}`}</Text>
+                                    style={styles.TextFio}
+                                >{`${myPdf[indexOne].fio}               Платёжный № ${myPdf[indexOne].identifier}`}</Text>
                                 {/*<Text style={styles.Text}>{`Телефон: ${clientPhone}`}</Text>*/}
                                 {/*<Text style={styles.Text}>Дата рождения: {clientDate}</Text>*/}
                                 <Text style={styles.Text}>
@@ -251,8 +265,8 @@ const SeasonTickets = () => {
                             <View style={styles.section}>
                                 <Image style={styles.image} src={'logo.png'} />
                                 <Text
-                                    style={styles.Text}
-                                >{`${myPdf[indexTwo].fio}                               Платёжный № ${myPdf[indexTwo].identifier}`}</Text>
+                                    style={styles.TextFio}
+                                >{`${myPdf[indexTwo].fio}               Платёжный № ${myPdf[indexTwo].identifier}`}</Text>
                                 {/*<Text style={styles.Text}>{`Телефон: ${clientPhone}`}</Text>*/}
                                 {/*<Text style={styles.Text}>Дата рождения: {clientDate}</Text>*/}
                                 <Text style={styles.Text}>
@@ -329,8 +343,8 @@ const SeasonTickets = () => {
                             <View style={styles.section}>
                                 <Image style={styles.image} src={'logo.png'} />
                                 <Text
-                                    style={styles.Text}
-                                >{`${myPdf[indexThree].fio}                               Платёжный № ${myPdf[indexThree].identifier}`}</Text>
+                                    style={styles.TextFio}
+                                >{`${myPdf[indexThree].fio}             Платёжный № ${myPdf[indexThree].identifier}`}</Text>
                                 {/*<Text style={styles.Text}>{`Телефон: ${clientPhone}`}</Text>*/}
                                 {/*<Text style={styles.Text}>Дата рождения: {clientDate}</Text>*/}
                                 <Text style={styles.Text}>
@@ -416,8 +430,8 @@ const SeasonTickets = () => {
                             <View style={styles.section}>
                                 <Image style={styles.image} src={'logo.png'} />
                                 <Text
-                                    style={styles.Text}
-                                >{`${myPdf[indexOne].fio}                               Платёжный № ${myPdf[indexOne].identifier}`}</Text>
+                                    style={styles.TextFio}
+                                >{`${myPdf[indexOne].fio}               Платёжный № ${myPdf[indexOne].identifier}`}</Text>
                                 {/*<Text style={styles.Text}>{`Телефон: ${clientPhone}`}</Text>*/}
                                 {/*<Text style={styles.Text}>Дата рождения: {clientDate}</Text>*/}
                                 <Text style={styles.Text}>
@@ -492,8 +506,8 @@ const SeasonTickets = () => {
                             <View style={styles.section}>
                                 <Image style={styles.image} src={'logo.png'} />
                                 <Text
-                                    style={styles.Text}
-                                >{`${myPdf[indexTwo].fio}                               Платёжный № ${myPdf[indexTwo].identifier}`}</Text>
+                                    style={styles.TextFio}
+                                >{`${myPdf[indexTwo].fio}               Платёжный № ${myPdf[indexTwo].identifier}`}</Text>
                                 {/*<Text style={styles.Text}>{`Телефон: ${clientPhone}`}</Text>*/}
                                 {/*<Text style={styles.Text}>Дата рождения: {clientDate}</Text>*/}
                                 <Text style={styles.Text}>
@@ -581,8 +595,8 @@ const SeasonTickets = () => {
                             <View style={styles.section}>
                                 <Image style={styles.image} src={'logo.png'} />
                                 <Text
-                                    style={styles.Text}
-                                >{`${myPdf[indexOne].fio}                               Платёжный № ${myPdf[indexOne].identifier}`}</Text>
+                                    style={styles.TextFio}
+                                >{`${myPdf[indexOne].fio}               Платёжный № ${myPdf[indexOne].identifier}`}</Text>
                                 {/*<Text style={styles.Text}>{`Телефон: ${clientPhone}`}</Text>*/}
                                 {/*<Text style={styles.Text}>Дата рождения: {clientDate}</Text>*/}
                                 <Text style={styles.Text}>
@@ -676,8 +690,8 @@ const SeasonTickets = () => {
                                 <View style={styles.section}>
                                     <Image style={styles.image} src={'logo.png'} />
                                     <Text
-                                        style={styles.Text}
-                                    >{`${myPdf[indexOne].fio}                               Платёжный № ${myPdf[indexOne].identifier}`}</Text>
+                                        style={styles.TextFio}
+                                    >{`${myPdf[indexOne].fio}               Платёжный № ${myPdf[indexOne].identifier}`}</Text>
                                     {/*<Text style={styles.Text}>{`Телефон: ${clientPhone}`}</Text>*/}
                                     {/*<Text style={styles.Text}>Дата рождения: {clientDate}</Text>*/}
                                     <Text style={styles.Text}>
@@ -752,8 +766,8 @@ const SeasonTickets = () => {
                                 <View style={styles.section}>
                                     <Image style={styles.image} src={'logo.png'} />
                                     <Text
-                                        style={styles.Text}
-                                    >{`${myPdf[indexTwo].fio}                               Платёжный № ${myPdf[indexTwo].identifier}`}</Text>
+                                        style={styles.TextFio}
+                                    >{`${myPdf[indexTwo].fio}               Платёжный № ${myPdf[indexTwo].identifier}`}</Text>
                                     {/*<Text style={styles.Text}>{`Телефон: ${clientPhone}`}</Text>*/}
                                     {/*<Text style={styles.Text}>Дата рождения: {clientDate}</Text>*/}
                                     <Text style={styles.Text}>
@@ -830,8 +844,8 @@ const SeasonTickets = () => {
                                 <View style={styles.section}>
                                     <Image style={styles.image} src={'logo.png'} />
                                     <Text
-                                        style={styles.Text}
-                                    >{`${myPdf[indexThree].fio}                               Платёжный № ${myPdf[indexThree].identifier}`}</Text>
+                                        style={styles.TextFio}
+                                    >{`${myPdf[indexThree].fio}             Платёжный № ${myPdf[indexThree].identifier}`}</Text>
                                     {/*<Text style={styles.Text}>{`Телефон: ${clientPhone}`}</Text>*/}
                                     {/*<Text style={styles.Text}>Дата рождения: {clientDate}</Text>*/}
                                     <Text style={styles.Text}>
@@ -906,8 +920,8 @@ const SeasonTickets = () => {
                                 <View style={styles.section}>
                                     <Image style={styles.image} src={'logo.png'} />
                                     <Text
-                                        style={styles.Text}
-                                    >{`${myPdf[indexFour].fio}                               Платёжный № ${myPdf[indexFour].identifier}`}</Text>
+                                        style={styles.TextFio}
+                                    >{`${myPdf[indexFour].fio}              Платёжный № ${myPdf[indexFour].identifier}`}</Text>
                                     {/*<Text style={styles.Text}>{`Телефон: ${clientPhone}`}</Text>*/}
                                     {/*<Text style={styles.Text}>Дата рождения: {clientDate}</Text>*/}
                                     <Text style={styles.Text}>
@@ -993,9 +1007,7 @@ const SeasonTickets = () => {
                     <View>
                         <View style={styles.section}>
                             <Image style={styles.image} src={'logo.png'} />
-                            <Text
-                                style={styles.Text}
-                            >{`${myPdf[0].fio}                               Платёжный № ${myPdf[0].identifier}`}</Text>
+                            <Text style={styles.TextFio}>{`${myPdf[0].fio}              Платёжный № ${myPdf[0].identifier}`}</Text>
                             {/*<Text style={styles.Text}>{`Телефон: ${clientPhone}`}</Text>*/}
                             {/*<Text style={styles.Text}>Дата рождения: {clientDate}</Text>*/}
                             <Text style={styles.Text}>
@@ -1084,8 +1096,8 @@ const SeasonTickets = () => {
                         <View style={styles.section}>
                             <Image style={styles.image} src={'logo.png'} />
                             <Text
-                                style={styles.Text}
-                            >{`${myPdf[indexOne].fio}                               Платёжный № ${myPdf[indexOne].identifier}`}</Text>
+                                style={styles.TextFio}
+                            >{`${myPdf[indexOne].fio}               Платёжный № ${myPdf[indexOne].identifier}`}</Text>
                             {/*<Text style={styles.Text}>{`Телефон: ${clientPhone}`}</Text>*/}
                             {/*<Text style={styles.Text}>Дата рождения: {clientDate}</Text>*/}
                             <Text style={styles.Text}>
@@ -1160,8 +1172,8 @@ const SeasonTickets = () => {
                         <View style={styles.section}>
                             <Image style={styles.image} src={'logo.png'} />
                             <Text
-                                style={styles.Text}
-                            >{`${myPdf[indexTwo].fio}                               Платёжный № ${myPdf[indexTwo].identifier}`}</Text>
+                                style={styles.TextFio}
+                            >{`${myPdf[indexTwo].fio}               Платёжный № ${myPdf[indexTwo].identifier}`}</Text>
                             {/*<Text style={styles.Text}>{`Телефон: ${clientPhone}`}</Text>*/}
                             {/*<Text style={styles.Text}>Дата рождения: {clientDate}</Text>*/}
                             <Text style={styles.Text}>
