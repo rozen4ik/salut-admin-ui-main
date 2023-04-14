@@ -208,23 +208,54 @@ const GroupClients = () => {
         }
     };
 
+    let countCheckBox = -1;
     const checkbox = (recordData, dayOfMonth) => {
+        let mounth = `${selectedDate.toLocaleDateString()[3]}${selectedDate.toLocaleDateString()[4]}`;
+        console.log(mounth);
+        let da = dayOfMonth;
+        countCheckBox++;
+        let packages_uses;
         let checked = false;
-        if (visits.length > 0) {
-            const dateToMark = new Date(selectedDate);
-            dateToMark.setDate(dayOfMonth);
-            dateToMark.setHours(24, 0, 0, 0);
-
-            const visit = visits.find(
-                (v) =>
-                    v.visits_date.split('T')[0] === dateToMark.toISOString().split('T')[0] &&
-                    Number(v.visits_clientId) === Number(recordData.id_prs)
-            );
-
-            if (visit) {
-                checked = true;
+        if (clients.length > 0) {
+            try {
+                console.log(da);
+                packages_uses = clients[countCheckBox].packages[0].package_uses;
+                if (packages_uses.length > 0) {
+                    let f = 1;
+                    let ch = 0;
+                    for (const c of packages_uses) {
+                        let d = c.time_move.toString();
+                        d = `${d[0]}${d[1]}`;
+                        if (d[0] == '0') {
+                            d = d[1];
+                        }
+                        if (d == da) {
+                            ch = 1;
+                            checked = true;
+                            console.log(c, 'i:', f);
+                            f++;
+                        }
+                    }
+                }
+            } catch (e) {
+                let a = e;
             }
         }
+        // if (visits.length > 0) {
+        //     const dateToMark = new Date(selectedDate);
+        //     dateToMark.setDate(dayOfMonth);
+        //     dateToMark.setHours(24, 0, 0, 0);
+        //
+        //     const visit = visits.find(
+        //         (v) =>
+        //             v.visits_date.split('T')[0] === dateToMark.toISOString().split('T')[0] &&
+        //             Number(v.visits_clientId) === Number(recordData.id_prs)
+        //     );
+        //
+        //     if (visit) {
+        //         checked = true;
+        //     }
+        // }
         return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} checked={checked} disabled={checked} size="small" />;
     };
 
@@ -248,6 +279,7 @@ const GroupClients = () => {
         let db = [];
         countFio++;
         if (clients.length > 0) {
+            // console.log(clients[countFio]);
             try {
                 identifiers = clients[countFio].identifiers;
                 for (const c of identifiers) {
