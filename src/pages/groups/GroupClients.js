@@ -209,34 +209,83 @@ const GroupClients = () => {
     };
 
     let countCheckBox = -1;
+    let indexPU = 0;
     const checkbox = (recordData, dayOfMonth) => {
-        let mounth = `${selectedDate.toLocaleDateString()[3]}${selectedDate.toLocaleDateString()[4]}`;
-        console.log(mounth);
-        let da = dayOfMonth;
+        let month = `${selectedDate.toLocaleDateString()[3]}${selectedDate.toLocaleDateString()[4]}`;
+        console.log(month);
         countCheckBox++;
         let packages_uses;
         let checked = false;
+
         if (clients.length > 0) {
             try {
-                console.log(da);
+                console.log(dayOfMonth);
                 packages_uses = clients[countCheckBox].packages[0].package_uses;
-                if (packages_uses.length > 0) {
-                    let f = 1;
-                    let ch = 0;
-                    for (const c of packages_uses) {
-                        let d = c.time_move.toString();
-                        d = `${d[0]}${d[1]}`;
-                        if (d[0] == '0') {
-                            d = d[1];
-                        }
-                        if (d == da) {
-                            ch = 1;
-                            checked = true;
-                            console.log(c, 'i:', f);
-                            f++;
+
+                for (const cl of clients) {
+                    if (cl.packages[0].package_uses.length > 0) {
+                        let f = 1;
+                        let ch = 0;
+
+                        for (const pu of cl.packages[0].package_uses) {
+                            let d = pu.time_move.toString();
+                            d = `${d[0]}${d[1]}`;
+
+                            if (d[0] == '0') {
+                                d = d[1];
+                            }
+
+                            if (d == dayOfMonth) {
+                                console.log(pu, 'h', f);
+                                ch = 1;
+                                checked = true;
+                                f++;
+                                return (
+                                    <Checkbox
+                                        onChange={() => handleMarkVisit(recordData, dayOfMonth)}
+                                        checked={checked}
+                                        disabled={checked}
+                                        size="small"
+                                    />
+                                );
+                            }
                         }
                     }
+                    // return (
+                    //     <Checkbox
+                    //         onChange={() => handleMarkVisit(recordData, dayOfMonth)}
+                    //         checked={checked}
+                    //         disabled={checked}
+                    //         size="small"
+                    //     />
+                    // );
                 }
+                // return (
+                //     <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} checked={checked} disabled={checked} size="small" />
+                // );
+                // console.log(packages_uses.length, 'pak');
+                //
+                // if (packages_uses.length > 0) {
+                //     let f = 1;
+                //     let ch = 0;
+                //
+                //     for (const c of packages_uses) {
+                //         console.log(c, 'ha');
+                //         let d = c.time_move.toString();
+                //         d = `${d[0]}${d[1]}`;
+                //
+                //         if (d[0] == '0') {
+                //             d = d[1];
+                //         }
+                //
+                //         if (d == dayOfMonth) {
+                //             ch = 1;
+                //             checked = true;
+                //             console.log(c, 'i:', f);
+                //             f++;
+                //         }
+                //     }
+                // }
             } catch (e) {
                 let a = e;
             }
@@ -256,6 +305,7 @@ const GroupClients = () => {
         //         checked = true;
         //     }
         // }
+        // return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} checked={checked} disabled={checked} size="small" />;
         return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} checked={checked} disabled={checked} size="small" />;
     };
 
