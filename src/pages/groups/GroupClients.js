@@ -208,27 +208,31 @@ const GroupClients = () => {
         }
     };
 
-    let countCheckBox = -1;
-    let indexPU = 0;
+    let countCheckBox = 0;
+    let cc = -1;
     const checkbox = (recordData, dayOfMonth) => {
         let month = `${selectedDate.toLocaleDateString()[3]}${selectedDate.toLocaleDateString()[4]}`;
         console.log(month);
         countCheckBox++;
+        cc++;
         let packages_uses;
+        let d = '';
         let checked = false;
+        console.log(dayOfMonth);
 
         if (clients.length > 0) {
             try {
-                console.log(dayOfMonth);
-                packages_uses = clients[countCheckBox].packages[0].package_uses;
+                // packages_uses = clients[countCheckBox].packages[0].package_uses;
 
                 for (const cl of clients) {
+                    // console.log('length', cl.packages[0].package_uses);
                     if (cl.packages[0].package_uses.length > 0) {
                         let f = 1;
                         let ch = 0;
 
                         for (const pu of cl.packages[0].package_uses) {
-                            let d = pu.time_move.toString();
+                            d = pu.time_move.toString();
+                            console.log('date', d);
                             d = `${d[0]}${d[1]}`;
 
                             if (d[0] == '0') {
@@ -240,6 +244,8 @@ const GroupClients = () => {
                                 ch = 1;
                                 checked = true;
                                 f++;
+                                console.log('iayk', countCheckBox);
+                                console.log(clients[cc].people_initials);
                                 return (
                                     <Checkbox
                                         onChange={() => handleMarkVisit(recordData, dayOfMonth)}
@@ -306,6 +312,15 @@ const GroupClients = () => {
         //     }
         // }
         // return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} checked={checked} disabled={checked} size="small" />;
+        console.log('iayk', countCheckBox);
+        try {
+            console.log(clients[cc].people_initials);
+            if (cc == 5) {
+                cc = -1;
+            }
+        } catch (e) {
+            let a = e;
+        }
         return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} checked={checked} disabled={checked} size="small" />;
     };
 
