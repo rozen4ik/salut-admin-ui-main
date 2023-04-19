@@ -83,23 +83,24 @@ const GroupClients = () => {
             console.log('vis', id_sp, id_resolution);
             console.log('ap', await controller.deleteVisit(id_sp, id_resolution));
             await loadData();
+        } else {
+            const dateToMark = new Date(selectedDate);
+            dateToMark.setDate(dayOfMonth);
+            const pkg = findPackage(recordData.packages);
+            if (!pkg) {
+                alert('У клиента нет пакетов');
+                return;
+            }
+            const identifier = findActiveIdentifier(recordData.identifiers);
+            await controller.createVisit(recordData.id_prs, userInfo?.employee.id_emp, identifier.identifier, pkg.id_sp, dateToMark);
         }
-        const dateToMark = new Date(selectedDate);
-        dateToMark.setDate(dayOfMonth);
-        const pkg = findPackage(recordData.packages);
-        if (!pkg) {
-            alert('У клиента нет пакетов');
-            return;
-        }
-        const identifier = findActiveIdentifier(recordData.identifiers);
-        // await controller.createVisit(recordData.id_prs, userInfo?.employee.id_emp, identifier.identifier, pkg.id_sp, dateToMark);
         await loadData();
     };
 
     const loadData = async () => {
         const response = await controller.getGroupCustomers(id, selectedDate);
         setClients(response.tgclients);
-        const visits = await controller.getVisits(userInfo?.employee.id_emp, selectedDate);
+        const visits = response.tgclients;
         setVisits(visits);
     };
 
