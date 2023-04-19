@@ -55,6 +55,11 @@ class Controller {
         );
     }
 
+    async deleteVisit(id_sp, id_resolution) {
+        console.log('api', id_sp, id_resolution);
+        return get(`/json-iapi/spmovedel?id_sp=${id_sp}&id_resolution=${id_resolution}`).then((response) => response.data);
+    }
+
     async login(identifier) {
         return get(`/json-iapi/iapi-operator?act=login&identifier=${identifier}`).then((response) => response.data);
     }

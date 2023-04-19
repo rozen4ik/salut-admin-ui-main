@@ -78,7 +78,12 @@ const GroupClients = () => {
         return pkg;
     }
 
-    const handleMarkVisit = async (recordData, dayOfMonth) => {
+    const handleMarkVisit = async (recordData, dayOfMonth, id_sp, id_resolution) => {
+        if (id_sp != 'no' && id_resolution != 'no') {
+            console.log('vis', id_sp, id_resolution);
+            console.log('ap', await controller.deleteVisit(id_sp, id_resolution));
+            await loadData();
+        }
         const dateToMark = new Date(selectedDate);
         dateToMark.setDate(dayOfMonth);
         const pkg = findPackage(recordData.packages);
@@ -87,7 +92,7 @@ const GroupClients = () => {
             return;
         }
         const identifier = findActiveIdentifier(recordData.identifiers);
-        await controller.createVisit(recordData.id_prs, userInfo?.employee.id_emp, identifier.identifier, pkg.id_sp, dateToMark);
+        // await controller.createVisit(recordData.id_prs, userInfo?.employee.id_emp, identifier.identifier, pkg.id_sp, dateToMark);
         await loadData();
     };
 
@@ -216,10 +221,18 @@ const GroupClients = () => {
         let checked = false;
         let daysPU = '';
         let monthPU = '';
+        let id_sp = 'no';
+        let id_resolution = 'no';
         if (clients.length > 0) {
             try {
                 if (clients[countCheckBox1].packages[0].package_uses == 0) {
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 } else {
                     for (const pu of clients[countCheckBox1].packages[0].package_uses) {
                         daysPU = pu.time_move.toString();
@@ -234,12 +247,20 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
+                                id_sp = clients[countCheckBox1].packages[0].id_sp;
+                                id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
                             }
                         }
                     }
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 }
             } catch (e) {
                 let a = e;
@@ -253,10 +274,18 @@ const GroupClients = () => {
         let checked = false;
         let daysPU = '';
         let monthPU = '';
+        let id_sp = 'no';
+        let id_resolution = 'no';
         if (clients.length > 0) {
             try {
                 if (clients[countCheckBox2].packages[0].package_uses == 0) {
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 } else {
                     for (const pu of clients[countCheckBox2].packages[0].package_uses) {
                         daysPU = pu.time_move.toString();
@@ -271,12 +300,20 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
+                                id_sp = clients[countCheckBox2].packages[0].id_sp;
+                                id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
                             }
                         }
                     }
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 }
             } catch (e) {
                 let a = e;
@@ -290,10 +327,18 @@ const GroupClients = () => {
         let checked = false;
         let daysPU = '';
         let monthPU = '';
+        let id_sp = 'no';
+        let id_resolution = 'no';
         if (clients.length > 0) {
             try {
                 if (clients[countCheckBox3].packages[0].package_uses == 0) {
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 } else {
                     for (const pu of clients[countCheckBox3].packages[0].package_uses) {
                         daysPU = pu.time_move.toString();
@@ -308,12 +353,20 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
+                                id_sp = clients[countCheckBox3].packages[0].id_sp;
+                                id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
                             }
                         }
                     }
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 }
             } catch (e) {
                 let a = e;
@@ -327,10 +380,18 @@ const GroupClients = () => {
         let checked = false;
         let daysPU = '';
         let monthPU = '';
+        let id_sp = 'no';
+        let id_resolution = 'no';
         if (clients.length > 0) {
             try {
                 if (clients[countCheckBox4].packages[0].package_uses == 0) {
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 } else {
                     for (const pu of clients[countCheckBox4].packages[0].package_uses) {
                         daysPU = pu.time_move.toString();
@@ -345,12 +406,20 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
+                                id_sp = clients[countCheckBox4].packages[0].id_sp;
+                                id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
                             }
                         }
                     }
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 }
             } catch (e) {
                 let a = e;
@@ -364,10 +433,18 @@ const GroupClients = () => {
         let checked = false;
         let daysPU = '';
         let monthPU = '';
+        let id_sp = 'no';
+        let id_resolution = 'no';
         if (clients.length > 0) {
             try {
                 if (clients[countCheckBox5].packages[0].package_uses == 0) {
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 } else {
                     for (const pu of clients[countCheckBox5].packages[0].package_uses) {
                         daysPU = pu.time_move.toString();
@@ -382,12 +459,20 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
+                                id_sp = clients[countCheckBox5].packages[0].id_sp;
+                                id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
                             }
                         }
                     }
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 }
             } catch (e) {
                 let a = e;
@@ -401,10 +486,18 @@ const GroupClients = () => {
         let checked = false;
         let daysPU = '';
         let monthPU = '';
+        let id_sp = 'no';
+        let id_resolution = 'no';
         if (clients.length > 0) {
             try {
                 if (clients[countCheckBox6].packages[0].package_uses == 0) {
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 } else {
                     for (const pu of clients[countCheckBox6].packages[0].package_uses) {
                         daysPU = pu.time_move.toString();
@@ -419,12 +512,20 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
+                                id_sp = clients[countCheckBox6].packages[0].id_sp;
+                                id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
                             }
                         }
                     }
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 }
             } catch (e) {
                 let a = e;
@@ -438,10 +539,18 @@ const GroupClients = () => {
         let checked = false;
         let daysPU = '';
         let monthPU = '';
+        let id_sp = 'no';
+        let id_resolution = 'no';
         if (clients.length > 0) {
             try {
                 if (clients[countCheckBox7].packages[0].package_uses == 0) {
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 } else {
                     for (const pu of clients[countCheckBox7].packages[0].package_uses) {
                         daysPU = pu.time_move.toString();
@@ -456,12 +565,20 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
+                                id_sp = clients[countCheckBox7].packages[0].id_sp;
+                                id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
                             }
                         }
                     }
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 }
             } catch (e) {
                 let a = e;
@@ -475,10 +592,18 @@ const GroupClients = () => {
         let checked = false;
         let daysPU = '';
         let monthPU = '';
+        let id_sp = 'no';
+        let id_resolution = 'no';
         if (clients.length > 0) {
             try {
                 if (clients[countCheckBox8].packages[0].package_uses == 0) {
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 } else {
                     for (const pu of clients[countCheckBox8].packages[0].package_uses) {
                         daysPU = pu.time_move.toString();
@@ -493,12 +618,20 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
+                                id_sp = clients[countCheckBox8].packages[0].id_sp;
+                                id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
                             }
                         }
                     }
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 }
             } catch (e) {
                 let a = e;
@@ -512,10 +645,18 @@ const GroupClients = () => {
         let checked = false;
         let daysPU = '';
         let monthPU = '';
+        let id_sp = 'no';
+        let id_resolution = 'no';
         if (clients.length > 0) {
             try {
                 if (clients[countCheckBox9].packages[0].package_uses == 0) {
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 } else {
                     for (const pu of clients[countCheckBox9].packages[0].package_uses) {
                         daysPU = pu.time_move.toString();
@@ -530,12 +671,20 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
+                                id_sp = clients[countCheckBox9].packages[0].id_sp;
+                                id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
                             }
                         }
                     }
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 }
             } catch (e) {
                 let a = e;
@@ -549,10 +698,18 @@ const GroupClients = () => {
         let checked = false;
         let daysPU = '';
         let monthPU = '';
+        let id_sp = 'no';
+        let id_resolution = 'no';
         if (clients.length > 0) {
             try {
                 if (clients[countCheckBox10].packages[0].package_uses == 0) {
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 } else {
                     for (const pu of clients[countCheckBox10].packages[0].package_uses) {
                         daysPU = pu.time_move.toString();
@@ -567,12 +724,20 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
+                                id_sp = clients[countCheckBox10].packages[0].id_sp;
+                                id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
                             }
                         }
                     }
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 }
             } catch (e) {
                 let a = e;
@@ -586,10 +751,18 @@ const GroupClients = () => {
         let checked = false;
         let daysPU = '';
         let monthPU = '';
+        let id_sp = 'no';
+        let id_resolution = 'no';
         if (clients.length > 0) {
             try {
                 if (clients[countCheckBox11].packages[0].package_uses == 0) {
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 } else {
                     for (const pu of clients[countCheckBox11].packages[0].package_uses) {
                         daysPU = pu.time_move.toString();
@@ -604,12 +777,20 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
+                                id_sp = clients[countCheckBox11].packages[0].id_sp;
+                                id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
                             }
                         }
                     }
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 }
             } catch (e) {
                 let a = e;
@@ -623,10 +804,18 @@ const GroupClients = () => {
         let checked = false;
         let daysPU = '';
         let monthPU = '';
+        let id_sp = 'no';
+        let id_resolution = 'no';
         if (clients.length > 0) {
             try {
                 if (clients[countCheckBox12].packages[0].package_uses == 0) {
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 } else {
                     for (const pu of clients[countCheckBox12].packages[0].package_uses) {
                         daysPU = pu.time_move.toString();
@@ -641,12 +830,20 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
+                                id_sp = clients[countCheckBox12].packages[0].id_sp;
+                                id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
                             }
                         }
                     }
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 }
             } catch (e) {
                 let a = e;
@@ -660,10 +857,18 @@ const GroupClients = () => {
         let checked = false;
         let daysPU = '';
         let monthPU = '';
+        let id_sp = 'no';
+        let id_resolution = 'no';
         if (clients.length > 0) {
             try {
                 if (clients[countCheckBox13].packages[0].package_uses == 0) {
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 } else {
                     for (const pu of clients[countCheckBox13].packages[0].package_uses) {
                         daysPU = pu.time_move.toString();
@@ -678,12 +883,20 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
+                                id_sp = clients[countCheckBox13].packages[0].id_sp;
+                                id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
                             }
                         }
                     }
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 }
             } catch (e) {
                 let a = e;
@@ -697,10 +910,18 @@ const GroupClients = () => {
         let checked = false;
         let daysPU = '';
         let monthPU = '';
+        let id_sp = 'no';
+        let id_resolution = 'no';
         if (clients.length > 0) {
             try {
                 if (clients[countCheckBox14].packages[0].package_uses == 0) {
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 } else {
                     for (const pu of clients[countCheckBox14].packages[0].package_uses) {
                         daysPU = pu.time_move.toString();
@@ -715,12 +936,20 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
+                                id_sp = clients[countCheckBox14].packages[0].id_sp;
+                                id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
                             }
                         }
                     }
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 }
             } catch (e) {
                 let a = e;
@@ -734,10 +963,18 @@ const GroupClients = () => {
         let checked = false;
         let daysPU = '';
         let monthPU = '';
+        let id_sp = 'no';
+        let id_resolution = 'no';
         if (clients.length > 0) {
             try {
                 if (clients[countCheckBox15].packages[0].package_uses == 0) {
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 } else {
                     for (const pu of clients[countCheckBox15].packages[0].package_uses) {
                         daysPU = pu.time_move.toString();
@@ -752,12 +989,20 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
+                                id_sp = clients[countCheckBox15].packages[0].id_sp;
+                                id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
                             }
                         }
                     }
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 }
             } catch (e) {
                 let a = e;
@@ -771,10 +1016,18 @@ const GroupClients = () => {
         let checked = false;
         let daysPU = '';
         let monthPU = '';
+        let id_sp = 'no';
+        let id_resolution = 'no';
         if (clients.length > 0) {
             try {
                 if (clients[countCheckBox16].packages[0].package_uses == 0) {
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 } else {
                     for (const pu of clients[countCheckBox16].packages[0].package_uses) {
                         daysPU = pu.time_move.toString();
@@ -789,12 +1042,20 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
+                                id_sp = clients[countCheckBox16].packages[0].id_sp;
+                                id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
                             }
                         }
                     }
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 }
             } catch (e) {
                 let a = e;
@@ -808,10 +1069,18 @@ const GroupClients = () => {
         let checked = false;
         let daysPU = '';
         let monthPU = '';
+        let id_sp = 'no';
+        let id_resolution = 'no';
         if (clients.length > 0) {
             try {
                 if (clients[countCheckBox17].packages[0].package_uses == 0) {
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 } else {
                     for (const pu of clients[countCheckBox17].packages[0].package_uses) {
                         daysPU = pu.time_move.toString();
@@ -826,12 +1095,20 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
+                                id_sp = clients[countCheckBox7].packages[0].id_sp;
+                                id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
                             }
                         }
                     }
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 }
             } catch (e) {
                 let a = e;
@@ -845,10 +1122,18 @@ const GroupClients = () => {
         let checked = false;
         let daysPU = '';
         let monthPU = '';
+        let id_sp = 'no';
+        let id_resolution = 'no';
         if (clients.length > 0) {
             try {
                 if (clients[countCheckBox18].packages[0].package_uses == 0) {
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 } else {
                     for (const pu of clients[countCheckBox18].packages[0].package_uses) {
                         daysPU = pu.time_move.toString();
@@ -863,12 +1148,20 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
+                                id_sp = clients[countCheckBox18].packages[0].id_sp;
+                                id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
                             }
                         }
                     }
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 }
             } catch (e) {
                 let a = e;
@@ -882,10 +1175,18 @@ const GroupClients = () => {
         let checked = false;
         let daysPU = '';
         let monthPU = '';
+        let id_sp = 'no';
+        let id_resolution = 'no';
         if (clients.length > 0) {
             try {
                 if (clients[countCheckBox19].packages[0].package_uses == 0) {
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 } else {
                     for (const pu of clients[countCheckBox19].packages[0].package_uses) {
                         daysPU = pu.time_move.toString();
@@ -900,12 +1201,20 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
+                                id_sp = clients[countCheckBox19].packages[0].id_sp;
+                                id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
                             }
                         }
                     }
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 }
             } catch (e) {
                 let a = e;
@@ -919,10 +1228,18 @@ const GroupClients = () => {
         let checked = false;
         let daysPU = '';
         let monthPU = '';
+        let id_sp = 'no';
+        let id_resolution = 'no';
         if (clients.length > 0) {
             try {
                 if (clients[countCheckBox20].packages[0].package_uses == 0) {
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 } else {
                     for (const pu of clients[countCheckBox20].packages[0].package_uses) {
                         daysPU = pu.time_move.toString();
@@ -937,12 +1254,20 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
+                                id_sp = clients[countCheckBox20].packages[0].id_sp;
+                                id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
                             }
                         }
                     }
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 }
             } catch (e) {
                 let a = e;
@@ -956,10 +1281,18 @@ const GroupClients = () => {
         let checked = false;
         let daysPU = '';
         let monthPU = '';
+        let id_sp = 'no';
+        let id_resolution = 'no';
         if (clients.length > 0) {
             try {
                 if (clients[countCheckBox21].packages[0].package_uses == 0) {
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 } else {
                     for (const pu of clients[countCheckBox21].packages[0].package_uses) {
                         daysPU = pu.time_move.toString();
@@ -974,12 +1307,20 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
+                                id_sp = clients[countCheckBox21].packages[0].id_sp;
+                                id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
                             }
                         }
                     }
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 }
             } catch (e) {
                 let a = e;
@@ -993,10 +1334,18 @@ const GroupClients = () => {
         let checked = false;
         let daysPU = '';
         let monthPU = '';
+        let id_sp = 'no';
+        let id_resolution = 'no';
         if (clients.length > 0) {
             try {
                 if (clients[countCheckBox22].packages[0].package_uses == 0) {
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 } else {
                     for (const pu of clients[countCheckBox22].packages[0].package_uses) {
                         daysPU = pu.time_move.toString();
@@ -1011,12 +1360,20 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
+                                id_sp = clients[countCheckBox22].packages[0].id_sp;
+                                id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
                             }
                         }
                     }
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 }
             } catch (e) {
                 let a = e;
@@ -1030,10 +1387,18 @@ const GroupClients = () => {
         let checked = false;
         let daysPU = '';
         let monthPU = '';
+        let id_sp = 'no';
+        let id_resolution = 'no';
         if (clients.length > 0) {
             try {
                 if (clients[countCheckBox23].packages[0].package_uses == 0) {
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 } else {
                     for (const pu of clients[countCheckBox23].packages[0].package_uses) {
                         daysPU = pu.time_move.toString();
@@ -1048,12 +1413,20 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
+                                id_sp = clients[countCheckBox23].packages[0].id_sp;
+                                id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
                             }
                         }
                     }
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 }
             } catch (e) {
                 let a = e;
@@ -1067,10 +1440,18 @@ const GroupClients = () => {
         let checked = false;
         let daysPU = '';
         let monthPU = '';
+        let id_sp = 'no';
+        let id_resolution = 'no';
         if (clients.length > 0) {
             try {
                 if (clients[countCheckBox24].packages[0].package_uses == 0) {
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 } else {
                     for (const pu of clients[countCheckBox24].packages[0].package_uses) {
                         daysPU = pu.time_move.toString();
@@ -1085,12 +1466,20 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
+                                id_sp = clients[countCheckBox24].packages[0].id_sp;
+                                id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
                             }
                         }
                     }
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 }
             } catch (e) {
                 let a = e;
@@ -1104,10 +1493,18 @@ const GroupClients = () => {
         let checked = false;
         let daysPU = '';
         let monthPU = '';
+        let id_sp = 'no';
+        let id_resolution = 'no';
         if (clients.length > 0) {
             try {
                 if (clients[countCheckBox25].packages[0].package_uses == 0) {
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 } else {
                     for (const pu of clients[countCheckBox25].packages[0].package_uses) {
                         daysPU = pu.time_move.toString();
@@ -1122,12 +1519,20 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
+                                id_sp = clients[countCheckBox25].packages[0].id_sp;
+                                id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
                             }
                         }
                     }
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 }
             } catch (e) {
                 let a = e;
@@ -1141,10 +1546,18 @@ const GroupClients = () => {
         let checked = false;
         let daysPU = '';
         let monthPU = '';
+        let id_sp = 'no';
+        let id_resolution = 'no';
         if (clients.length > 0) {
             try {
                 if (clients[countCheckBox26].packages[0].package_uses == 0) {
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 } else {
                     for (const pu of clients[countCheckBox26].packages[0].package_uses) {
                         daysPU = pu.time_move.toString();
@@ -1159,12 +1572,20 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
+                                id_sp = clients[countCheckBox26].packages[0].id_sp;
+                                id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
                             }
                         }
                     }
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 }
             } catch (e) {
                 let a = e;
@@ -1178,10 +1599,18 @@ const GroupClients = () => {
         let checked = false;
         let daysPU = '';
         let monthPU = '';
+        let id_sp = 'no';
+        let id_resolution = 'no';
         if (clients.length > 0) {
             try {
                 if (clients[countCheckBox27].packages[0].package_uses == 0) {
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 } else {
                     for (const pu of clients[countCheckBox27].packages[0].package_uses) {
                         daysPU = pu.time_move.toString();
@@ -1196,12 +1625,20 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
+                                id_sp = clients[countCheckBox27].packages[0].id_sp;
+                                id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
                             }
                         }
                     }
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 }
             } catch (e) {
                 let a = e;
@@ -1215,10 +1652,18 @@ const GroupClients = () => {
         let checked = false;
         let daysPU = '';
         let monthPU = '';
+        let id_sp = 'no';
+        let id_resolution = 'no';
         if (clients.length > 0) {
             try {
                 if (clients[countCheckBox28].packages[0].package_uses == 0) {
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 } else {
                     for (const pu of clients[countCheckBox28].packages[0].package_uses) {
                         daysPU = pu.time_move.toString();
@@ -1233,12 +1678,20 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
+                                id_sp = clients[countCheckBox28].packages[0].id_sp;
+                                id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
                             }
                         }
                     }
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 }
             } catch (e) {
                 let a = e;
@@ -1252,10 +1705,18 @@ const GroupClients = () => {
         let checked = false;
         let daysPU = '';
         let monthPU = '';
+        let id_sp = 'no';
+        let id_resolution = 'no';
         if (clients.length > 0) {
             try {
                 if (clients[countCheckBox29].packages[0].package_uses == 0) {
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 } else {
                     for (const pu of clients[countCheckBox29].packages[0].package_uses) {
                         daysPU = pu.time_move.toString();
@@ -1270,12 +1731,20 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
+                                id_sp = clients[countCheckBox29].packages[0].id_sp;
+                                id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
                             }
                         }
                     }
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 }
             } catch (e) {
                 let a = e;
@@ -1289,10 +1758,18 @@ const GroupClients = () => {
         let checked = false;
         let daysPU = '';
         let monthPU = '';
+        let id_sp = 'no';
+        let id_resolution = 'no';
         if (clients.length > 0) {
             try {
                 if (clients[countCheckBox30].packages[0].package_uses == 0) {
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 } else {
                     for (const pu of clients[countCheckBox30].packages[0].package_uses) {
                         daysPU = pu.time_move.toString();
@@ -1307,12 +1784,20 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
+                                id_sp = clients[countCheckBox30].packages[0].id_sp;
+                                id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
                             }
                         }
                     }
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 }
             } catch (e) {
                 let a = e;
@@ -1326,10 +1811,18 @@ const GroupClients = () => {
         let checked = false;
         let daysPU = '';
         let monthPU = '';
+        let id_sp = 'no';
+        let id_resolution = 'no';
         if (clients.length > 0) {
             try {
                 if (clients[countCheckBox31].packages[0].package_uses == 0) {
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 } else {
                     for (const pu of clients[countCheckBox31].packages[0].package_uses) {
                         daysPU = pu.time_move.toString();
@@ -1344,12 +1837,20 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
+                                id_sp = clients[countCheckBox31].packages[0].id_sp;
+                                id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
                             }
                         }
                     }
-                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                    return (
+                        <Checkbox
+                            onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
+                            defaultChecked={checked}
+                            size="small"
+                        />
+                    );
                 }
             } catch (e) {
                 let a = e;
