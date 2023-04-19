@@ -208,106 +208,1267 @@ const GroupClients = () => {
         }
     };
 
-    let countCheckBox = 0;
-    let cc = -1;
-    let pi;
-    const checkbox = (recordData, dayOfMonth) => {
-        let month = `${selectedDate.toLocaleDateString()[3]}${selectedDate.toLocaleDateString()[4]}`;
-        console.log(month);
-        countCheckBox++;
-        cc++;
-        let d = '';
-        let checked = false;
-        console.log(dayOfMonth);
+    let month = `${selectedDate.toLocaleDateString()[3]}${selectedDate.toLocaleDateString()[4]}`;
 
+    let countCheckBox1 = -1;
+    const checkbox1 = (recordData, dayOfMonth) => {
+        countCheckBox1++;
+        let checked = false;
+        let daysPU = '';
+        let monthPU = '';
         if (clients.length > 0) {
             try {
-                cll: for (const cl of clients) {
-                    let ch = 0;
-                    console.log('Кол-во проходов', cl.packages[0].package_uses.length, cl.people_initials);
-                    if (cl.packages[0].package_uses.length > 0) {
-                        if (checked == true) {
-                            ch = 0;
-                            checked = false;
-                            continue cll;
-                        }
+                if (clients[countCheckBox1].packages[0].package_uses == 0) {
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                } else {
+                    for (const pu of clients[countCheckBox1].packages[0].package_uses) {
+                        daysPU = pu.time_move.toString();
+                        daysPU = `${daysPU[0]}${daysPU[1]}`;
 
-                        ip: for (const pu of cl.packages[0].package_uses) {
-                            d = pu.time_move.toString();
-                            d = `${d[0]}${d[1]}`;
+                        monthPU = pu.time_move.toString();
+                        monthPU = `${monthPU[3]}${monthPU[4]}`;
 
-                            if (d[0] == '0') {
-                                d = d[1];
+                        if (monthPU == month) {
+                            if (daysPU[0] == '0') {
+                                daysPU = daysPU[1];
                             }
-                            console.log('Дата в api:', d, 'Дата в клетке:', dayOfMonth);
-                            console.log(pu);
-                            if (d != dayOfMonth) {
-                                continue;
-                            } else if (d == dayOfMonth) {
-                                ch = 1;
+
+                            if (daysPU == dayOfMonth) {
                                 checked = true;
-                                break ip;
-                                // f++;
-                                // console.log('iayk', countCheckBox);
-                                // console.log(clients[cc].people_initials);
-                                // pi = clients[cc].people_initials;
-                                // console.log('check', ch);
-                                // return (
-                                //     <Checkbox
-                                //         onChange={() => handleMarkVisit(recordData, dayOfMonth)}
-                                //         checked={checked}
-                                //         disabled={checked}
-                                //         size="small"
-                                //     />
-                                // );
+                                break;
                             }
-                            console.log('check', ch);
                         }
-                        if (ch == 0) {
-                            checked = false;
-                            return (
-                                <Checkbox
-                                    onChange={() => handleMarkVisit(recordData, dayOfMonth)}
-                                    checked={checked}
-                                    disabled={checked}
-                                    size="small"
-                                />
-                            );
-                        } else {
-                            return (
-                                <Checkbox
-                                    onChange={() => handleMarkVisit(recordData, dayOfMonth)}
-                                    checked={checked}
-                                    disabled={checked}
-                                    size="small"
-                                />
-                            );
-                        }
-                    } else {
-                        checked = false;
-                        return (
-                            <Checkbox
-                                onChange={() => handleMarkVisit(recordData, dayOfMonth)}
-                                checked={checked}
-                                disabled={checked}
-                                size="small"
-                            />
-                        );
                     }
-                    // return (
-                    //     <Checkbox
-                    //         onChange={() => handleMarkVisit(recordData, dayOfMonth)}
-                    //         checked={checked}
-                    //         disabled={checked}
-                    //         size="small"
-                    //     />
-                    // );
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
                 }
             } catch (e) {
                 let a = e;
             }
         }
     };
+
+    let countCheckBox2 = -1;
+    const checkbox2 = (recordData, dayOfMonth) => {
+        countCheckBox2++;
+        let checked = false;
+        let daysPU = '';
+        let monthPU = '';
+        if (clients.length > 0) {
+            try {
+                if (clients[countCheckBox2].packages[0].package_uses == 0) {
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                } else {
+                    for (const pu of clients[countCheckBox2].packages[0].package_uses) {
+                        daysPU = pu.time_move.toString();
+                        daysPU = `${daysPU[0]}${daysPU[1]}`;
+
+                        monthPU = pu.time_move.toString();
+                        monthPU = `${monthPU[3]}${monthPU[4]}`;
+
+                        if (monthPU == month) {
+                            if (daysPU[0] == '0') {
+                                daysPU = daysPU[1];
+                            }
+
+                            if (daysPU == dayOfMonth) {
+                                checked = true;
+                                break;
+                            }
+                        }
+                    }
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                }
+            } catch (e) {
+                let a = e;
+            }
+        }
+    };
+
+    let countCheckBox3 = -1;
+    const checkbox3 = (recordData, dayOfMonth) => {
+        countCheckBox3++;
+        let checked = false;
+        let daysPU = '';
+        let monthPU = '';
+        if (clients.length > 0) {
+            try {
+                if (clients[countCheckBox3].packages[0].package_uses == 0) {
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                } else {
+                    for (const pu of clients[countCheckBox3].packages[0].package_uses) {
+                        daysPU = pu.time_move.toString();
+                        daysPU = `${daysPU[0]}${daysPU[1]}`;
+
+                        monthPU = pu.time_move.toString();
+                        monthPU = `${monthPU[3]}${monthPU[4]}`;
+
+                        if (monthPU == month) {
+                            if (daysPU[0] == '0') {
+                                daysPU = daysPU[1];
+                            }
+
+                            if (daysPU == dayOfMonth) {
+                                checked = true;
+                                break;
+                            }
+                        }
+                    }
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                }
+            } catch (e) {
+                let a = e;
+            }
+        }
+    };
+
+    let countCheckBox4 = -1;
+    const checkbox4 = (recordData, dayOfMonth) => {
+        countCheckBox4++;
+        let checked = false;
+        let daysPU = '';
+        let monthPU = '';
+        if (clients.length > 0) {
+            try {
+                if (clients[countCheckBox4].packages[0].package_uses == 0) {
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                } else {
+                    for (const pu of clients[countCheckBox4].packages[0].package_uses) {
+                        daysPU = pu.time_move.toString();
+                        daysPU = `${daysPU[0]}${daysPU[1]}`;
+
+                        monthPU = pu.time_move.toString();
+                        monthPU = `${monthPU[3]}${monthPU[4]}`;
+
+                        if (monthPU == month) {
+                            if (daysPU[0] == '0') {
+                                daysPU = daysPU[1];
+                            }
+
+                            if (daysPU == dayOfMonth) {
+                                checked = true;
+                                break;
+                            }
+                        }
+                    }
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                }
+            } catch (e) {
+                let a = e;
+            }
+        }
+    };
+
+    let countCheckBox5 = -1;
+    const checkbox5 = (recordData, dayOfMonth) => {
+        countCheckBox5++;
+        let checked = false;
+        let daysPU = '';
+        let monthPU = '';
+        if (clients.length > 0) {
+            try {
+                if (clients[countCheckBox5].packages[0].package_uses == 0) {
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                } else {
+                    for (const pu of clients[countCheckBox5].packages[0].package_uses) {
+                        daysPU = pu.time_move.toString();
+                        daysPU = `${daysPU[0]}${daysPU[1]}`;
+
+                        monthPU = pu.time_move.toString();
+                        monthPU = `${monthPU[3]}${monthPU[4]}`;
+
+                        if (monthPU == month) {
+                            if (daysPU[0] == '0') {
+                                daysPU = daysPU[1];
+                            }
+
+                            if (daysPU == dayOfMonth) {
+                                checked = true;
+                                break;
+                            }
+                        }
+                    }
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                }
+            } catch (e) {
+                let a = e;
+            }
+        }
+    };
+
+    let countCheckBox6 = -1;
+    const checkbox6 = (recordData, dayOfMonth) => {
+        countCheckBox6++;
+        let checked = false;
+        let daysPU = '';
+        let monthPU = '';
+        if (clients.length > 0) {
+            try {
+                if (clients[countCheckBox6].packages[0].package_uses == 0) {
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                } else {
+                    for (const pu of clients[countCheckBox6].packages[0].package_uses) {
+                        daysPU = pu.time_move.toString();
+                        daysPU = `${daysPU[0]}${daysPU[1]}`;
+
+                        monthPU = pu.time_move.toString();
+                        monthPU = `${monthPU[3]}${monthPU[4]}`;
+
+                        if (monthPU == month) {
+                            if (daysPU[0] == '0') {
+                                daysPU = daysPU[1];
+                            }
+
+                            if (daysPU == dayOfMonth) {
+                                checked = true;
+                                break;
+                            }
+                        }
+                    }
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                }
+            } catch (e) {
+                let a = e;
+            }
+        }
+    };
+
+    let countCheckBox7 = -1;
+    const checkbox7 = (recordData, dayOfMonth) => {
+        countCheckBox7++;
+        let checked = false;
+        let daysPU = '';
+        let monthPU = '';
+        if (clients.length > 0) {
+            try {
+                if (clients[countCheckBox7].packages[0].package_uses == 0) {
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                } else {
+                    for (const pu of clients[countCheckBox7].packages[0].package_uses) {
+                        daysPU = pu.time_move.toString();
+                        daysPU = `${daysPU[0]}${daysPU[1]}`;
+
+                        monthPU = pu.time_move.toString();
+                        monthPU = `${monthPU[3]}${monthPU[4]}`;
+
+                        if (monthPU == month) {
+                            if (daysPU[0] == '0') {
+                                daysPU = daysPU[1];
+                            }
+
+                            if (daysPU == dayOfMonth) {
+                                checked = true;
+                                break;
+                            }
+                        }
+                    }
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                }
+            } catch (e) {
+                let a = e;
+            }
+        }
+    };
+
+    let countCheckBox8 = -1;
+    const checkbox8 = (recordData, dayOfMonth) => {
+        countCheckBox8++;
+        let checked = false;
+        let daysPU = '';
+        let monthPU = '';
+        if (clients.length > 0) {
+            try {
+                if (clients[countCheckBox8].packages[0].package_uses == 0) {
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                } else {
+                    for (const pu of clients[countCheckBox8].packages[0].package_uses) {
+                        daysPU = pu.time_move.toString();
+                        daysPU = `${daysPU[0]}${daysPU[1]}`;
+
+                        monthPU = pu.time_move.toString();
+                        monthPU = `${monthPU[3]}${monthPU[4]}`;
+
+                        if (monthPU == month) {
+                            if (daysPU[0] == '0') {
+                                daysPU = daysPU[1];
+                            }
+
+                            if (daysPU == dayOfMonth) {
+                                checked = true;
+                                break;
+                            }
+                        }
+                    }
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                }
+            } catch (e) {
+                let a = e;
+            }
+        }
+    };
+
+    let countCheckBox9 = -1;
+    const checkbox9 = (recordData, dayOfMonth) => {
+        countCheckBox9++;
+        let checked = false;
+        let daysPU = '';
+        let monthPU = '';
+        if (clients.length > 0) {
+            try {
+                if (clients[countCheckBox9].packages[0].package_uses == 0) {
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                } else {
+                    for (const pu of clients[countCheckBox9].packages[0].package_uses) {
+                        daysPU = pu.time_move.toString();
+                        daysPU = `${daysPU[0]}${daysPU[1]}`;
+
+                        monthPU = pu.time_move.toString();
+                        monthPU = `${monthPU[3]}${monthPU[4]}`;
+
+                        if (monthPU == month) {
+                            if (daysPU[0] == '0') {
+                                daysPU = daysPU[1];
+                            }
+
+                            if (daysPU == dayOfMonth) {
+                                checked = true;
+                                break;
+                            }
+                        }
+                    }
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                }
+            } catch (e) {
+                let a = e;
+            }
+        }
+    };
+
+    let countCheckBox10 = -1;
+    const checkbox10 = (recordData, dayOfMonth) => {
+        countCheckBox10++;
+        let checked = false;
+        let daysPU = '';
+        let monthPU = '';
+        if (clients.length > 0) {
+            try {
+                if (clients[countCheckBox10].packages[0].package_uses == 0) {
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                } else {
+                    for (const pu of clients[countCheckBox10].packages[0].package_uses) {
+                        daysPU = pu.time_move.toString();
+                        daysPU = `${daysPU[0]}${daysPU[1]}`;
+
+                        monthPU = pu.time_move.toString();
+                        monthPU = `${monthPU[3]}${monthPU[4]}`;
+
+                        if (monthPU == month) {
+                            if (daysPU[0] == '0') {
+                                daysPU = daysPU[1];
+                            }
+
+                            if (daysPU == dayOfMonth) {
+                                checked = true;
+                                break;
+                            }
+                        }
+                    }
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                }
+            } catch (e) {
+                let a = e;
+            }
+        }
+    };
+
+    let countCheckBox11 = -1;
+    const checkbox11 = (recordData, dayOfMonth) => {
+        countCheckBox11++;
+        let checked = false;
+        let daysPU = '';
+        let monthPU = '';
+        if (clients.length > 0) {
+            try {
+                if (clients[countCheckBox11].packages[0].package_uses == 0) {
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                } else {
+                    for (const pu of clients[countCheckBox11].packages[0].package_uses) {
+                        daysPU = pu.time_move.toString();
+                        daysPU = `${daysPU[0]}${daysPU[1]}`;
+
+                        monthPU = pu.time_move.toString();
+                        monthPU = `${monthPU[3]}${monthPU[4]}`;
+
+                        if (monthPU == month) {
+                            if (daysPU[0] == '0') {
+                                daysPU = daysPU[1];
+                            }
+
+                            if (daysPU == dayOfMonth) {
+                                checked = true;
+                                break;
+                            }
+                        }
+                    }
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                }
+            } catch (e) {
+                let a = e;
+            }
+        }
+    };
+
+    let countCheckBox12 = -1;
+    const checkbox12 = (recordData, dayOfMonth) => {
+        countCheckBox12++;
+        let checked = false;
+        let daysPU = '';
+        let monthPU = '';
+        if (clients.length > 0) {
+            try {
+                if (clients[countCheckBox12].packages[0].package_uses == 0) {
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                } else {
+                    for (const pu of clients[countCheckBox12].packages[0].package_uses) {
+                        daysPU = pu.time_move.toString();
+                        daysPU = `${daysPU[0]}${daysPU[1]}`;
+
+                        monthPU = pu.time_move.toString();
+                        monthPU = `${monthPU[3]}${monthPU[4]}`;
+
+                        if (monthPU == month) {
+                            if (daysPU[0] == '0') {
+                                daysPU = daysPU[1];
+                            }
+
+                            if (daysPU == dayOfMonth) {
+                                checked = true;
+                                break;
+                            }
+                        }
+                    }
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                }
+            } catch (e) {
+                let a = e;
+            }
+        }
+    };
+
+    let countCheckBox13 = -1;
+    const checkbox13 = (recordData, dayOfMonth) => {
+        countCheckBox13++;
+        let checked = false;
+        let daysPU = '';
+        let monthPU = '';
+        if (clients.length > 0) {
+            try {
+                if (clients[countCheckBox13].packages[0].package_uses == 0) {
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                } else {
+                    for (const pu of clients[countCheckBox13].packages[0].package_uses) {
+                        daysPU = pu.time_move.toString();
+                        daysPU = `${daysPU[0]}${daysPU[1]}`;
+
+                        monthPU = pu.time_move.toString();
+                        monthPU = `${monthPU[3]}${monthPU[4]}`;
+
+                        if (monthPU == month) {
+                            if (daysPU[0] == '0') {
+                                daysPU = daysPU[1];
+                            }
+
+                            if (daysPU == dayOfMonth) {
+                                checked = true;
+                                break;
+                            }
+                        }
+                    }
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                }
+            } catch (e) {
+                let a = e;
+            }
+        }
+    };
+
+    let countCheckBox14 = -1;
+    const checkbox14 = (recordData, dayOfMonth) => {
+        countCheckBox14++;
+        let checked = false;
+        let daysPU = '';
+        let monthPU = '';
+        if (clients.length > 0) {
+            try {
+                if (clients[countCheckBox14].packages[0].package_uses == 0) {
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                } else {
+                    for (const pu of clients[countCheckBox14].packages[0].package_uses) {
+                        daysPU = pu.time_move.toString();
+                        daysPU = `${daysPU[0]}${daysPU[1]}`;
+
+                        monthPU = pu.time_move.toString();
+                        monthPU = `${monthPU[3]}${monthPU[4]}`;
+
+                        if (monthPU == month) {
+                            if (daysPU[0] == '0') {
+                                daysPU = daysPU[1];
+                            }
+
+                            if (daysPU == dayOfMonth) {
+                                checked = true;
+                                break;
+                            }
+                        }
+                    }
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                }
+            } catch (e) {
+                let a = e;
+            }
+        }
+    };
+
+    let countCheckBox15 = -1;
+    const checkbox15 = (recordData, dayOfMonth) => {
+        countCheckBox15++;
+        let checked = false;
+        let daysPU = '';
+        let monthPU = '';
+        if (clients.length > 0) {
+            try {
+                if (clients[countCheckBox15].packages[0].package_uses == 0) {
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                } else {
+                    for (const pu of clients[countCheckBox15].packages[0].package_uses) {
+                        daysPU = pu.time_move.toString();
+                        daysPU = `${daysPU[0]}${daysPU[1]}`;
+
+                        monthPU = pu.time_move.toString();
+                        monthPU = `${monthPU[3]}${monthPU[4]}`;
+
+                        if (monthPU == month) {
+                            if (daysPU[0] == '0') {
+                                daysPU = daysPU[1];
+                            }
+
+                            if (daysPU == dayOfMonth) {
+                                checked = true;
+                                break;
+                            }
+                        }
+                    }
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                }
+            } catch (e) {
+                let a = e;
+            }
+        }
+    };
+
+    let countCheckBox16 = -1;
+    const checkbox16 = (recordData, dayOfMonth) => {
+        countCheckBox16++;
+        let checked = false;
+        let daysPU = '';
+        let monthPU = '';
+        if (clients.length > 0) {
+            try {
+                if (clients[countCheckBox16].packages[0].package_uses == 0) {
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                } else {
+                    for (const pu of clients[countCheckBox16].packages[0].package_uses) {
+                        daysPU = pu.time_move.toString();
+                        daysPU = `${daysPU[0]}${daysPU[1]}`;
+
+                        monthPU = pu.time_move.toString();
+                        monthPU = `${monthPU[3]}${monthPU[4]}`;
+
+                        if (monthPU == month) {
+                            if (daysPU[0] == '0') {
+                                daysPU = daysPU[1];
+                            }
+
+                            if (daysPU == dayOfMonth) {
+                                checked = true;
+                                break;
+                            }
+                        }
+                    }
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                }
+            } catch (e) {
+                let a = e;
+            }
+        }
+    };
+
+    let countCheckBox17 = -1;
+    const checkbox17 = (recordData, dayOfMonth) => {
+        countCheckBox17++;
+        let checked = false;
+        let daysPU = '';
+        let monthPU = '';
+        if (clients.length > 0) {
+            try {
+                if (clients[countCheckBox17].packages[0].package_uses == 0) {
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                } else {
+                    for (const pu of clients[countCheckBox17].packages[0].package_uses) {
+                        daysPU = pu.time_move.toString();
+                        daysPU = `${daysPU[0]}${daysPU[1]}`;
+
+                        monthPU = pu.time_move.toString();
+                        monthPU = `${monthPU[3]}${monthPU[4]}`;
+
+                        if (monthPU == month) {
+                            if (daysPU[0] == '0') {
+                                daysPU = daysPU[1];
+                            }
+
+                            if (daysPU == dayOfMonth) {
+                                checked = true;
+                                break;
+                            }
+                        }
+                    }
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                }
+            } catch (e) {
+                let a = e;
+            }
+        }
+    };
+
+    let countCheckBox18 = -1;
+    const checkbox18 = (recordData, dayOfMonth) => {
+        countCheckBox18++;
+        let checked = false;
+        let daysPU = '';
+        let monthPU = '';
+        if (clients.length > 0) {
+            try {
+                if (clients[countCheckBox18].packages[0].package_uses == 0) {
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                } else {
+                    for (const pu of clients[countCheckBox18].packages[0].package_uses) {
+                        daysPU = pu.time_move.toString();
+                        daysPU = `${daysPU[0]}${daysPU[1]}`;
+
+                        monthPU = pu.time_move.toString();
+                        monthPU = `${monthPU[3]}${monthPU[4]}`;
+
+                        if (monthPU == month) {
+                            if (daysPU[0] == '0') {
+                                daysPU = daysPU[1];
+                            }
+
+                            if (daysPU == dayOfMonth) {
+                                checked = true;
+                                break;
+                            }
+                        }
+                    }
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                }
+            } catch (e) {
+                let a = e;
+            }
+        }
+    };
+
+    let countCheckBox19 = -1;
+    const checkbox19 = (recordData, dayOfMonth) => {
+        countCheckBox19++;
+        let checked = false;
+        let daysPU = '';
+        let monthPU = '';
+        if (clients.length > 0) {
+            try {
+                if (clients[countCheckBox19].packages[0].package_uses == 0) {
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                } else {
+                    for (const pu of clients[countCheckBox19].packages[0].package_uses) {
+                        daysPU = pu.time_move.toString();
+                        daysPU = `${daysPU[0]}${daysPU[1]}`;
+
+                        monthPU = pu.time_move.toString();
+                        monthPU = `${monthPU[3]}${monthPU[4]}`;
+
+                        if (monthPU == month) {
+                            if (daysPU[0] == '0') {
+                                daysPU = daysPU[1];
+                            }
+
+                            if (daysPU == dayOfMonth) {
+                                checked = true;
+                                break;
+                            }
+                        }
+                    }
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                }
+            } catch (e) {
+                let a = e;
+            }
+        }
+    };
+
+    let countCheckBox20 = -1;
+    const checkbox20 = (recordData, dayOfMonth) => {
+        countCheckBox20++;
+        let checked = false;
+        let daysPU = '';
+        let monthPU = '';
+        if (clients.length > 0) {
+            try {
+                if (clients[countCheckBox20].packages[0].package_uses == 0) {
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                } else {
+                    for (const pu of clients[countCheckBox20].packages[0].package_uses) {
+                        daysPU = pu.time_move.toString();
+                        daysPU = `${daysPU[0]}${daysPU[1]}`;
+
+                        monthPU = pu.time_move.toString();
+                        monthPU = `${monthPU[3]}${monthPU[4]}`;
+
+                        if (monthPU == month) {
+                            if (daysPU[0] == '0') {
+                                daysPU = daysPU[1];
+                            }
+
+                            if (daysPU == dayOfMonth) {
+                                checked = true;
+                                break;
+                            }
+                        }
+                    }
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                }
+            } catch (e) {
+                let a = e;
+            }
+        }
+    };
+
+    let countCheckBox21 = -1;
+    const checkbox21 = (recordData, dayOfMonth) => {
+        countCheckBox21++;
+        let checked = false;
+        let daysPU = '';
+        let monthPU = '';
+        if (clients.length > 0) {
+            try {
+                if (clients[countCheckBox21].packages[0].package_uses == 0) {
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                } else {
+                    for (const pu of clients[countCheckBox21].packages[0].package_uses) {
+                        daysPU = pu.time_move.toString();
+                        daysPU = `${daysPU[0]}${daysPU[1]}`;
+
+                        monthPU = pu.time_move.toString();
+                        monthPU = `${monthPU[3]}${monthPU[4]}`;
+
+                        if (monthPU == month) {
+                            if (daysPU[0] == '0') {
+                                daysPU = daysPU[1];
+                            }
+
+                            if (daysPU == dayOfMonth) {
+                                checked = true;
+                                break;
+                            }
+                        }
+                    }
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                }
+            } catch (e) {
+                let a = e;
+            }
+        }
+    };
+
+    let countCheckBox22 = -1;
+    const checkbox22 = (recordData, dayOfMonth) => {
+        countCheckBox22++;
+        let checked = false;
+        let daysPU = '';
+        let monthPU = '';
+        if (clients.length > 0) {
+            try {
+                if (clients[countCheckBox22].packages[0].package_uses == 0) {
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                } else {
+                    for (const pu of clients[countCheckBox22].packages[0].package_uses) {
+                        daysPU = pu.time_move.toString();
+                        daysPU = `${daysPU[0]}${daysPU[1]}`;
+
+                        monthPU = pu.time_move.toString();
+                        monthPU = `${monthPU[3]}${monthPU[4]}`;
+
+                        if (monthPU == month) {
+                            if (daysPU[0] == '0') {
+                                daysPU = daysPU[1];
+                            }
+
+                            if (daysPU == dayOfMonth) {
+                                checked = true;
+                                break;
+                            }
+                        }
+                    }
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                }
+            } catch (e) {
+                let a = e;
+            }
+        }
+    };
+
+    let countCheckBox23 = -1;
+    const checkbox23 = (recordData, dayOfMonth) => {
+        countCheckBox23++;
+        let checked = false;
+        let daysPU = '';
+        let monthPU = '';
+        if (clients.length > 0) {
+            try {
+                if (clients[countCheckBox23].packages[0].package_uses == 0) {
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                } else {
+                    for (const pu of clients[countCheckBox23].packages[0].package_uses) {
+                        daysPU = pu.time_move.toString();
+                        daysPU = `${daysPU[0]}${daysPU[1]}`;
+
+                        monthPU = pu.time_move.toString();
+                        monthPU = `${monthPU[3]}${monthPU[4]}`;
+
+                        if (monthPU == month) {
+                            if (daysPU[0] == '0') {
+                                daysPU = daysPU[1];
+                            }
+
+                            if (daysPU == dayOfMonth) {
+                                checked = true;
+                                break;
+                            }
+                        }
+                    }
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                }
+            } catch (e) {
+                let a = e;
+            }
+        }
+    };
+
+    let countCheckBox24 = -1;
+    const checkbox24 = (recordData, dayOfMonth) => {
+        countCheckBox24++;
+        let checked = false;
+        let daysPU = '';
+        let monthPU = '';
+        if (clients.length > 0) {
+            try {
+                if (clients[countCheckBox24].packages[0].package_uses == 0) {
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                } else {
+                    for (const pu of clients[countCheckBox24].packages[0].package_uses) {
+                        daysPU = pu.time_move.toString();
+                        daysPU = `${daysPU[0]}${daysPU[1]}`;
+
+                        monthPU = pu.time_move.toString();
+                        monthPU = `${monthPU[3]}${monthPU[4]}`;
+
+                        if (monthPU == month) {
+                            if (daysPU[0] == '0') {
+                                daysPU = daysPU[1];
+                            }
+
+                            if (daysPU == dayOfMonth) {
+                                checked = true;
+                                break;
+                            }
+                        }
+                    }
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                }
+            } catch (e) {
+                let a = e;
+            }
+        }
+    };
+
+    let countCheckBox25 = -1;
+    const checkbox25 = (recordData, dayOfMonth) => {
+        countCheckBox25++;
+        let checked = false;
+        let daysPU = '';
+        let monthPU = '';
+        if (clients.length > 0) {
+            try {
+                if (clients[countCheckBox25].packages[0].package_uses == 0) {
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                } else {
+                    for (const pu of clients[countCheckBox25].packages[0].package_uses) {
+                        daysPU = pu.time_move.toString();
+                        daysPU = `${daysPU[0]}${daysPU[1]}`;
+
+                        monthPU = pu.time_move.toString();
+                        monthPU = `${monthPU[3]}${monthPU[4]}`;
+
+                        if (monthPU == month) {
+                            if (daysPU[0] == '0') {
+                                daysPU = daysPU[1];
+                            }
+
+                            if (daysPU == dayOfMonth) {
+                                checked = true;
+                                break;
+                            }
+                        }
+                    }
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                }
+            } catch (e) {
+                let a = e;
+            }
+        }
+    };
+
+    let countCheckBox26 = -1;
+    const checkbox26 = (recordData, dayOfMonth) => {
+        countCheckBox26++;
+        let checked = false;
+        let daysPU = '';
+        let monthPU = '';
+        if (clients.length > 0) {
+            try {
+                if (clients[countCheckBox26].packages[0].package_uses == 0) {
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                } else {
+                    for (const pu of clients[countCheckBox26].packages[0].package_uses) {
+                        daysPU = pu.time_move.toString();
+                        daysPU = `${daysPU[0]}${daysPU[1]}`;
+
+                        monthPU = pu.time_move.toString();
+                        monthPU = `${monthPU[3]}${monthPU[4]}`;
+
+                        if (monthPU == month) {
+                            if (daysPU[0] == '0') {
+                                daysPU = daysPU[1];
+                            }
+
+                            if (daysPU == dayOfMonth) {
+                                checked = true;
+                                break;
+                            }
+                        }
+                    }
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                }
+            } catch (e) {
+                let a = e;
+            }
+        }
+    };
+
+    let countCheckBox27 = -1;
+    const checkbox27 = (recordData, dayOfMonth) => {
+        countCheckBox27++;
+        let checked = false;
+        let daysPU = '';
+        let monthPU = '';
+        if (clients.length > 0) {
+            try {
+                if (clients[countCheckBox27].packages[0].package_uses == 0) {
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                } else {
+                    for (const pu of clients[countCheckBox27].packages[0].package_uses) {
+                        daysPU = pu.time_move.toString();
+                        daysPU = `${daysPU[0]}${daysPU[1]}`;
+
+                        monthPU = pu.time_move.toString();
+                        monthPU = `${monthPU[3]}${monthPU[4]}`;
+
+                        if (monthPU == month) {
+                            if (daysPU[0] == '0') {
+                                daysPU = daysPU[1];
+                            }
+
+                            if (daysPU == dayOfMonth) {
+                                checked = true;
+                                break;
+                            }
+                        }
+                    }
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                }
+            } catch (e) {
+                let a = e;
+            }
+        }
+    };
+
+    let countCheckBox28 = -1;
+    const checkbox28 = (recordData, dayOfMonth) => {
+        countCheckBox28++;
+        let checked = false;
+        let daysPU = '';
+        let monthPU = '';
+        if (clients.length > 0) {
+            try {
+                if (clients[countCheckBox28].packages[0].package_uses == 0) {
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                } else {
+                    for (const pu of clients[countCheckBox28].packages[0].package_uses) {
+                        daysPU = pu.time_move.toString();
+                        daysPU = `${daysPU[0]}${daysPU[1]}`;
+
+                        monthPU = pu.time_move.toString();
+                        monthPU = `${monthPU[3]}${monthPU[4]}`;
+
+                        if (monthPU == month) {
+                            if (daysPU[0] == '0') {
+                                daysPU = daysPU[1];
+                            }
+
+                            if (daysPU == dayOfMonth) {
+                                checked = true;
+                                break;
+                            }
+                        }
+                    }
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                }
+            } catch (e) {
+                let a = e;
+            }
+        }
+    };
+
+    let countCheckBox29 = -1;
+    const checkbox29 = (recordData, dayOfMonth) => {
+        countCheckBox29++;
+        let checked = false;
+        let daysPU = '';
+        let monthPU = '';
+        if (clients.length > 0) {
+            try {
+                if (clients[countCheckBox29].packages[0].package_uses == 0) {
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                } else {
+                    for (const pu of clients[countCheckBox29].packages[0].package_uses) {
+                        daysPU = pu.time_move.toString();
+                        daysPU = `${daysPU[0]}${daysPU[1]}`;
+
+                        monthPU = pu.time_move.toString();
+                        monthPU = `${monthPU[3]}${monthPU[4]}`;
+
+                        if (monthPU == month) {
+                            if (daysPU[0] == '0') {
+                                daysPU = daysPU[1];
+                            }
+
+                            if (daysPU == dayOfMonth) {
+                                checked = true;
+                                break;
+                            }
+                        }
+                    }
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                }
+            } catch (e) {
+                let a = e;
+            }
+        }
+    };
+
+    let countCheckBox30 = -1;
+    const checkbox30 = (recordData, dayOfMonth) => {
+        countCheckBox30++;
+        let checked = false;
+        let daysPU = '';
+        let monthPU = '';
+        if (clients.length > 0) {
+            try {
+                if (clients[countCheckBox30].packages[0].package_uses == 0) {
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                } else {
+                    for (const pu of clients[countCheckBox30].packages[0].package_uses) {
+                        daysPU = pu.time_move.toString();
+                        daysPU = `${daysPU[0]}${daysPU[1]}`;
+
+                        monthPU = pu.time_move.toString();
+                        monthPU = `${monthPU[3]}${monthPU[4]}`;
+
+                        if (monthPU == month) {
+                            if (daysPU[0] == '0') {
+                                daysPU = daysPU[1];
+                            }
+
+                            if (daysPU == dayOfMonth) {
+                                checked = true;
+                                break;
+                            }
+                        }
+                    }
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                }
+            } catch (e) {
+                let a = e;
+            }
+        }
+    };
+
+    let countCheckBox31 = -1;
+    const checkbox31 = (recordData, dayOfMonth) => {
+        countCheckBox31++;
+        let checked = false;
+        let daysPU = '';
+        let monthPU = '';
+        if (clients.length > 0) {
+            try {
+                if (clients[countCheckBox31].packages[0].package_uses == 0) {
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                } else {
+                    for (const pu of clients[countCheckBox31].packages[0].package_uses) {
+                        daysPU = pu.time_move.toString();
+                        daysPU = `${daysPU[0]}${daysPU[1]}`;
+
+                        monthPU = pu.time_move.toString();
+                        monthPU = `${monthPU[3]}${monthPU[4]}`;
+
+                        if (monthPU == month) {
+                            if (daysPU[0] == '0') {
+                                daysPU = daysPU[1];
+                            }
+
+                            if (daysPU == dayOfMonth) {
+                                checked = true;
+                                break;
+                            }
+                        }
+                    }
+                    return <Checkbox onChange={() => handleMarkVisit(recordData, dayOfMonth)} defaultChecked={checked} size="small" />;
+                }
+            } catch (e) {
+                let a = e;
+            }
+        }
+    };
+
+    // let countCheckBox = 0;
+    // let cc = -1;
+    // let pi = 'no';
+    // const checkbox = (recordData, dayOfMonth) => {
+    //     let month = `${selectedDate.toLocaleDateString()[3]}${selectedDate.toLocaleDateString()[4]}`;
+    //     console.log(month);
+    //     countCheckBox++;
+    //     cc++;
+    //     let d = '';
+    //     let checked = false;
+    //     console.log(dayOfMonth);
+    //
+    //     if (clients.length > 0) {
+    //         try {
+    //             cll: for (const cl of clients) {
+    //                 let ch = 0;
+    //                 console.log('pi', pi);
+    //                 if (pi == cl.people_initials) {
+    //                     continue cll;
+    //                 } else {
+    //                     pi = cl.people_initials;
+    //                     console.log('Кол-во проходов', cl.packages[0].package_uses.length, cl.people_initials);
+    //                     if (cl.packages[0].package_uses.length == 0) {
+    //                         // pi = cl.people_initals;
+    //                         console.log('Пустой чекбокс');
+    //                         checked = false;
+    //                         return (
+    //                             <Checkbox
+    //                                 onChange={() => handleMarkVisit(recordData, dayOfMonth)}
+    //                                 checked={checked}
+    //                                 disabled={checked}
+    //                                 size="small"
+    //                             />
+    //                         );
+    //                     } else {
+    //                         // if (checked == true) {
+    //                         //     ch = 0;
+    //                         //     checked = false;
+    //                         //     continue cll;
+    //                         // }
+    //
+    //                         ip: for (const pu of cl.packages[0].package_uses) {
+    //                             d = pu.time_move.toString();
+    //                             d = `${d[0]}${d[1]}`;
+    //
+    //                             if (d[0] == '0') {
+    //                                 d = d[1];
+    //                             }
+    //                             console.log('Дата в api:', d, 'Дата в клетке:', dayOfMonth);
+    //                             if (d != dayOfMonth) {
+    //                                 continue;
+    //                             } else if (d == dayOfMonth) {
+    //                                 pi = cl.people_initials;
+    //                                 console.log(pi);
+    //                                 console.log(pu);
+    //                                 ch = 1;
+    //                                 checked = true;
+    //                                 break ip;
+    //                                 // f++;
+    //                                 // console.log('iayk', countCheckBox);
+    //                                 // console.log(clients[cc].people_initials);
+    //                                 // pi = clients[cc].people_initials;
+    //                                 // console.log('check', ch);
+    //                                 // return (
+    //                                 //     <Checkbox
+    //                                 //         onChange={() => handleMarkVisit(recordData, dayOfMonth)}
+    //                                 //         checked={checked}
+    //                                 //         disabled={checked}
+    //                                 //         size="small"
+    //                                 //     />
+    //                                 // );
+    //                             }
+    //                             console.log('check', ch);
+    //                         }
+    //                         if (ch == 0) {
+    //                             console.log('Пустой чекбокс');
+    //                             checked = false;
+    //                             return (
+    //                                 <Checkbox
+    //                                     onChange={() => handleMarkVisit(recordData, dayOfMonth)}
+    //                                     checked={checked}
+    //                                     disabled={checked}
+    //                                     size="small"
+    //                                 />
+    //                             );
+    //                         } else {
+    //                             console.log('Отмеченный чекбокс');
+    //                             return (
+    //                                 <Checkbox
+    //                                     onChange={() => handleMarkVisit(recordData, dayOfMonth)}
+    //                                     checked={checked}
+    //                                     disabled={checked}
+    //                                     size="small"
+    //                                 />
+    //                             );
+    //                         }
+    //                     }
+    //                     // return (
+    //                     //     <Checkbox
+    //                     //         onChange={() => handleMarkVisit(recordData, dayOfMonth)}
+    //                     //         checked={checked}
+    //                     //         disabled={checked}
+    //                     //         size="small"
+    //                     //     />
+    //                     // );
+    //                 }
+    //             }
+    //         } catch (e) {
+    //             let a = e;
+    //         }
+    //     }
+    // };
 
     const linkFioChacnge = (fio, id_acc, mosreg, datePayment, payment, certificateDate, contractDate) => {
         console.log(fio, id_acc);
@@ -480,28 +1641,669 @@ const GroupClients = () => {
         loadGetClient();
         setColumns([]);
         setTimeout(() => {
-            setColumns([
-                {
-                    field: 'number_people',
-                    label: '№'
-                },
-                {
-                    field: 'people_initials',
-                    label: 'ФИО',
-                    render: () => linkFio()
-                },
-                {
-                    field: 'id_acc',
-                    label: 'МосРег',
-                    render: () => mosregCheckBox()
-                },
-                ...c,
-                ...Array.from({ length: daysInMonth }, (_, i) => ({
-                    label: i + 1,
-                    field: `day${i + 1}`,
-                    render: (recordData) => checkbox(recordData, i + 1)
-                }))
-            ]);
+            if (daysInMonth == 28) {
+                setColumns([
+                    {
+                        field: 'number_people',
+                        label: '№'
+                    },
+                    {
+                        field: 'people_initials',
+                        label: 'ФИО',
+                        render: () => linkFio()
+                    },
+                    {
+                        field: 'id_acc',
+                        label: 'МосРег',
+                        render: () => mosregCheckBox()
+                    },
+                    ...c,
+                    {
+                        label: 1,
+                        field: 'day1',
+                        render: (recordData) => checkbox1(recordData, 1)
+                    },
+                    {
+                        label: 2,
+                        field: 'day2',
+                        render: (recordData) => checkbox2(recordData, 2)
+                    },
+                    {
+                        label: 3,
+                        field: 'day3',
+                        render: (recordData) => checkbox3(recordData, 3)
+                    },
+                    {
+                        label: 4,
+                        field: 'day4',
+                        render: (recordData) => checkbox4(recordData, 4)
+                    },
+                    {
+                        label: 5,
+                        field: 'day5',
+                        render: (recordData) => checkbox5(recordData, 5)
+                    },
+                    {
+                        label: 6,
+                        field: 'day6',
+                        render: (recordData) => checkbox6(recordData, 6)
+                    },
+                    {
+                        label: 7,
+                        field: 'day7',
+                        render: (recordData) => checkbox7(recordData, 7)
+                    },
+                    {
+                        label: 8,
+                        field: 'day8',
+                        render: (recordData) => checkbox8(recordData, 8)
+                    },
+                    {
+                        label: 9,
+                        field: 'day9',
+                        render: (recordData) => checkbox9(recordData, 9)
+                    },
+                    {
+                        label: 10,
+                        field: 'day10',
+                        render: (recordData) => checkbox10(recordData, 10)
+                    },
+                    {
+                        label: 11,
+                        field: 'day11',
+                        render: (recordData) => checkbox11(recordData, 11)
+                    },
+                    {
+                        label: 12,
+                        field: 'day12',
+                        render: (recordData) => checkbox12(recordData, 12)
+                    },
+                    {
+                        label: 13,
+                        field: 'day13',
+                        render: (recordData) => checkbox13(recordData, 13)
+                    },
+                    {
+                        label: 14,
+                        field: 'day14',
+                        render: (recordData) => checkbox14(recordData, 14)
+                    },
+                    {
+                        label: 15,
+                        field: 'day15',
+                        render: (recordData) => checkbox15(recordData, 15)
+                    },
+                    {
+                        label: 16,
+                        field: 'day16',
+                        render: (recordData) => checkbox16(recordData, 16)
+                    },
+                    {
+                        label: 17,
+                        field: 'day17',
+                        render: (recordData) => checkbox17(recordData, 17)
+                    },
+                    {
+                        label: 18,
+                        field: 'day18',
+                        render: (recordData) => checkbox18(recordData, 18)
+                    },
+                    {
+                        label: 19,
+                        field: 'day19',
+                        render: (recordData) => checkbox19(recordData, 19)
+                    },
+                    {
+                        label: 20,
+                        field: 'day20',
+                        render: (recordData) => checkbox20(recordData, 20)
+                    },
+                    {
+                        label: 21,
+                        field: 'day21',
+                        render: (recordData) => checkbox21(recordData, 21)
+                    },
+                    {
+                        label: 22,
+                        field: 'day22',
+                        render: (recordData) => checkbox22(recordData, 22)
+                    },
+                    {
+                        label: 23,
+                        field: 'day23',
+                        render: (recordData) => checkbox23(recordData, 23)
+                    },
+                    {
+                        label: 24,
+                        field: 'day24',
+                        render: (recordData) => checkbox24(recordData, 24)
+                    },
+                    {
+                        label: 25,
+                        field: 'day25',
+                        render: (recordData) => checkbox25(recordData, 25)
+                    },
+                    {
+                        label: 26,
+                        field: 'day26',
+                        render: (recordData) => checkbox26(recordData, 26)
+                    },
+                    {
+                        label: 27,
+                        field: 'day27',
+                        render: (recordData) => checkbox27(recordData, 27)
+                    },
+                    {
+                        label: 28,
+                        field: 'day28',
+                        render: (recordData) => checkbox28(recordData, 28)
+                    }
+                ]);
+            } else if (daysInMonth == 29) {
+                setColumns([
+                    {
+                        field: 'number_people',
+                        label: '№'
+                    },
+                    {
+                        field: 'people_initials',
+                        label: 'ФИО',
+                        render: () => linkFio()
+                    },
+                    {
+                        field: 'id_acc',
+                        label: 'МосРег',
+                        render: () => mosregCheckBox()
+                    },
+                    ...c,
+                    {
+                        label: 1,
+                        field: 'day1',
+                        render: (recordData) => checkbox1(recordData, 1)
+                    },
+                    {
+                        label: 2,
+                        field: 'day2',
+                        render: (recordData) => checkbox2(recordData, 2)
+                    },
+                    {
+                        label: 3,
+                        field: 'day3',
+                        render: (recordData) => checkbox3(recordData, 3)
+                    },
+                    {
+                        label: 4,
+                        field: 'day4',
+                        render: (recordData) => checkbox4(recordData, 4)
+                    },
+                    {
+                        label: 5,
+                        field: 'day5',
+                        render: (recordData) => checkbox5(recordData, 5)
+                    },
+                    {
+                        label: 6,
+                        field: 'day6',
+                        render: (recordData) => checkbox6(recordData, 6)
+                    },
+                    {
+                        label: 7,
+                        field: 'day7',
+                        render: (recordData) => checkbox7(recordData, 7)
+                    },
+                    {
+                        label: 8,
+                        field: 'day8',
+                        render: (recordData) => checkbox8(recordData, 8)
+                    },
+                    {
+                        label: 9,
+                        field: 'day9',
+                        render: (recordData) => checkbox9(recordData, 9)
+                    },
+                    {
+                        label: 10,
+                        field: 'day10',
+                        render: (recordData) => checkbox10(recordData, 10)
+                    },
+                    {
+                        label: 11,
+                        field: 'day11',
+                        render: (recordData) => checkbox11(recordData, 11)
+                    },
+                    {
+                        label: 12,
+                        field: 'day12',
+                        render: (recordData) => checkbox12(recordData, 12)
+                    },
+                    {
+                        label: 13,
+                        field: 'day13',
+                        render: (recordData) => checkbox13(recordData, 13)
+                    },
+                    {
+                        label: 14,
+                        field: 'day14',
+                        render: (recordData) => checkbox14(recordData, 14)
+                    },
+                    {
+                        label: 15,
+                        field: 'day15',
+                        render: (recordData) => checkbox15(recordData, 15)
+                    },
+                    {
+                        label: 16,
+                        field: 'day16',
+                        render: (recordData) => checkbox16(recordData, 16)
+                    },
+                    {
+                        label: 17,
+                        field: 'day17',
+                        render: (recordData) => checkbox17(recordData, 17)
+                    },
+                    {
+                        label: 18,
+                        field: 'day18',
+                        render: (recordData) => checkbox18(recordData, 18)
+                    },
+                    {
+                        label: 19,
+                        field: 'day19',
+                        render: (recordData) => checkbox19(recordData, 19)
+                    },
+                    {
+                        label: 20,
+                        field: 'day20',
+                        render: (recordData) => checkbox20(recordData, 20)
+                    },
+                    {
+                        label: 21,
+                        field: 'day21',
+                        render: (recordData) => checkbox21(recordData, 21)
+                    },
+                    {
+                        label: 22,
+                        field: 'day22',
+                        render: (recordData) => checkbox22(recordData, 22)
+                    },
+                    {
+                        label: 23,
+                        field: 'day23',
+                        render: (recordData) => checkbox23(recordData, 23)
+                    },
+                    {
+                        label: 24,
+                        field: 'day24',
+                        render: (recordData) => checkbox24(recordData, 24)
+                    },
+                    {
+                        label: 25,
+                        field: 'day25',
+                        render: (recordData) => checkbox25(recordData, 25)
+                    },
+                    {
+                        label: 26,
+                        field: 'day26',
+                        render: (recordData) => checkbox26(recordData, 26)
+                    },
+                    {
+                        label: 27,
+                        field: 'day27',
+                        render: (recordData) => checkbox27(recordData, 27)
+                    },
+                    {
+                        label: 28,
+                        field: 'day28',
+                        render: (recordData) => checkbox28(recordData, 28)
+                    },
+                    {
+                        label: 29,
+                        field: 'day29',
+                        render: (recordData) => checkbox29(recordData, 29)
+                    }
+                ]);
+            } else if (daysInMonth == 30) {
+                setColumns([
+                    {
+                        field: 'number_people',
+                        label: '№'
+                    },
+                    {
+                        field: 'people_initials',
+                        label: 'ФИО',
+                        render: () => linkFio()
+                    },
+                    {
+                        field: 'id_acc',
+                        label: 'МосРег',
+                        render: () => mosregCheckBox()
+                    },
+                    ...c,
+                    {
+                        label: 1,
+                        field: 'day1',
+                        render: (recordData) => checkbox1(recordData, 1)
+                    },
+                    {
+                        label: 2,
+                        field: 'day2',
+                        render: (recordData) => checkbox2(recordData, 2)
+                    },
+                    {
+                        label: 3,
+                        field: 'day3',
+                        render: (recordData) => checkbox3(recordData, 3)
+                    },
+                    {
+                        label: 4,
+                        field: 'day4',
+                        render: (recordData) => checkbox4(recordData, 4)
+                    },
+                    {
+                        label: 5,
+                        field: 'day5',
+                        render: (recordData) => checkbox5(recordData, 5)
+                    },
+                    {
+                        label: 6,
+                        field: 'day6',
+                        render: (recordData) => checkbox6(recordData, 6)
+                    },
+                    {
+                        label: 7,
+                        field: 'day7',
+                        render: (recordData) => checkbox7(recordData, 7)
+                    },
+                    {
+                        label: 8,
+                        field: 'day8',
+                        render: (recordData) => checkbox8(recordData, 8)
+                    },
+                    {
+                        label: 9,
+                        field: 'day9',
+                        render: (recordData) => checkbox9(recordData, 9)
+                    },
+                    {
+                        label: 10,
+                        field: 'day10',
+                        render: (recordData) => checkbox10(recordData, 10)
+                    },
+                    {
+                        label: 11,
+                        field: 'day11',
+                        render: (recordData) => checkbox11(recordData, 11)
+                    },
+                    {
+                        label: 12,
+                        field: 'day12',
+                        render: (recordData) => checkbox12(recordData, 12)
+                    },
+                    {
+                        label: 13,
+                        field: 'day13',
+                        render: (recordData) => checkbox13(recordData, 13)
+                    },
+                    {
+                        label: 14,
+                        field: 'day14',
+                        render: (recordData) => checkbox14(recordData, 14)
+                    },
+                    {
+                        label: 15,
+                        field: 'day15',
+                        render: (recordData) => checkbox15(recordData, 15)
+                    },
+                    {
+                        label: 16,
+                        field: 'day16',
+                        render: (recordData) => checkbox16(recordData, 16)
+                    },
+                    {
+                        label: 17,
+                        field: 'day17',
+                        render: (recordData) => checkbox17(recordData, 17)
+                    },
+                    {
+                        label: 18,
+                        field: 'day18',
+                        render: (recordData) => checkbox18(recordData, 18)
+                    },
+                    {
+                        label: 19,
+                        field: 'day19',
+                        render: (recordData) => checkbox19(recordData, 19)
+                    },
+                    {
+                        label: 20,
+                        field: 'day20',
+                        render: (recordData) => checkbox20(recordData, 20)
+                    },
+                    {
+                        label: 21,
+                        field: 'day21',
+                        render: (recordData) => checkbox21(recordData, 21)
+                    },
+                    {
+                        label: 22,
+                        field: 'day22',
+                        render: (recordData) => checkbox22(recordData, 22)
+                    },
+                    {
+                        label: 23,
+                        field: 'day23',
+                        render: (recordData) => checkbox23(recordData, 23)
+                    },
+                    {
+                        label: 24,
+                        field: 'day24',
+                        render: (recordData) => checkbox24(recordData, 24)
+                    },
+                    {
+                        label: 25,
+                        field: 'day25',
+                        render: (recordData) => checkbox25(recordData, 25)
+                    },
+                    {
+                        label: 26,
+                        field: 'day26',
+                        render: (recordData) => checkbox26(recordData, 26)
+                    },
+                    {
+                        label: 27,
+                        field: 'day27',
+                        render: (recordData) => checkbox27(recordData, 27)
+                    },
+                    {
+                        label: 28,
+                        field: 'day28',
+                        render: (recordData) => checkbox28(recordData, 28)
+                    },
+                    {
+                        label: 29,
+                        field: 'day29',
+                        render: (recordData) => checkbox29(recordData, 29)
+                    },
+                    {
+                        label: 30,
+                        field: 'day30',
+                        render: (recordData) => checkbox30(recordData, 30)
+                    }
+                ]);
+            } else if (daysInMonth == 31) {
+                setColumns([
+                    {
+                        field: 'number_people',
+                        label: '№'
+                    },
+                    {
+                        field: 'people_initials',
+                        label: 'ФИО',
+                        render: () => linkFio()
+                    },
+                    {
+                        field: 'id_acc',
+                        label: 'МосРег',
+                        render: () => mosregCheckBox()
+                    },
+                    ...c,
+                    {
+                        label: 1,
+                        field: 'day1',
+                        render: (recordData) => checkbox1(recordData, 1)
+                    },
+                    {
+                        label: 2,
+                        field: 'day2',
+                        render: (recordData) => checkbox2(recordData, 2)
+                    },
+                    {
+                        label: 3,
+                        field: 'day3',
+                        render: (recordData) => checkbox3(recordData, 3)
+                    },
+                    {
+                        label: 4,
+                        field: 'day4',
+                        render: (recordData) => checkbox4(recordData, 4)
+                    },
+                    {
+                        label: 5,
+                        field: 'day5',
+                        render: (recordData) => checkbox5(recordData, 5)
+                    },
+                    {
+                        label: 6,
+                        field: 'day6',
+                        render: (recordData) => checkbox6(recordData, 6)
+                    },
+                    {
+                        label: 7,
+                        field: 'day7',
+                        render: (recordData) => checkbox7(recordData, 7)
+                    },
+                    {
+                        label: 8,
+                        field: 'day8',
+                        render: (recordData) => checkbox8(recordData, 8)
+                    },
+                    {
+                        label: 9,
+                        field: 'day9',
+                        render: (recordData) => checkbox9(recordData, 9)
+                    },
+                    {
+                        label: 10,
+                        field: 'day10',
+                        render: (recordData) => checkbox10(recordData, 10)
+                    },
+                    {
+                        label: 11,
+                        field: 'day11',
+                        render: (recordData) => checkbox11(recordData, 11)
+                    },
+                    {
+                        label: 12,
+                        field: 'day12',
+                        render: (recordData) => checkbox12(recordData, 12)
+                    },
+                    {
+                        label: 13,
+                        field: 'day13',
+                        render: (recordData) => checkbox13(recordData, 13)
+                    },
+                    {
+                        label: 14,
+                        field: 'day14',
+                        render: (recordData) => checkbox14(recordData, 14)
+                    },
+                    {
+                        label: 15,
+                        field: 'day15',
+                        render: (recordData) => checkbox15(recordData, 15)
+                    },
+                    {
+                        label: 16,
+                        field: 'day16',
+                        render: (recordData) => checkbox16(recordData, 16)
+                    },
+                    {
+                        label: 17,
+                        field: 'day17',
+                        render: (recordData) => checkbox17(recordData, 17)
+                    },
+                    {
+                        label: 18,
+                        field: 'day18',
+                        render: (recordData) => checkbox18(recordData, 18)
+                    },
+                    {
+                        label: 19,
+                        field: 'day19',
+                        render: (recordData) => checkbox19(recordData, 19)
+                    },
+                    {
+                        label: 20,
+                        field: 'day20',
+                        render: (recordData) => checkbox20(recordData, 20)
+                    },
+                    {
+                        label: 21,
+                        field: 'day21',
+                        render: (recordData) => checkbox21(recordData, 21)
+                    },
+                    {
+                        label: 22,
+                        field: 'day22',
+                        render: (recordData) => checkbox22(recordData, 22)
+                    },
+                    {
+                        label: 23,
+                        field: 'day23',
+                        render: (recordData) => checkbox23(recordData, 23)
+                    },
+                    {
+                        label: 24,
+                        field: 'day24',
+                        render: (recordData) => checkbox24(recordData, 24)
+                    },
+                    {
+                        label: 25,
+                        field: 'day25',
+                        render: (recordData) => checkbox25(recordData, 25)
+                    },
+                    {
+                        label: 26,
+                        field: 'day26',
+                        render: (recordData) => checkbox26(recordData, 26)
+                    },
+                    {
+                        label: 27,
+                        field: 'day27',
+                        render: (recordData) => checkbox27(recordData, 27)
+                    },
+                    {
+                        label: 28,
+                        field: 'day28',
+                        render: (recordData) => checkbox28(recordData, 28)
+                    },
+                    {
+                        label: 29,
+                        field: 'day29',
+                        render: (recordData) => checkbox29(recordData, 29)
+                    },
+                    {
+                        label: 30,
+                        field: 'day30',
+                        render: (recordData) => checkbox30(recordData, 30)
+                    },
+                    {
+                        label: 31,
+                        field: 'day31',
+                        render: (recordData) => checkbox31(recordData, 31)
+                    }
+                ]);
+            }
         }, 0);
     }, [selectedDate, daysInMonth, visits]);
 
