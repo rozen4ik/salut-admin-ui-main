@@ -224,9 +224,11 @@ const GroupClients = () => {
         let monthPU = '';
         let id_sp = 'no';
         let id_resolution = 'no';
+        let packageLen = 0;
         if (clients.length > 0) {
+            packageLen = clients[countCheckBox1].packages.length - 1;
             try {
-                if (clients[countCheckBox1].packages[0].package_uses == 0) {
+                if (clients[countCheckBox1].packages[packageLen].package_uses == 0) {
                     return (
                         <Checkbox
                             onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
@@ -235,7 +237,7 @@ const GroupClients = () => {
                         />
                     );
                 } else {
-                    for (const pu of clients[countCheckBox1].packages[0].package_uses) {
+                    for (const pu of clients[countCheckBox1].packages[packageLen].package_uses) {
                         daysPU = pu.time_move.toString();
                         daysPU = `${daysPU[0]}${daysPU[1]}`;
 
@@ -248,7 +250,7 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
-                                id_sp = clients[countCheckBox1].packages[0].id_sp;
+                                id_sp = clients[countCheckBox1].packages[packageLen].id_sp;
                                 id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
@@ -277,9 +279,11 @@ const GroupClients = () => {
         let monthPU = '';
         let id_sp = 'no';
         let id_resolution = 'no';
+        let packageLen = 0;
         if (clients.length > 0) {
             try {
-                if (clients[countCheckBox2].packages[0].package_uses == 0) {
+                packageLen = clients[countCheckBox2].packages.length - 1;
+                if (clients[countCheckBox2].packages[packageLen].package_uses == 0) {
                     return (
                         <Checkbox
                             onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
@@ -288,7 +292,7 @@ const GroupClients = () => {
                         />
                     );
                 } else {
-                    for (const pu of clients[countCheckBox2].packages[0].package_uses) {
+                    for (const pu of clients[countCheckBox2].packages[packageLen].package_uses) {
                         daysPU = pu.time_move.toString();
                         daysPU = `${daysPU[0]}${daysPU[1]}`;
 
@@ -301,7 +305,7 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
-                                id_sp = clients[countCheckBox2].packages[0].id_sp;
+                                id_sp = clients[countCheckBox2].packages[packageLen].id_sp;
                                 id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
@@ -330,9 +334,11 @@ const GroupClients = () => {
         let monthPU = '';
         let id_sp = 'no';
         let id_resolution = 'no';
+        let packageLen = 0;
         if (clients.length > 0) {
             try {
-                if (clients[countCheckBox3].packages[0].package_uses == 0) {
+                packageLen = clients[countCheckBox3].packages.length - 1;
+                if (clients[countCheckBox3].packages[packageLen].package_uses == 0) {
                     return (
                         <Checkbox
                             onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
@@ -341,7 +347,7 @@ const GroupClients = () => {
                         />
                     );
                 } else {
-                    for (const pu of clients[countCheckBox3].packages[0].package_uses) {
+                    for (const pu of clients[countCheckBox3].packages[packageLen].package_uses) {
                         daysPU = pu.time_move.toString();
                         daysPU = `${daysPU[0]}${daysPU[1]}`;
 
@@ -354,7 +360,7 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
-                                id_sp = clients[countCheckBox3].packages[0].id_sp;
+                                id_sp = clients[countCheckBox3].packages[packageLen].id_sp;
                                 id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
@@ -383,9 +389,11 @@ const GroupClients = () => {
         let monthPU = '';
         let id_sp = 'no';
         let id_resolution = 'no';
+        let packageLen = 0;
         if (clients.length > 0) {
             try {
-                if (clients[countCheckBox4].packages[0].package_uses == 0) {
+                packageLen = clients[countCheckBox4].packages.length - 1;
+                if (clients[countCheckBox4].packages[packageLen].package_uses == 0) {
                     return (
                         <Checkbox
                             onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
@@ -394,7 +402,7 @@ const GroupClients = () => {
                         />
                     );
                 } else {
-                    for (const pu of clients[countCheckBox4].packages[0].package_uses) {
+                    for (const pu of clients[countCheckBox4].packages[packageLen].package_uses) {
                         daysPU = pu.time_move.toString();
                         daysPU = `${daysPU[0]}${daysPU[1]}`;
 
@@ -407,7 +415,7 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
-                                id_sp = clients[countCheckBox4].packages[0].id_sp;
+                                id_sp = clients[countCheckBox4].packages[packageLen].id_sp;
                                 id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
@@ -436,9 +444,11 @@ const GroupClients = () => {
         let monthPU = '';
         let id_sp = 'no';
         let id_resolution = 'no';
+        let packageLen = 0;
         if (clients.length > 0) {
             try {
-                if (clients[countCheckBox5].packages[0].package_uses == 0) {
+                packageLen = clients[countCheckBox5].packages.length - 1;
+                if (clients[countCheckBox5].packages[packageLen].package_uses == 0) {
                     return (
                         <Checkbox
                             onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
@@ -447,7 +457,7 @@ const GroupClients = () => {
                         />
                     );
                 } else {
-                    for (const pu of clients[countCheckBox5].packages[0].package_uses) {
+                    for (const pu of clients[countCheckBox5].packages[packageLen].package_uses) {
                         daysPU = pu.time_move.toString();
                         daysPU = `${daysPU[0]}${daysPU[1]}`;
 
@@ -460,7 +470,7 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
-                                id_sp = clients[countCheckBox5].packages[0].id_sp;
+                                id_sp = clients[countCheckBox5].packages[packageLen].id_sp;
                                 id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
@@ -489,9 +499,11 @@ const GroupClients = () => {
         let monthPU = '';
         let id_sp = 'no';
         let id_resolution = 'no';
+        let packageLen = 0;
         if (clients.length > 0) {
             try {
-                if (clients[countCheckBox6].packages[0].package_uses == 0) {
+                packageLen = clients[countCheckBox6].packages.length - 1;
+                if (clients[countCheckBox6].packages[packageLen].package_uses == 0) {
                     return (
                         <Checkbox
                             onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
@@ -500,7 +512,7 @@ const GroupClients = () => {
                         />
                     );
                 } else {
-                    for (const pu of clients[countCheckBox6].packages[0].package_uses) {
+                    for (const pu of clients[countCheckBox6].packages[packageLen].package_uses) {
                         daysPU = pu.time_move.toString();
                         daysPU = `${daysPU[0]}${daysPU[1]}`;
 
@@ -513,7 +525,7 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
-                                id_sp = clients[countCheckBox6].packages[0].id_sp;
+                                id_sp = clients[countCheckBox6].packages[packageLen].id_sp;
                                 id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
@@ -542,9 +554,11 @@ const GroupClients = () => {
         let monthPU = '';
         let id_sp = 'no';
         let id_resolution = 'no';
+        let packageLen = 0;
         if (clients.length > 0) {
             try {
-                if (clients[countCheckBox7].packages[0].package_uses == 0) {
+                packageLen = clients[countCheckBox7].packages.length - 1;
+                if (clients[countCheckBox7].packages[packageLen].package_uses == 0) {
                     return (
                         <Checkbox
                             onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
@@ -553,7 +567,7 @@ const GroupClients = () => {
                         />
                     );
                 } else {
-                    for (const pu of clients[countCheckBox7].packages[0].package_uses) {
+                    for (const pu of clients[countCheckBox7].packages[packageLen].package_uses) {
                         daysPU = pu.time_move.toString();
                         daysPU = `${daysPU[0]}${daysPU[1]}`;
 
@@ -566,7 +580,7 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
-                                id_sp = clients[countCheckBox7].packages[0].id_sp;
+                                id_sp = clients[countCheckBox7].packages[packageLen].id_sp;
                                 id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
@@ -595,9 +609,11 @@ const GroupClients = () => {
         let monthPU = '';
         let id_sp = 'no';
         let id_resolution = 'no';
+        let packageLen = 0;
         if (clients.length > 0) {
             try {
-                if (clients[countCheckBox8].packages[0].package_uses == 0) {
+                packageLen = clients[countCheckBox8].packages.length - 1;
+                if (clients[countCheckBox8].packages[packageLen].package_uses == 0) {
                     return (
                         <Checkbox
                             onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
@@ -606,7 +622,7 @@ const GroupClients = () => {
                         />
                     );
                 } else {
-                    for (const pu of clients[countCheckBox8].packages[0].package_uses) {
+                    for (const pu of clients[countCheckBox8].packages[packageLen].package_uses) {
                         daysPU = pu.time_move.toString();
                         daysPU = `${daysPU[0]}${daysPU[1]}`;
 
@@ -619,7 +635,7 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
-                                id_sp = clients[countCheckBox8].packages[0].id_sp;
+                                id_sp = clients[countCheckBox8].packages[packageLen].id_sp;
                                 id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
@@ -648,9 +664,11 @@ const GroupClients = () => {
         let monthPU = '';
         let id_sp = 'no';
         let id_resolution = 'no';
+        let packageLen = 0;
         if (clients.length > 0) {
             try {
-                if (clients[countCheckBox9].packages[0].package_uses == 0) {
+                packageLen = clients[countCheckBox9].packages.length - 1;
+                if (clients[countCheckBox9].packages[packageLen].package_uses == 0) {
                     return (
                         <Checkbox
                             onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
@@ -659,7 +677,7 @@ const GroupClients = () => {
                         />
                     );
                 } else {
-                    for (const pu of clients[countCheckBox9].packages[0].package_uses) {
+                    for (const pu of clients[countCheckBox9].packages[packageLen].package_uses) {
                         daysPU = pu.time_move.toString();
                         daysPU = `${daysPU[0]}${daysPU[1]}`;
 
@@ -672,7 +690,7 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
-                                id_sp = clients[countCheckBox9].packages[0].id_sp;
+                                id_sp = clients[countCheckBox9].packages[packageLen].id_sp;
                                 id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
@@ -701,9 +719,11 @@ const GroupClients = () => {
         let monthPU = '';
         let id_sp = 'no';
         let id_resolution = 'no';
+        let packageLen = 0;
         if (clients.length > 0) {
             try {
-                if (clients[countCheckBox10].packages[0].package_uses == 0) {
+                packageLen = clients[countCheckBox10].packages.length - 1;
+                if (clients[countCheckBox10].packages[packageLen].package_uses == 0) {
                     return (
                         <Checkbox
                             onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
@@ -712,7 +732,7 @@ const GroupClients = () => {
                         />
                     );
                 } else {
-                    for (const pu of clients[countCheckBox10].packages[0].package_uses) {
+                    for (const pu of clients[countCheckBox10].packages[packageLen].package_uses) {
                         daysPU = pu.time_move.toString();
                         daysPU = `${daysPU[0]}${daysPU[1]}`;
 
@@ -725,7 +745,7 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
-                                id_sp = clients[countCheckBox10].packages[0].id_sp;
+                                id_sp = clients[countCheckBox10].packages[packageLen].id_sp;
                                 id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
@@ -754,9 +774,11 @@ const GroupClients = () => {
         let monthPU = '';
         let id_sp = 'no';
         let id_resolution = 'no';
+        let packageLen = 0;
         if (clients.length > 0) {
             try {
-                if (clients[countCheckBox11].packages[0].package_uses == 0) {
+                packageLen = clients[countCheckBox11].packages.length - 1;
+                if (clients[countCheckBox11].packages[packageLen].package_uses == 0) {
                     return (
                         <Checkbox
                             onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
@@ -765,7 +787,7 @@ const GroupClients = () => {
                         />
                     );
                 } else {
-                    for (const pu of clients[countCheckBox11].packages[0].package_uses) {
+                    for (const pu of clients[countCheckBox11].packages[packageLen].package_uses) {
                         daysPU = pu.time_move.toString();
                         daysPU = `${daysPU[0]}${daysPU[1]}`;
 
@@ -778,7 +800,7 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
-                                id_sp = clients[countCheckBox11].packages[0].id_sp;
+                                id_sp = clients[countCheckBox11].packages[packageLen].id_sp;
                                 id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
@@ -807,9 +829,11 @@ const GroupClients = () => {
         let monthPU = '';
         let id_sp = 'no';
         let id_resolution = 'no';
+        let packageLen = 0;
         if (clients.length > 0) {
             try {
-                if (clients[countCheckBox12].packages[0].package_uses == 0) {
+                packageLen = clients[countCheckBox12].packages.length - 1;
+                if (clients[countCheckBox12].packages[packageLen].package_uses == 0) {
                     return (
                         <Checkbox
                             onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
@@ -818,7 +842,7 @@ const GroupClients = () => {
                         />
                     );
                 } else {
-                    for (const pu of clients[countCheckBox12].packages[0].package_uses) {
+                    for (const pu of clients[countCheckBox12].packages[packageLen].package_uses) {
                         daysPU = pu.time_move.toString();
                         daysPU = `${daysPU[0]}${daysPU[1]}`;
 
@@ -831,7 +855,7 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
-                                id_sp = clients[countCheckBox12].packages[0].id_sp;
+                                id_sp = clients[countCheckBox12].packages[packageLen].id_sp;
                                 id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
@@ -860,9 +884,11 @@ const GroupClients = () => {
         let monthPU = '';
         let id_sp = 'no';
         let id_resolution = 'no';
+        let packageLen = 0;
         if (clients.length > 0) {
             try {
-                if (clients[countCheckBox13].packages[0].package_uses == 0) {
+                packageLen = clients[countCheckBox13].packages.length - 1;
+                if (clients[countCheckBox13].packages[packageLen].package_uses == 0) {
                     return (
                         <Checkbox
                             onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
@@ -871,7 +897,7 @@ const GroupClients = () => {
                         />
                     );
                 } else {
-                    for (const pu of clients[countCheckBox13].packages[0].package_uses) {
+                    for (const pu of clients[countCheckBox13].packages[packageLen].package_uses) {
                         daysPU = pu.time_move.toString();
                         daysPU = `${daysPU[0]}${daysPU[1]}`;
 
@@ -884,7 +910,7 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
-                                id_sp = clients[countCheckBox13].packages[0].id_sp;
+                                id_sp = clients[countCheckBox13].packages[packageLen].id_sp;
                                 id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
@@ -913,9 +939,11 @@ const GroupClients = () => {
         let monthPU = '';
         let id_sp = 'no';
         let id_resolution = 'no';
+        let packageLen = 0;
         if (clients.length > 0) {
             try {
-                if (clients[countCheckBox14].packages[0].package_uses == 0) {
+                packageLen = clients[countCheckBox1].packages.length - 1;
+                if (clients[countCheckBox14].packages[packageLen].package_uses == 0) {
                     return (
                         <Checkbox
                             onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
@@ -924,7 +952,7 @@ const GroupClients = () => {
                         />
                     );
                 } else {
-                    for (const pu of clients[countCheckBox14].packages[0].package_uses) {
+                    for (const pu of clients[countCheckBox14].packages[packageLen].package_uses) {
                         daysPU = pu.time_move.toString();
                         daysPU = `${daysPU[0]}${daysPU[1]}`;
 
@@ -937,7 +965,7 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
-                                id_sp = clients[countCheckBox14].packages[0].id_sp;
+                                id_sp = clients[countCheckBox14].packages[packageLen].id_sp;
                                 id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
@@ -966,9 +994,11 @@ const GroupClients = () => {
         let monthPU = '';
         let id_sp = 'no';
         let id_resolution = 'no';
+        let packageLen = 0;
         if (clients.length > 0) {
             try {
-                if (clients[countCheckBox15].packages[0].package_uses == 0) {
+                packageLen = clients[countCheckBox15].packages.length - 1;
+                if (clients[countCheckBox15].packages[packageLen].package_uses == 0) {
                     return (
                         <Checkbox
                             onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
@@ -977,7 +1007,7 @@ const GroupClients = () => {
                         />
                     );
                 } else {
-                    for (const pu of clients[countCheckBox15].packages[0].package_uses) {
+                    for (const pu of clients[countCheckBox15].packages[packageLen].package_uses) {
                         daysPU = pu.time_move.toString();
                         daysPU = `${daysPU[0]}${daysPU[1]}`;
 
@@ -990,7 +1020,7 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
-                                id_sp = clients[countCheckBox15].packages[0].id_sp;
+                                id_sp = clients[countCheckBox15].packages[packageLen].id_sp;
                                 id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
@@ -1019,9 +1049,11 @@ const GroupClients = () => {
         let monthPU = '';
         let id_sp = 'no';
         let id_resolution = 'no';
+        let packageLen = 0;
         if (clients.length > 0) {
             try {
-                if (clients[countCheckBox16].packages[0].package_uses == 0) {
+                packageLen = clients[countCheckBox16].packages.length - 1;
+                if (clients[countCheckBox16].packages[packageLen].package_uses == 0) {
                     return (
                         <Checkbox
                             onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
@@ -1030,7 +1062,7 @@ const GroupClients = () => {
                         />
                     );
                 } else {
-                    for (const pu of clients[countCheckBox16].packages[0].package_uses) {
+                    for (const pu of clients[countCheckBox16].packages[packageLen].package_uses) {
                         daysPU = pu.time_move.toString();
                         daysPU = `${daysPU[0]}${daysPU[1]}`;
 
@@ -1043,7 +1075,7 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
-                                id_sp = clients[countCheckBox16].packages[0].id_sp;
+                                id_sp = clients[countCheckBox16].packages[packageLen].id_sp;
                                 id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
@@ -1072,9 +1104,11 @@ const GroupClients = () => {
         let monthPU = '';
         let id_sp = 'no';
         let id_resolution = 'no';
+        let packageLen = 0;
         if (clients.length > 0) {
             try {
-                if (clients[countCheckBox17].packages[0].package_uses == 0) {
+                packageLen = clients[countCheckBox17].packages.length - 1;
+                if (clients[countCheckBox17].packages[packageLen].package_uses == 0) {
                     return (
                         <Checkbox
                             onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
@@ -1083,7 +1117,7 @@ const GroupClients = () => {
                         />
                     );
                 } else {
-                    for (const pu of clients[countCheckBox17].packages[0].package_uses) {
+                    for (const pu of clients[countCheckBox17].packages[packageLen].package_uses) {
                         daysPU = pu.time_move.toString();
                         daysPU = `${daysPU[0]}${daysPU[1]}`;
 
@@ -1096,7 +1130,7 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
-                                id_sp = clients[countCheckBox7].packages[0].id_sp;
+                                id_sp = clients[countCheckBox7].packages[packageLen].id_sp;
                                 id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
@@ -1125,9 +1159,11 @@ const GroupClients = () => {
         let monthPU = '';
         let id_sp = 'no';
         let id_resolution = 'no';
+        let packageLen = 0;
         if (clients.length > 0) {
             try {
-                if (clients[countCheckBox18].packages[0].package_uses == 0) {
+                packageLen = clients[countCheckBox18].packages.length - 1;
+                if (clients[countCheckBox18].packages[packageLen].package_uses == 0) {
                     return (
                         <Checkbox
                             onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
@@ -1136,7 +1172,7 @@ const GroupClients = () => {
                         />
                     );
                 } else {
-                    for (const pu of clients[countCheckBox18].packages[0].package_uses) {
+                    for (const pu of clients[countCheckBox18].packages[packageLen].package_uses) {
                         daysPU = pu.time_move.toString();
                         daysPU = `${daysPU[0]}${daysPU[1]}`;
 
@@ -1149,7 +1185,7 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
-                                id_sp = clients[countCheckBox18].packages[0].id_sp;
+                                id_sp = clients[countCheckBox18].packages[packageLen].id_sp;
                                 id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
@@ -1178,9 +1214,11 @@ const GroupClients = () => {
         let monthPU = '';
         let id_sp = 'no';
         let id_resolution = 'no';
+        let packageLen = 0;
         if (clients.length > 0) {
             try {
-                if (clients[countCheckBox19].packages[0].package_uses == 0) {
+                packageLen = clients[countCheckBox19].packages.length - 1;
+                if (clients[countCheckBox19].packages[packageLen].package_uses == 0) {
                     return (
                         <Checkbox
                             onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
@@ -1189,7 +1227,7 @@ const GroupClients = () => {
                         />
                     );
                 } else {
-                    for (const pu of clients[countCheckBox19].packages[0].package_uses) {
+                    for (const pu of clients[countCheckBox19].packages[packageLen].package_uses) {
                         daysPU = pu.time_move.toString();
                         daysPU = `${daysPU[0]}${daysPU[1]}`;
 
@@ -1202,7 +1240,7 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
-                                id_sp = clients[countCheckBox19].packages[0].id_sp;
+                                id_sp = clients[countCheckBox19].packages[packageLen].id_sp;
                                 id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
@@ -1231,9 +1269,11 @@ const GroupClients = () => {
         let monthPU = '';
         let id_sp = 'no';
         let id_resolution = 'no';
+        let packageLen = 0;
         if (clients.length > 0) {
             try {
-                if (clients[countCheckBox20].packages[0].package_uses == 0) {
+                packageLen = clients[countCheckBox20].packages.length - 1;
+                if (clients[countCheckBox20].packages[packageLen].package_uses == 0) {
                     return (
                         <Checkbox
                             onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
@@ -1242,7 +1282,7 @@ const GroupClients = () => {
                         />
                     );
                 } else {
-                    for (const pu of clients[countCheckBox20].packages[0].package_uses) {
+                    for (const pu of clients[countCheckBox20].packages[packageLen].package_uses) {
                         daysPU = pu.time_move.toString();
                         daysPU = `${daysPU[0]}${daysPU[1]}`;
 
@@ -1255,7 +1295,7 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
-                                id_sp = clients[countCheckBox20].packages[0].id_sp;
+                                id_sp = clients[countCheckBox20].packages[packageLen].id_sp;
                                 id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
@@ -1284,9 +1324,11 @@ const GroupClients = () => {
         let monthPU = '';
         let id_sp = 'no';
         let id_resolution = 'no';
+        let packageLen = 0;
         if (clients.length > 0) {
             try {
-                if (clients[countCheckBox21].packages[0].package_uses == 0) {
+                packageLen = clients[countCheckBox21].packages.length - 1;
+                if (clients[countCheckBox21].packages[packageLen].package_uses == 0) {
                     return (
                         <Checkbox
                             onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
@@ -1295,7 +1337,7 @@ const GroupClients = () => {
                         />
                     );
                 } else {
-                    for (const pu of clients[countCheckBox21].packages[0].package_uses) {
+                    for (const pu of clients[countCheckBox21].packages[packageLen].package_uses) {
                         daysPU = pu.time_move.toString();
                         daysPU = `${daysPU[0]}${daysPU[1]}`;
 
@@ -1308,7 +1350,7 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
-                                id_sp = clients[countCheckBox21].packages[0].id_sp;
+                                id_sp = clients[countCheckBox21].packages[packageLen].id_sp;
                                 id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
@@ -1337,9 +1379,11 @@ const GroupClients = () => {
         let monthPU = '';
         let id_sp = 'no';
         let id_resolution = 'no';
+        let packageLen = 0;
         if (clients.length > 0) {
             try {
-                if (clients[countCheckBox22].packages[0].package_uses == 0) {
+                packageLen = clients[countCheckBox22].packages.length - 1;
+                if (clients[countCheckBox22].packages[packageLen].package_uses == 0) {
                     return (
                         <Checkbox
                             onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
@@ -1348,7 +1392,7 @@ const GroupClients = () => {
                         />
                     );
                 } else {
-                    for (const pu of clients[countCheckBox22].packages[0].package_uses) {
+                    for (const pu of clients[countCheckBox22].packages[packageLen].package_uses) {
                         daysPU = pu.time_move.toString();
                         daysPU = `${daysPU[0]}${daysPU[1]}`;
 
@@ -1361,7 +1405,7 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
-                                id_sp = clients[countCheckBox22].packages[0].id_sp;
+                                id_sp = clients[countCheckBox22].packages[packageLen].id_sp;
                                 id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
@@ -1390,9 +1434,11 @@ const GroupClients = () => {
         let monthPU = '';
         let id_sp = 'no';
         let id_resolution = 'no';
+        let packageLen = 0;
         if (clients.length > 0) {
             try {
-                if (clients[countCheckBox23].packages[0].package_uses == 0) {
+                packageLen = clients[countCheckBox23].packages.length - 1;
+                if (clients[countCheckBox23].packages[packageLen].package_uses == 0) {
                     return (
                         <Checkbox
                             onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
@@ -1401,7 +1447,7 @@ const GroupClients = () => {
                         />
                     );
                 } else {
-                    for (const pu of clients[countCheckBox23].packages[0].package_uses) {
+                    for (const pu of clients[countCheckBox23].packages[packageLen].package_uses) {
                         daysPU = pu.time_move.toString();
                         daysPU = `${daysPU[0]}${daysPU[1]}`;
 
@@ -1414,7 +1460,7 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
-                                id_sp = clients[countCheckBox23].packages[0].id_sp;
+                                id_sp = clients[countCheckBox23].packages[packageLen].id_sp;
                                 id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
@@ -1443,9 +1489,11 @@ const GroupClients = () => {
         let monthPU = '';
         let id_sp = 'no';
         let id_resolution = 'no';
+        let packageLen = 0;
         if (clients.length > 0) {
             try {
-                if (clients[countCheckBox24].packages[0].package_uses == 0) {
+                packageLen = clients[countCheckBox24].packages.length - 1;
+                if (clients[countCheckBox24].packages[packageLen].package_uses == 0) {
                     return (
                         <Checkbox
                             onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
@@ -1454,7 +1502,7 @@ const GroupClients = () => {
                         />
                     );
                 } else {
-                    for (const pu of clients[countCheckBox24].packages[0].package_uses) {
+                    for (const pu of clients[countCheckBox24].packages[packageLen].package_uses) {
                         daysPU = pu.time_move.toString();
                         daysPU = `${daysPU[0]}${daysPU[1]}`;
 
@@ -1467,7 +1515,7 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
-                                id_sp = clients[countCheckBox24].packages[0].id_sp;
+                                id_sp = clients[countCheckBox24].packages[packageLen].id_sp;
                                 id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
@@ -1496,9 +1544,11 @@ const GroupClients = () => {
         let monthPU = '';
         let id_sp = 'no';
         let id_resolution = 'no';
+        let packageLen = 0;
         if (clients.length > 0) {
             try {
-                if (clients[countCheckBox25].packages[0].package_uses == 0) {
+                packageLen = clients[countCheckBox25].packages.length - 1;
+                if (clients[countCheckBox25].packages[packageLen].package_uses == 0) {
                     return (
                         <Checkbox
                             onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
@@ -1507,7 +1557,7 @@ const GroupClients = () => {
                         />
                     );
                 } else {
-                    for (const pu of clients[countCheckBox25].packages[0].package_uses) {
+                    for (const pu of clients[countCheckBox25].packages[packageLen].package_uses) {
                         daysPU = pu.time_move.toString();
                         daysPU = `${daysPU[0]}${daysPU[1]}`;
 
@@ -1520,7 +1570,7 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
-                                id_sp = clients[countCheckBox25].packages[0].id_sp;
+                                id_sp = clients[countCheckBox25].packages[packageLen].id_sp;
                                 id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
@@ -1549,9 +1599,11 @@ const GroupClients = () => {
         let monthPU = '';
         let id_sp = 'no';
         let id_resolution = 'no';
+        let packageLen = 0;
         if (clients.length > 0) {
             try {
-                if (clients[countCheckBox26].packages[0].package_uses == 0) {
+                packageLen = clients[countCheckBox26].packages.length - 1;
+                if (clients[countCheckBox26].packages[packageLen].package_uses == 0) {
                     return (
                         <Checkbox
                             onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
@@ -1560,7 +1612,7 @@ const GroupClients = () => {
                         />
                     );
                 } else {
-                    for (const pu of clients[countCheckBox26].packages[0].package_uses) {
+                    for (const pu of clients[countCheckBox26].packages[packageLen].package_uses) {
                         daysPU = pu.time_move.toString();
                         daysPU = `${daysPU[0]}${daysPU[1]}`;
 
@@ -1573,7 +1625,7 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
-                                id_sp = clients[countCheckBox26].packages[0].id_sp;
+                                id_sp = clients[countCheckBox26].packages[packageLen].id_sp;
                                 id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
@@ -1602,9 +1654,11 @@ const GroupClients = () => {
         let monthPU = '';
         let id_sp = 'no';
         let id_resolution = 'no';
+        let packageLen = 0;
         if (clients.length > 0) {
             try {
-                if (clients[countCheckBox27].packages[0].package_uses == 0) {
+                packageLen = clients[countCheckBox27].packages.length - 1;
+                if (clients[countCheckBox27].packages[packageLen].package_uses == 0) {
                     return (
                         <Checkbox
                             onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
@@ -1613,7 +1667,7 @@ const GroupClients = () => {
                         />
                     );
                 } else {
-                    for (const pu of clients[countCheckBox27].packages[0].package_uses) {
+                    for (const pu of clients[countCheckBox27].packages[packageLen].package_uses) {
                         daysPU = pu.time_move.toString();
                         daysPU = `${daysPU[0]}${daysPU[1]}`;
 
@@ -1626,7 +1680,7 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
-                                id_sp = clients[countCheckBox27].packages[0].id_sp;
+                                id_sp = clients[countCheckBox27].packages[packageLen].id_sp;
                                 id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
@@ -1655,9 +1709,10 @@ const GroupClients = () => {
         let monthPU = '';
         let id_sp = 'no';
         let id_resolution = 'no';
+        let packageLen = 0;
         if (clients.length > 0) {
-            try {
-                if (clients[countCheckBox28].packages[0].package_uses == 0) {
+            try {packageLen = clients[countCheckBox28].packages.length - 1;
+                if (clients[countCheckBox28].packages[packageLen].package_uses == 0) {
                     return (
                         <Checkbox
                             onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
@@ -1666,7 +1721,7 @@ const GroupClients = () => {
                         />
                     );
                 } else {
-                    for (const pu of clients[countCheckBox28].packages[0].package_uses) {
+                    for (const pu of clients[countCheckBox28].packages[packageLen].package_uses) {
                         daysPU = pu.time_move.toString();
                         daysPU = `${daysPU[0]}${daysPU[1]}`;
 
@@ -1679,7 +1734,7 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
-                                id_sp = clients[countCheckBox28].packages[0].id_sp;
+                                id_sp = clients[countCheckBox28].packages[packageLen].id_sp;
                                 id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
