@@ -131,7 +131,7 @@ const GroupClients = () => {
                 }
                 return <p>Не указано</p>;
             } catch (e) {
-                console.log(e);
+                let a = e;
             }
         }
     };
@@ -208,8 +208,7 @@ const GroupClients = () => {
                     />
                 );
             } catch (e) {
-                console.log(e);
-                // location.reload();
+                let a = e;
             }
         }
     };
@@ -226,8 +225,8 @@ const GroupClients = () => {
         let id_resolution = 'no';
         let packageLen = 0;
         if (clients.length > 0) {
-            packageLen = clients[countCheckBox1].packages.length - 1;
             try {
+                packageLen = clients[countCheckBox1].packages.length - 1;
                 if (clients[countCheckBox1].packages[packageLen].package_uses == 0) {
                     return (
                         <Checkbox
@@ -942,7 +941,7 @@ const GroupClients = () => {
         let packageLen = 0;
         if (clients.length > 0) {
             try {
-                packageLen = clients[countCheckBox1].packages.length - 1;
+                packageLen = clients[countCheckBox14].packages.length - 1;
                 if (clients[countCheckBox14].packages[packageLen].package_uses == 0) {
                     return (
                         <Checkbox
@@ -1711,7 +1710,8 @@ const GroupClients = () => {
         let id_resolution = 'no';
         let packageLen = 0;
         if (clients.length > 0) {
-            try {packageLen = clients[countCheckBox28].packages.length - 1;
+            try {
+                packageLen = clients[countCheckBox28].packages.length - 1;
                 if (clients[countCheckBox28].packages[packageLen].package_uses == 0) {
                     return (
                         <Checkbox
@@ -1763,9 +1763,11 @@ const GroupClients = () => {
         let monthPU = '';
         let id_sp = 'no';
         let id_resolution = 'no';
+        let packageLen = 0;
         if (clients.length > 0) {
             try {
-                if (clients[countCheckBox29].packages[0].package_uses == 0) {
+                packageLen = clients[countCheckBox29].packages.length - 1;
+                if (clients[countCheckBox29].packages[packageLen].package_uses == 0) {
                     return (
                         <Checkbox
                             onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
@@ -1774,7 +1776,7 @@ const GroupClients = () => {
                         />
                     );
                 } else {
-                    for (const pu of clients[countCheckBox29].packages[0].package_uses) {
+                    for (const pu of clients[countCheckBox29].packages[packageLen].package_uses) {
                         daysPU = pu.time_move.toString();
                         daysPU = `${daysPU[0]}${daysPU[1]}`;
 
@@ -1787,7 +1789,7 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
-                                id_sp = clients[countCheckBox29].packages[0].id_sp;
+                                id_sp = clients[countCheckBox29].packages[packageLen].id_sp;
                                 id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
@@ -1816,9 +1818,11 @@ const GroupClients = () => {
         let monthPU = '';
         let id_sp = 'no';
         let id_resolution = 'no';
+        let packageLen = 0;
         if (clients.length > 0) {
             try {
-                if (clients[countCheckBox30].packages[0].package_uses == 0) {
+                packageLen = clients[countCheckBox30].packages.length - 1;
+                if (clients[countCheckBox30].packages[packageLen].package_uses == 0) {
                     return (
                         <Checkbox
                             onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
@@ -1827,7 +1831,7 @@ const GroupClients = () => {
                         />
                     );
                 } else {
-                    for (const pu of clients[countCheckBox30].packages[0].package_uses) {
+                    for (const pu of clients[countCheckBox30].packages[packageLen].package_uses) {
                         daysPU = pu.time_move.toString();
                         daysPU = `${daysPU[0]}${daysPU[1]}`;
 
@@ -1840,7 +1844,7 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
-                                id_sp = clients[countCheckBox30].packages[0].id_sp;
+                                id_sp = clients[countCheckBox30].packages[packageLen].id_sp;
                                 id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
@@ -1869,9 +1873,11 @@ const GroupClients = () => {
         let monthPU = '';
         let id_sp = 'no';
         let id_resolution = 'no';
+        let packageLen = 0;
         if (clients.length > 0) {
             try {
-                if (clients[countCheckBox31].packages[0].package_uses == 0) {
+                packageLen = clients[countCheckBox31].packages.length - 1;
+                if (clients[countCheckBox31].packages[packageLen].package_uses == 0) {
                     return (
                         <Checkbox
                             onChange={() => handleMarkVisit(recordData, dayOfMonth, id_sp, id_resolution)}
@@ -1880,7 +1886,7 @@ const GroupClients = () => {
                         />
                     );
                 } else {
-                    for (const pu of clients[countCheckBox31].packages[0].package_uses) {
+                    for (const pu of clients[countCheckBox31].packages[packageLen].package_uses) {
                         daysPU = pu.time_move.toString();
                         daysPU = `${daysPU[0]}${daysPU[1]}`;
 
@@ -1893,7 +1899,7 @@ const GroupClients = () => {
                             }
 
                             if (daysPU == dayOfMonth) {
-                                id_sp = clients[countCheckBox31].packages[0].id_sp;
+                                id_sp = clients[countCheckBox31].packages[packageLen].id_sp;
                                 id_resolution = pu.id_resolution;
                                 checked = true;
                                 break;
@@ -1914,121 +1920,7 @@ const GroupClients = () => {
         }
     };
 
-    // let countCheckBox = 0;
-    // let cc = -1;
-    // let pi = 'no';
-    // const checkbox = (recordData, dayOfMonth) => {
-    //     let month = `${selectedDate.toLocaleDateString()[3]}${selectedDate.toLocaleDateString()[4]}`;
-    //     console.log(month);
-    //     countCheckBox++;
-    //     cc++;
-    //     let d = '';
-    //     let checked = false;
-    //     console.log(dayOfMonth);
-    //
-    //     if (clients.length > 0) {
-    //         try {
-    //             cll: for (const cl of clients) {
-    //                 let ch = 0;
-    //                 console.log('pi', pi);
-    //                 if (pi == cl.people_initials) {
-    //                     continue cll;
-    //                 } else {
-    //                     pi = cl.people_initials;
-    //                     console.log('Кол-во проходов', cl.packages[0].package_uses.length, cl.people_initials);
-    //                     if (cl.packages[0].package_uses.length == 0) {
-    //                         // pi = cl.people_initals;
-    //                         console.log('Пустой чекбокс');
-    //                         checked = false;
-    //                         return (
-    //                             <Checkbox
-    //                                 onChange={() => handleMarkVisit(recordData, dayOfMonth)}
-    //                                 checked={checked}
-    //                                 disabled={checked}
-    //                                 size="small"
-    //                             />
-    //                         );
-    //                     } else {
-    //                         // if (checked == true) {
-    //                         //     ch = 0;
-    //                         //     checked = false;
-    //                         //     continue cll;
-    //                         // }
-    //
-    //                         ip: for (const pu of cl.packages[0].package_uses) {
-    //                             d = pu.time_move.toString();
-    //                             d = `${d[0]}${d[1]}`;
-    //
-    //                             if (d[0] == '0') {
-    //                                 d = d[1];
-    //                             }
-    //                             console.log('Дата в api:', d, 'Дата в клетке:', dayOfMonth);
-    //                             if (d != dayOfMonth) {
-    //                                 continue;
-    //                             } else if (d == dayOfMonth) {
-    //                                 pi = cl.people_initials;
-    //                                 console.log(pi);
-    //                                 console.log(pu);
-    //                                 ch = 1;
-    //                                 checked = true;
-    //                                 break ip;
-    //                                 // f++;
-    //                                 // console.log('iayk', countCheckBox);
-    //                                 // console.log(clients[cc].people_initials);
-    //                                 // pi = clients[cc].people_initials;
-    //                                 // console.log('check', ch);
-    //                                 // return (
-    //                                 //     <Checkbox
-    //                                 //         onChange={() => handleMarkVisit(recordData, dayOfMonth)}
-    //                                 //         checked={checked}
-    //                                 //         disabled={checked}
-    //                                 //         size="small"
-    //                                 //     />
-    //                                 // );
-    //                             }
-    //                             console.log('check', ch);
-    //                         }
-    //                         if (ch == 0) {
-    //                             console.log('Пустой чекбокс');
-    //                             checked = false;
-    //                             return (
-    //                                 <Checkbox
-    //                                     onChange={() => handleMarkVisit(recordData, dayOfMonth)}
-    //                                     checked={checked}
-    //                                     disabled={checked}
-    //                                     size="small"
-    //                                 />
-    //                             );
-    //                         } else {
-    //                             console.log('Отмеченный чекбокс');
-    //                             return (
-    //                                 <Checkbox
-    //                                     onChange={() => handleMarkVisit(recordData, dayOfMonth)}
-    //                                     checked={checked}
-    //                                     disabled={checked}
-    //                                     size="small"
-    //                                 />
-    //                             );
-    //                         }
-    //                     }
-    //                     // return (
-    //                     //     <Checkbox
-    //                     //         onChange={() => handleMarkVisit(recordData, dayOfMonth)}
-    //                     //         checked={checked}
-    //                     //         disabled={checked}
-    //                     //         size="small"
-    //                     //     />
-    //                     // );
-    //                 }
-    //             }
-    //         } catch (e) {
-    //             let a = e;
-    //         }
-    //     }
-    // };
-
     const linkFioChacnge = (fio, id_acc, mosreg, datePayment, payment, certificateDate, contractDate) => {
-        console.log(fio, id_acc);
         loadPostClient(fio, id_acc, mosreg, datePayment, payment, certificateDate, contractDate);
     };
 
@@ -2045,10 +1937,11 @@ const GroupClients = () => {
         let certificateDate;
         let contractDate;
         let db = [];
+        let packageLen = 0;
         countFio++;
         if (clients.length > 0) {
-            // console.log(clients[countFio]);
             try {
+                packageLen = clients[countFio].packages.length - 1;
                 identifiers = clients[countFio].identifiers;
                 for (const c of identifiers) {
                     if (c.rule == 'Клиент САЛЮТ') {
@@ -2059,8 +1952,8 @@ const GroupClients = () => {
                 db = checkMos.data;
                 fio = clients[countFio].people_initials;
                 id_acc = clients[countFio].id_acc;
-                datePayment = new Date(clients[countFio].packages[0].date_start).toLocaleDateString();
-                payment = clients[countFio].packages[0].price;
+                datePayment = new Date(clients[countFio].packages[packageLen].date_start).toLocaleDateString();
+                payment = clients[countFio].packages[packageLen].price;
                 for (const d of db) {
                     if (id_acc == d.id_acc) {
                         mosreg = d.mosreg;
@@ -2090,7 +1983,7 @@ const GroupClients = () => {
                     </a>
                 );
             } catch (e) {
-                console.log(e);
+                let a = e;
             }
         }
     };
@@ -2108,14 +2001,16 @@ const GroupClients = () => {
         let certificateDate;
         let contractDate;
         let db = [];
+        let packageLen = 0;
         count++;
         if (clients.length > 0) {
             db = checkMos.data;
             try {
+                packageLen = clients[count].packages.length - 1;
                 fio = clients[count].people_initials;
                 id_acc = clients[count].id_acc;
-                datePayment = new Date(clients[count].packages[0].date_start).toLocaleDateString();
-                payment = clients[count].packages[0].price;
+                datePayment = new Date(clients[count].packages[packageLen].date_start).toLocaleDateString();
+                payment = clients[count].packages[packageLen].price;
                 for (const d of db) {
                     if (id_acc == d.id_acc) {
                         certificateDate = d.certificateDate;
@@ -2151,8 +2046,7 @@ const GroupClients = () => {
                     />
                 );
             } catch (e) {
-                console.log(e);
-                // location.reload();
+                let a = e;
             }
         }
     };
