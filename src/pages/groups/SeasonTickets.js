@@ -193,9 +193,7 @@ const SeasonTickets = () => {
                                 >{`${myPdf[indexOne].fio}               Платёжный № ${myPdf[indexOne].identifier}`}</Text>
                                 {/*<Text style={styles.Text}>{`Телефон: ${clientPhone}`}</Text>*/}
                                 {/*<Text style={styles.Text}>Дата рождения: {clientDate}</Text>*/}
-                                <Text style={styles.Text}>
-                                    Период действия: {myPdf[indexOne].date_start} - {myPdf[indexOne].date_end}
-                                </Text>
+                                <Text style={styles.Text}>Период действия: __________________________________________________________</Text>
                                 <Text style={styles.Text}>Стоимость:______________руб.</Text>
                                 <Text style={styles.Text}>Тренер: {myPdf[indexOne].tg_instr_initials}</Text>
                                 <Text style={styles.Text}>Группа: {myPdf[indexOne].tg_name}</Text>
@@ -269,9 +267,7 @@ const SeasonTickets = () => {
                                 >{`${myPdf[indexTwo].fio}               Платёжный № ${myPdf[indexTwo].identifier}`}</Text>
                                 {/*<Text style={styles.Text}>{`Телефон: ${clientPhone}`}</Text>*/}
                                 {/*<Text style={styles.Text}>Дата рождения: {clientDate}</Text>*/}
-                                <Text style={styles.Text}>
-                                    Период действия: {myPdf[indexTwo].date_start} - {myPdf[indexTwo].date_end}
-                                </Text>
+                                <Text style={styles.Text}>Период действия: __________________________________________________________</Text>
                                 <Text style={styles.Text}>Стоимость:______________руб.</Text>
                                 <Text style={styles.Text}>Тренер: {myPdf[indexTwo].tg_instr_initials}</Text>
                                 <Text style={styles.Text}>Группа: {myPdf[indexTwo].tg_name}</Text>
@@ -347,9 +343,7 @@ const SeasonTickets = () => {
                                 >{`${myPdf[indexThree].fio}             Платёжный № ${myPdf[indexThree].identifier}`}</Text>
                                 {/*<Text style={styles.Text}>{`Телефон: ${clientPhone}`}</Text>*/}
                                 {/*<Text style={styles.Text}>Дата рождения: {clientDate}</Text>*/}
-                                <Text style={styles.Text}>
-                                    Период действия: {myPdf[indexThree].date_start} - {myPdf[indexThree].date_end}
-                                </Text>
+                                <Text style={styles.Text}>Период действия: __________________________________________________________</Text>
                                 <Text style={styles.Text}>Стоимость:______________руб.</Text>
                                 <Text style={styles.Text}>Тренер: {myPdf[indexThree].tg_instr_initials}</Text>
                                 <Text style={styles.Text}>Группа: {myPdf[indexThree].tg_name}</Text>
@@ -434,9 +428,7 @@ const SeasonTickets = () => {
                                 >{`${myPdf[indexOne].fio}               Платёжный № ${myPdf[indexOne].identifier}`}</Text>
                                 {/*<Text style={styles.Text}>{`Телефон: ${clientPhone}`}</Text>*/}
                                 {/*<Text style={styles.Text}>Дата рождения: {clientDate}</Text>*/}
-                                <Text style={styles.Text}>
-                                    Период действия: {myPdf[indexOne].date_start} - {myPdf[indexOne].date_end}
-                                </Text>
+                                <Text style={styles.Text}>Период действия: __________________________________________________________</Text>
                                 <Text style={styles.Text}>Стоимость:______________руб.</Text>
                                 <Text style={styles.Text}>Тренер: {myPdf[indexOne].tg_instr_initials}</Text>
                                 <Text style={styles.Text}>Группа: {myPdf[indexOne].tg_name}</Text>
@@ -510,9 +502,7 @@ const SeasonTickets = () => {
                                 >{`${myPdf[indexTwo].fio}               Платёжный № ${myPdf[indexTwo].identifier}`}</Text>
                                 {/*<Text style={styles.Text}>{`Телефон: ${clientPhone}`}</Text>*/}
                                 {/*<Text style={styles.Text}>Дата рождения: {clientDate}</Text>*/}
-                                <Text style={styles.Text}>
-                                    Период действия: {myPdf[indexTwo].date_start} - {myPdf[indexTwo].date_end}
-                                </Text>
+                                <Text style={styles.Text}>Период действия: __________________________________________________________</Text>
                                 <Text style={styles.Text}>Стоимость:______________руб.</Text>
                                 <Text style={styles.Text}>Тренер: {myPdf[indexTwo].tg_instr_initials}</Text>
                                 <Text style={styles.Text}>Группа: {myPdf[indexTwo].tg_name}</Text>
@@ -599,9 +589,7 @@ const SeasonTickets = () => {
                                 >{`${myPdf[indexOne].fio}               Платёжный № ${myPdf[indexOne].identifier}`}</Text>
                                 {/*<Text style={styles.Text}>{`Телефон: ${clientPhone}`}</Text>*/}
                                 {/*<Text style={styles.Text}>Дата рождения: {clientDate}</Text>*/}
-                                <Text style={styles.Text}>
-                                    Период действия: {myPdf[indexOne].date_start} - {myPdf[indexOne].date_end}
-                                </Text>
+                                <Text style={styles.Text}>Период действия: __________________________________________________________</Text>
                                 <Text style={styles.Text}>Стоимость:______________руб.</Text>
                                 <Text style={styles.Text}>Тренер: {myPdf[indexOne].tg_instr_initials}</Text>
                                 <Text style={styles.Text}>Группа: {myPdf[indexOne].tg_name}</Text>
@@ -695,7 +683,7 @@ const SeasonTickets = () => {
                                     {/*<Text style={styles.Text}>{`Телефон: ${clientPhone}`}</Text>*/}
                                     {/*<Text style={styles.Text}>Дата рождения: {clientDate}</Text>*/}
                                     <Text style={styles.Text}>
-                                        Период действия: {myPdf[indexOne].date_start} - {myPdf[indexOne].date_end}
+                                        Период действия: __________________________________________________________
                                     </Text>
                                     <Text style={styles.Text}>Стоимость:______________руб.</Text>
                                     <Text style={styles.Text}>Тренер: {myPdf[indexOne].tg_instr_initials}</Text>
@@ -771,7 +759,7 @@ const SeasonTickets = () => {
                                     {/*<Text style={styles.Text}>{`Телефон: ${clientPhone}`}</Text>*/}
                                     {/*<Text style={styles.Text}>Дата рождения: {clientDate}</Text>*/}
                                     <Text style={styles.Text}>
-                                        Период действия: {myPdf[indexTwo].date_start} - {myPdf[indexTwo].date_end}
+                                        Период действия: __________________________________________________________
                                     </Text>
                                     <Text style={styles.Text}>Стоимость:______________руб.</Text>
                                     <Text style={styles.Text}>Тренер: {myPdf[indexTwo].tg_instr_initials}</Text>
@@ -849,7 +837,7 @@ const SeasonTickets = () => {
                                     {/*<Text style={styles.Text}>{`Телефон: ${clientPhone}`}</Text>*/}
                                     {/*<Text style={styles.Text}>Дата рождения: {clientDate}</Text>*/}
                                     <Text style={styles.Text}>
-                                        Период действия: {myPdf[indexThree].date_start} - {myPdf[indexThree].date_end}
+                                        Период действия: __________________________________________________________
                                     </Text>
                                     <Text style={styles.Text}>Стоимость:______________руб.</Text>
                                     <Text style={styles.Text}>Тренер: {myPdf[indexThree].tg_instr_initials}</Text>
@@ -925,7 +913,7 @@ const SeasonTickets = () => {
                                     {/*<Text style={styles.Text}>{`Телефон: ${clientPhone}`}</Text>*/}
                                     {/*<Text style={styles.Text}>Дата рождения: {clientDate}</Text>*/}
                                     <Text style={styles.Text}>
-                                        Период действия: {myPdf[indexFour].date_start} - {myPdf[indexFour].date_end}
+                                        Период действия: __________________________________________________________
                                     </Text>
                                     <Text style={styles.Text}>Стоимость:______________руб.</Text>
                                     <Text style={styles.Text}>Тренер: {myPdf[indexFour].tg_instr_initials}</Text>
@@ -1010,9 +998,7 @@ const SeasonTickets = () => {
                             <Text style={styles.TextFio}>{`${myPdf[0].fio}              Платёжный № ${myPdf[0].identifier}`}</Text>
                             {/*<Text style={styles.Text}>{`Телефон: ${clientPhone}`}</Text>*/}
                             {/*<Text style={styles.Text}>Дата рождения: {clientDate}</Text>*/}
-                            <Text style={styles.Text}>
-                                Период действия: {myPdf[0].date_start} - {myPdf[0].date_end}
-                            </Text>
+                            <Text style={styles.Text}>Период действия: __________________________________________________________</Text>
                             <Text style={styles.Text}>Стоимость:______________руб.</Text>
                             <Text style={styles.Text}>Тренер: {myPdf[0].tg_instr_initials}</Text>
                             <Text style={styles.Text}>Группа: {myPdf[0].tg_name}</Text>
@@ -1100,9 +1086,7 @@ const SeasonTickets = () => {
                             >{`${myPdf[indexOne].fio}               Платёжный № ${myPdf[indexOne].identifier}`}</Text>
                             {/*<Text style={styles.Text}>{`Телефон: ${clientPhone}`}</Text>*/}
                             {/*<Text style={styles.Text}>Дата рождения: {clientDate}</Text>*/}
-                            <Text style={styles.Text}>
-                                Период действия: {myPdf[indexOne].date_start} - {myPdf[indexOne].date_end}
-                            </Text>
+                            <Text style={styles.Text}>Период действия: __________________________________________________________</Text>
                             <Text style={styles.Text}>Стоимость:______________руб.</Text>
                             <Text style={styles.Text}>Тренер: {myPdf[indexOne].tg_instr_initials}</Text>
                             <Text style={styles.Text}>Группа: {myPdf[indexOne].tg_name}</Text>
@@ -1176,9 +1160,7 @@ const SeasonTickets = () => {
                             >{`${myPdf[indexTwo].fio}               Платёжный № ${myPdf[indexTwo].identifier}`}</Text>
                             {/*<Text style={styles.Text}>{`Телефон: ${clientPhone}`}</Text>*/}
                             {/*<Text style={styles.Text}>Дата рождения: {clientDate}</Text>*/}
-                            <Text style={styles.Text}>
-                                Период действия: {myPdf[indexTwo].date_start} - {myPdf[indexTwo].date_end}
-                            </Text>
+                            <Text style={styles.Text}>Период действия: __________________________________________________________</Text>
                             <Text style={styles.Text}>Стоимость:______________руб.</Text>
                             <Text style={styles.Text}>Тренер: {myPdf[indexTwo].tg_instr_initials}</Text>
                             <Text style={styles.Text}>Группа: {myPdf[indexTwo].tg_name}</Text>

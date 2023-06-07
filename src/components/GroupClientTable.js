@@ -16,16 +16,46 @@ const GroupClientTable = (props) => {
         fontSize: '8pt'
     };
 
+    const sti = {
+        //position: '-webkit-sticky',
+        position: 'sticky',
+        background: '#fff',
+        fontSize: '8pt',
+        left: 0,
+        zIndex: 1
+    };
+
     return (
         <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                 <TableHead>
                     <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                        {columns.map((headCell) => (
-                            <TableCell style={customColumnStyle} className="Cell" key={headCell.label} align={'center'} padding="checkbox">
-                                <div className="vertical">{headCell.label}</div>
-                            </TableCell>
-                        ))}
+                        {columns.map((headCell) => {
+                            if (headCell.label == 'ФИО') {
+                                return (
+                                    <TableCell style={sti} className="Cell" key={headCell.label} align={'center'} padding="checkbox">
+                                        <div className="vertical">{headCell.label}</div>
+                                    </TableCell>
+                                );
+                            } else {
+                                return (
+                                    <TableCell
+                                        style={customColumnStyle}
+                                        className="Cell"
+                                        key={headCell.label}
+                                        align={'center'}
+                                        padding="checkbox"
+                                    >
+                                        <div className="vertical">{headCell.label}</div>
+                                    </TableCell>
+                                );
+                            }
+                        })}
+                        {/*{columns.map((headCell) => (*/}
+                        {/*    <TableCell style={customColumnStyle} className="Cell" key={headCell.label} align={'center'} padding="checkbox">*/}
+                        {/*        <div className="vertical">{headCell.label}</div>*/}
+                        {/*    </TableCell>*/}
+                        {/*))}*/}
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -37,19 +67,35 @@ const GroupClientTable = (props) => {
                                 onClick={() => handleRowClick(contentEntry)}
                             >
                                 {columns.map((column) => {
-                                    if (contentEntry.hasOwnProperty(column.field)) {
-                                        const value = contentEntry[column.field];
+                                    if (column.label == 'ФИО') {
+                                        if (contentEntry.hasOwnProperty(column.field)) {
+                                            const value = contentEntry[column.field];
+                                            return (
+                                                <TableCell padding="checkbox" style={sti} className="Cell" key={column.label}>
+                                                    {column.render ? column.render(contentEntry) : value}
+                                                </TableCell>
+                                            );
+                                        }
+                                        return (
+                                            <TableCell padding="checkbox" style={sti} className="Cell" key={column.label}>
+                                                {column.render && column.render(contentEntry)}
+                                            </TableCell>
+                                        );
+                                    } else {
+                                        if (contentEntry.hasOwnProperty(column.field)) {
+                                            const value = contentEntry[column.field];
+                                            return (
+                                                <TableCell padding="checkbox" style={customColumnStyle} className="Cell" key={column.label}>
+                                                    {column.render ? column.render(contentEntry) : value}
+                                                </TableCell>
+                                            );
+                                        }
                                         return (
                                             <TableCell padding="checkbox" style={customColumnStyle} className="Cell" key={column.label}>
-                                                {column.render ? column.render(contentEntry) : value}
+                                                {column.render && column.render(contentEntry)}
                                             </TableCell>
                                         );
                                     }
-                                    return (
-                                        <TableCell padding="checkbox" style={customColumnStyle} className="Cell" key={column.label}>
-                                            {column.render && column.render(contentEntry)}
-                                        </TableCell>
-                                    );
                                 })}
                             </TableRow>
                         );

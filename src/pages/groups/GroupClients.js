@@ -164,14 +164,16 @@ const GroupClients = () => {
         let payment;
         let certificateDate;
         let db = [];
+        let packagLen = 0;
         countContr++;
         if (clients.length > 0) {
             db = checkMos.data;
             try {
+                packagLen = clients[countContr].packages.length - 1;
                 fio = clients[countContr].people_initials;
                 id_acc = clients[countContr].id_acc;
-                datePayment = new Date(clients[countContr].packages[0].date_start).toLocaleDateString();
-                payment = clients[countContr].packages[0].price;
+                datePayment = new Date(clients[countContr].packages[packagLen].date_start).toLocaleDateString();
+                payment = clients[countContr].packages[packagLen].price;
                 for (const d of db) {
                     if (id_acc == d.id_acc) {
                         mosreg = d.mosreg;
