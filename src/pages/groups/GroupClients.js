@@ -39,7 +39,7 @@ const GroupClients = () => {
 
     const { id } = useParams();
     const [clients, setClients] = useState([]);
-    let [checkMos] = useState([]);
+    const [checkMos, setCheckMos] = useState([]);
     const [selectedDate, setSelectedDate] = useState(defaultDate);
     const [daysInMonth, setDaysInMonth] = useState(0);
     const [columns, setColumns] = useState([...c]);
@@ -101,6 +101,8 @@ const GroupClients = () => {
         const response = await controller.getGroupCustomers(id, selectedDate);
         setClients(response.tgclients);
         const visits = response.tgclients;
+        const resCheckMos = await expressController.getClients();
+        setCheckMos(resCheckMos);
         setVisits(visits);
     };
 
@@ -1990,10 +1992,6 @@ const GroupClients = () => {
         }
     };
 
-    const loadGetClient = async () => {
-        checkMos = await expressController.getClients();
-    };
-
     let count = -1;
     const mosregCheckBox = () => {
         let fio;
@@ -2091,7 +2089,6 @@ const GroupClients = () => {
     };
 
     useEffect(() => {
-        loadGetClient();
         setColumns([]);
         setTimeout(() => {
             if (daysInMonth == 28) {
