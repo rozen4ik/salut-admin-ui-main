@@ -1,4 +1,4 @@
-import { Box, Checkbox, Grid, TextField } from '@mui/material';
+import { Box, Button, Checkbox, Grid, TextField } from '@mui/material';
 import MainCard from '../../components/MainCard';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
@@ -7,13 +7,14 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import './third-party/style.css';
-import { useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 
 const ClientDetail = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const params = useParams();
     const id_acc = params.id_acc;
     const identifier = searchParams.get('identifier');
+    const id_sp = searchParams.get('id_sp');
     const [client, setClient] = useState([]);
     let [isChecked] = useState(false);
     let [contractValue] = useState(false);
@@ -108,6 +109,11 @@ const ClientDetail = () => {
                 <Grid container spacing={1}>
                     <Grid item xs={12}>
                         <h4>Основная информация:</h4>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Button component={Link} to={`/select-group?id_sp=${id_sp}`} variant="contained" color="primary">
+                            Переместить в другую группу
+                        </Button>
                     </Grid>
                     <Grid item xs={12}>
                         <h4>Идентификатор:</h4>

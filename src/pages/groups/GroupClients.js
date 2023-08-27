@@ -80,8 +80,6 @@ const GroupClients = () => {
 
     const handleMarkVisit = async (recordData, dayOfMonth, id_sp, id_resolution) => {
         if (id_sp != 'no' && id_resolution != 'no') {
-            console.log('vis', id_sp, id_resolution);
-            console.log('ap', await controller.deleteVisit(id_sp, id_resolution));
             await loadData();
         } else {
             const dateToMark = new Date(selectedDate);
@@ -1966,7 +1964,7 @@ const GroupClients = () => {
                         return (
                             <a
                                 onClick={() => linkFioChacnge(fio, id_acc, mosreg, datePayment, payment, certificateDate, contractDate)}
-                                href={`http://localhost:3000/#/client-detail/${id_acc}?identifier=${identifier}`}
+                                href={`http://localhost:3000/#/client-detail/${id_acc}?identifier=${identifier}&id_sp=${clients[countFio].packages[packageLen].id_sp}`}
                                 style={{ 'text-decoration': 'none', color: 'black' }}
                             >
                                 {fio}
@@ -1980,7 +1978,7 @@ const GroupClients = () => {
                 return (
                     <a
                         onClick={() => linkFioChacnge(fio, id_acc, mosreg, datePayment, payment, certificateDate, contractDate)}
-                        href={`http://localhost:3000/#/client-detail/${id_acc}?identifier=${identifier}`}
+                        href={`http://localhost:3000/#/client-detail/${id_acc}?identifier=${identifier}&id_sp=${clients[countFio].packages[packageLen].id_sp}`}
                         style={{ 'text-decoration': 'none', color: 'black' }}
                     >
                         {fio}
