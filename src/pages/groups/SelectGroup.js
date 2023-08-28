@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from '@mui/material';
 import MainCard from '../../components/MainCard';
 import CTable from '../../components/CTable';
@@ -5,6 +6,7 @@ import { useNavigate, useParams } from 'react-router';
 import { useEffect, useState } from 'react';
 import controller from '../../api/controller';
 import { useSearchParams } from 'react-router-dom';
+import { id } from 'date-fns/locale';
 
 const SelectGroup = () => {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -13,6 +15,7 @@ const SelectGroup = () => {
     const [groups, setGroups] = useState([]);
     const id_sp = searchParams.get('id_sp');
     const [open, setOpen] = React.useState(false);
+    const [id_group, setIdGroup] = useState([]);
 
     const columns = [
         { label: 'id', field: 'tgt_id' },
@@ -20,12 +23,21 @@ const SelectGroup = () => {
         { label: 'Комментарий', field: 'tgt_comment' }
     ];
 
-    console.log(id_sp);
+    const loadMoveClientGroup = async (id_sp, id_group) => {
+        let response = await controller.moveClientInGroup(id_sp, id_group);
+        console.log(response);
+    };
 
-    // const navigate = useNavigate();
+    const moveClient = () => {
+        console.log(id_sp, id_group);
+        loadMoveClientGroup(id_sp, id_group);
+        console.log(id_sp, id_group);
+        setOpen(false);
+    };
 
-    const onRowClick = (row) => {
+    const handleOpen = (row) => {
         setOpen(true);
+        setIdGroup(row.tgt_id);
     };
 
     const handleClose = () => {
@@ -47,18 +59,16 @@ const SelectGroup = () => {
     return (
         <MainCard title="Все группы">
             <Box>
-                <CTable columns={columns} content={groups} onRowClick={onRowClick} keyProp={'tgt_id'} />
+                <CTable columns={columns} content={groups} onRowClick={handleOpen} keyProp={'tgt_id'} />
                 <Dialog open={open} onClose={handleClose}>
-                    <DialogTitle>Subscribe</DialogTitle>
+                    <DialogTitle>Подтверждение переноса</DialogTitle>
                     <DialogContent>
-                        <DialogContentText>
-                            To subscribe to this website, please enter your email address here. We will send updates occasionally.
-                        </DialogContentText>
-                        <TextField margin="dense" id="name" label="Email Address" type="email" fullWidth variant="standard" />
+                        {/*<DialogContentText>Для подтверждения переноса клиента в спортивную группу введите свой логин.</DialogContentText>*/}
+                        {/*<TextField margin="dense" id="name" label="Идентификатор" type="email" fullWidth variant="standard" />*/}
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={handleClose}>Cancel</Button>
-                        <Button onClick={handleClose}>Subscribe</Button>
+                        <Button onClick={handleClose}>Закрыть</Button>
+                        <Button onClick={moveClient}>Перенести</Button>
                     </DialogActions>
                 </Dialog>
             </Box>

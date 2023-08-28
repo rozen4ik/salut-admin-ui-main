@@ -77,6 +77,13 @@ class Controller {
             (response) => response.data
         );
     }
+
+    async moveClientInGroup(id_sp, id_group) {
+        console.log(id_sp, id_group);
+        return get(`/json-iapi/iapi-instr?act=tgclientchg&id_desk=1001&id_emp=7&id_sp=${id_sp}&new_id_tg=${id_group}&force=1`).then(
+            (response) => response.data
+        );
+    }
 }
 
 function formatDate(date) {
