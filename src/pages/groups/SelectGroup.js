@@ -28,10 +28,11 @@ const SelectGroup = () => {
         console.log(response);
     };
 
+    const navigate = useNavigate();
+
     const moveClient = () => {
-        console.log(id_sp, id_group);
         loadMoveClientGroup(id_sp, id_group);
-        console.log(id_sp, id_group);
+        navigate('/');
         setOpen(false);
     };
 
