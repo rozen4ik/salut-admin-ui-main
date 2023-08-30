@@ -46,6 +46,9 @@ const GroupClients = () => {
     const [visits, setVisits] = useState([]);
     let [isChecked] = useState(false);
     let [contractValue] = useState(false);
+    const debugUrl = 'localhost:3000';
+    const releaseUrl = '81.200.31.254:33366';
+    const url = debugUrl;
 
     const findActiveIdentifier = (identifiers) => {
         const lastActiveIdentifier = identifiers
@@ -1964,7 +1967,7 @@ const GroupClients = () => {
                         return (
                             <a
                                 onClick={() => linkFioChacnge(fio, id_acc, mosreg, datePayment, payment, certificateDate, contractDate)}
-                                href={`http://localhost:3000/#/client-detail/${id_acc}?identifier=${identifier}&id_sp=${clients[countFio].packages[packageLen].id_sp}`}
+                                href={`http://${url}/#/client-detail/${id_acc}?identifier=${identifier}&id_sp=${clients[countFio].packages[packageLen].id_sp}`}
                                 style={{ 'text-decoration': 'none', color: 'black' }}
                             >
                                 {fio}
@@ -1978,7 +1981,7 @@ const GroupClients = () => {
                 return (
                     <a
                         onClick={() => linkFioChacnge(fio, id_acc, mosreg, datePayment, payment, certificateDate, contractDate)}
-                        href={`http://localhost:3000/#/client-detail/${id_acc}?identifier=${identifier}&id_sp=${clients[countFio].packages[packageLen].id_sp}`}
+                        href={`http://${url}/#/client-detail/${id_acc}?identifier=${identifier}&id_sp=${clients[countFio].packages[packageLen].id_sp}`}
                         style={{ 'text-decoration': 'none', color: 'black' }}
                     >
                         {fio}
