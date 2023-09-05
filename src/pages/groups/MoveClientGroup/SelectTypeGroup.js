@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from '@mui/material';
-import MainCard from '../../components/MainCard';
-import CTable from '../../components/CTable';
+import MainCard from '../../../components/MainCard';
+import CTable from '../../../components/CTable';
 import { useNavigate, useParams } from 'react-router';
 import { useEffect, useState } from 'react';
-import controller from '../../api/controller';
+import controller from '../../../api/controller';
 import { useSearchParams } from 'react-router-dom';
 import { id } from 'date-fns/locale';
 
-const SelectGroup = () => {
+const SelectTypeGroup = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const userData = JSON.parse(localStorage.getItem('user'));
     const instrId = userData?.employee.id_emp;
@@ -30,19 +30,8 @@ const SelectGroup = () => {
 
     const navigate = useNavigate();
 
-    const moveClient = () => {
-        loadMoveClientGroup(id_sp, id_group);
-        navigate('/');
-        setOpen(false);
-    };
-
-    const handleOpen = (row) => {
-        setOpen(true);
-        setIdGroup(row.tgt_id);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
+    const onRowClick = (row) => {
+        navigate('/select-instr/' + row.tgt_id);
     };
 
     const loadData = async () => {
@@ -60,21 +49,21 @@ const SelectGroup = () => {
     return (
         <MainCard title="Все группы">
             <Box>
-                <CTable columns={columns} content={groups} onRowClick={handleOpen} keyProp={'tgt_id'} />
-                <Dialog open={open} onClose={handleClose}>
-                    <DialogTitle>Подтверждение переноса</DialogTitle>
-                    <DialogContent>
-                        {/*<DialogContentText>Для подтверждения переноса клиента в спортивную группу введите свой логин.</DialogContentText>*/}
-                        {/*<TextField margin="dense" id="name" label="Идентификатор" type="email" fullWidth variant="standard" />*/}
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={handleClose}>Закрыть</Button>
-                        <Button onClick={moveClient}>Перенести</Button>
-                    </DialogActions>
-                </Dialog>
+                <CTable columns={columns} content={groups} onRowClick={onRowClick} keyProp={'tgt_id'} />
+                {/*<Dialog open={open} onClose={handleClose}>*/}
+                {/*    <DialogTitle>Подтверждение переноса</DialogTitle>*/}
+                {/*    <DialogContent>*/}
+                {/*        /!*<DialogContentText>Для подтверждения переноса клиента в спортивную группу введите свой логин.</DialogContentText>*!/*/}
+                {/*        /!*<TextField margin="dense" id="name" label="Идентификатор" type="email" fullWidth variant="standard" />*!/*/}
+                {/*    </DialogContent>*/}
+                {/*    <DialogActions>*/}
+                {/*        <Button onClick={handleClose}>Закрыть</Button>*/}
+                {/*        <Button onClick={moveClient}>Перенести</Button>*/}
+                {/*    </DialogActions>*/}
+                {/*</Dialog>*/}
             </Box>
         </MainCard>
     );
 };
 
-export default SelectGroup;
+export default SelectTypeGroup;

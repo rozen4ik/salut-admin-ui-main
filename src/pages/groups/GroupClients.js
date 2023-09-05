@@ -47,7 +47,7 @@ const GroupClients = () => {
     let [isChecked] = useState(false);
     let [contractValue] = useState(false);
     const debugUrl = 'localhost:3000';
-    const releaseUrl = '81.200.31.254:33366';
+    const releaseUrl = '81.200.31.254:3000';
     const url = debugUrl;
 
     const findActiveIdentifier = (identifiers) => {

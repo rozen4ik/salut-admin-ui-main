@@ -111,7 +111,7 @@ const ClientDetail = () => {
                         <h4>Основная информация:</h4>
                     </Grid>
                     <Grid item xs={12}>
-                        <Button component={Link} to={`/select-group?id_sp=${id_sp}`} variant="contained" color="primary">
+                        <Button component={Link} to={`/select-type-group?id_sp=${id_sp}`} variant="contained" color="primary">
                             Переместить в другую группу
                         </Button>
                     </Grid>

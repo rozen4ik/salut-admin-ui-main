@@ -8,7 +8,9 @@ import RentReport from '../pages/reports/RentReport';
 import AddClient from '../pages/groups/AddClient';
 import ClientDetail from '../pages/groups/ClientDetail';
 import SeasonTickets from '../pages/groups/SeasonTickets';
-import SelectGroup from '../pages/groups/SelectGroup';
+import SelectTypeGroup from '../pages/groups/MoveClientGroup/SelectTypeGroup';
+import SelectInstr from '../pages/groups/MoveClientGroup/SelectInstr';
+import SelectGroup from '../pages/groups/MoveClientGroup/SelectGroup';
 
 const DashboardDefault = Loadable(lazy(() => import('pages/dashboard')));
 const SamplePage = Loadable(lazy(() => import('pages/extra-pages/SamplePage')));
@@ -52,6 +54,14 @@ const MainRoutes = {
         {
             path: '/client-detail/:id_acc',
             element: <ClientDetail />
+        },
+        {
+            path: '/select-type-group',
+            element: <SelectTypeGroup />
+        },
+        {
+            path: '/select-instr/:tgt_id',
+            element: <SelectInstr />
         },
         {
             path: '/select-group',
