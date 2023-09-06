@@ -83,6 +83,7 @@ const GroupClients = () => {
 
     const handleMarkVisit = async (recordData, dayOfMonth, id_sp, id_resolution) => {
         if (id_sp != 'no' && id_resolution != 'no') {
+            await controller.deleteVisit(id_sp, id_resolution);
             await loadData();
         } else {
             const dateToMark = new Date(selectedDate);
@@ -120,6 +121,7 @@ const GroupClients = () => {
         countCer++;
         if (clients.length > 0) {
             db = checkMos.data;
+            console.log(clients[countCer]);
             try {
                 id_acc = clients[countCer].id_acc;
                 for (const d of db) {

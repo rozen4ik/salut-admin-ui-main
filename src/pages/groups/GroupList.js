@@ -9,7 +9,6 @@ const GroupList = () => {
     const userData = JSON.parse(localStorage.getItem('user'));
     const instrId = userData?.employee.id_emp;
     const [groups, setGroups] = useState([]);
-
     const columns = [
         { label: 'Название', field: 'tg_name' },
         { label: 'Дата обновления', field: 'tg_date_change' },

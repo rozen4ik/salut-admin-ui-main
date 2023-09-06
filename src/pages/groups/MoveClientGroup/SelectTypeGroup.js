@@ -23,10 +23,10 @@ const SelectTypeGroup = () => {
         { label: 'Комментарий', field: 'tgt_comment' }
     ];
 
-    const loadMoveClientGroup = async (id_sp, id_group) => {
-        let response = await controller.moveClientInGroup(id_sp, id_group);
-        console.log(response);
-    };
+    // const loadMoveClientGroup = async (id_sp, id_group) => {
+    //     let response = await controller.moveClientInGroup(id_sp, id_group);
+    //     console.log(response);
+    // };
 
     const navigate = useNavigate();
 
@@ -47,7 +47,7 @@ const SelectTypeGroup = () => {
     }, []);
 
     return (
-        <MainCard title="Все группы">
+        <MainCard title="Типы групп:">
             <Box>
                 <CTable columns={columns} content={groups} onRowClick={onRowClick} keyProp={'tgt_id'} />
                 {/*<Dialog open={open} onClose={handleClose}>*/}
