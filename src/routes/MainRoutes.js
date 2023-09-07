@@ -8,7 +8,6 @@ import RentReport from '../pages/reports/RentReport';
 import AddClient from '../pages/groups/AddClient';
 import ClientDetail from '../pages/groups/ClientDetail';
 import SeasonTickets from '../pages/groups/SeasonTickets';
-import SelectTypeGroup from '../pages/groups/MoveClientGroup/SelectTypeGroup';
 import SelectInstr from '../pages/groups/MoveClientGroup/SelectInstr';
 import SelectGroup from '../pages/groups/MoveClientGroup/SelectGroup';
 
@@ -56,15 +55,11 @@ const MainRoutes = {
             element: <ClientDetail />
         },
         {
-            path: '/select-type-group',
-            element: <SelectTypeGroup />
-        },
-        {
-            path: '/select-instr/:tgt_id',
+            path: '/select-instr',
             element: <SelectInstr />
         },
         {
-            path: '/select-group',
+            path: '/select-group/:id_instr',
             element: <SelectGroup />
         },
         {

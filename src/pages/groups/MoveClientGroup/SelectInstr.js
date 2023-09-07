@@ -1,22 +1,26 @@
-import { useParams } from 'react-router';
+import { useNavigate } from 'react-router';
 import { useEffect, useState } from 'react';
 import controller from '../../../api/controller';
 import MainCard from '../../../components/MainCard';
 import { Box } from '@mui/material';
 import CTable from '../../../components/CTable';
 import * as React from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 const SelectInstr = () => {
-    const params = useParams();
-    const tgt_id = params.tgt_id;
     const [profiles, SetProfiles] = useState([]);
-    const [instrlist, SetInstrList] = useState([]);
-
-    let tren = [];
+    const [searchParams, setSearchParams] = useSearchParams();
+    const id_sp = searchParams.get('id_sp');
     const columns = [
         { label: 'id', field: 'id_emp' },
         { label: 'Имя', field: 'emp_name' }
     ];
+
+    const navigate = useNavigate();
+
+    const onRowClick = (row) => {
+        navigate('/select-group/' + row.id_emp + '?id_sp=' + id_sp);
+    };
 
     const GetProfiles = async () => {
         const response = await controller.getProfiles();
@@ -30,18 +34,7 @@ const SelectInstr = () => {
     return (
         <MainCard title="Треннера:">
             <Box>
-                <CTable columns={columns} content={profiles} keyProp={profiles.id_emp} />
-                {/*<Dialog open={open} onClose={handleClose}>*/}
-                {/*    <DialogTitle>Подтверждение переноса</DialogTitle>*/}
-                {/*    <DialogContent>*/}
-                {/*        /!*<DialogContentText>Для подтверждения переноса клиента в спортивную группу введите свой логин.</DialogContentText>*!/*/}
-                {/*        /!*<TextField margin="dense" id="name" label="Идентификатор" type="email" fullWidth variant="standard" />*!/*/}
-                {/*    </DialogContent>*/}
-                {/*    <DialogActions>*/}
-                {/*        <Button onClick={handleClose}>Закрыть</Button>*/}
-                {/*        <Button onClick={moveClient}>Перенести</Button>*/}
-                {/*    </DialogActions>*/}
-                {/*</Dialog>*/}
+                <CTable columns={columns} content={profiles} onRowClick={onRowClick} keyProp={profiles.id_emp} />
             </Box>
         </MainCard>
     );
